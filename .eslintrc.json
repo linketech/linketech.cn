@@ -1,0 +1,51 @@
+{
+    "extends": [
+        "react-app"
+    ],
+    "env": {
+        "browser": true,
+        "es6": true,
+        "node": true
+    },
+    "globals": {
+        "Atomics": "readonly",
+        "SharedArrayBuffer": "readonly"
+    },
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 2018,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react"
+    ],
+    "settings": {
+        "react": {
+          "version": "latest"
+        }
+    },
+    "rules": {
+		"import/no-unresolved": 0,
+		"import/no-extraneous-dependencies": 0,
+		"object-curly-newline": ["error", { "consistent": true }],
+		"semi": [2, "never"],
+		"camelcase": 0,
+		"indent": [2, "tab", { "SwitchCase": 1 }],
+		"no-tabs": 0,
+		"max-len": 0,
+		"no-param-reassign": [2, { "props": false }],
+        "func-names": [2, "never"],
+        "no-mixed-spaces-and-tabs": "error",
+        "no-trailing-spaces": "error",
+        "keyword-spacing": ["error", { "before": true, "after": true }],
+        "computed-property-spacing": ["error", "always"],
+        "space-before-blocks": "error",
+        "arrow-spacing": "error",
+        "space-before-function-paren": "error",
+        "object-curly-spacing": ["error", "always"],
+        "no-multi-spaces": "error",
+        "block-spacing": "error"
+	}
+}

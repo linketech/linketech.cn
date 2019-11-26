@@ -1,0 +1,46 @@
+{
+	"name": "linke-website-admin",
+	"version": "1.0.0",
+	"description": "linke website with admin",
+	"private": true,
+	"scripts": {
+		"client": "cd admin && yarn start",
+		"server": "nodemon index.js",
+		"dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
+	},
+	"eslintConfig": {
+		"extends": "react-app"
+	},
+	"dependencies": {
+		"@koa/cors": "^3.0.0",
+		"koa": "^2.10.0",
+		"koa-body": "^4.1.1",
+		"koa-router": "^7.4.0",
+		"koa-jwt": "^3.6.0",
+		"jsonwebtoken": "^8.5.1",
+		"lodash": "^4.17.15",
+		"moment": "^2.24.0",
+		"mongodb": "^3.3.3",
+		"request": "^2.88.0",
+		"request-promise": "^4.2.4",
+		"cheerio": "^1.0.0-rc.3",
+		"mongoose": "^5.7.8"
+	},
+	"devDependencies": {
+		"concurrently": "^5.0.0",
+		"babel-eslint": "^10.0.3",
+		"eslint": "^6.6.0",
+		"eslint-loader": "^3.0.2",
+		"eslint-plugin-import": "^2.18.2",
+		"eslint-plugin-jsx-a11y": "^6.2.3",
+		"eslint-plugin-react": "^7.16.0",
+		"eslint-plugin-react-hooks": "^1.7.0",
+		"eslint-config-react-app": "^5.0.2",
+		"eslint-plugin-flowtype": "3.13.0",
+		"@typescript-eslint/parser": "2.6.0",
+		"@typescript-eslint/eslint-plugin": "^2.6.0"
+	},
+	"author": "ETBox",
+	"license": "MIT",
+	"main": "index.js"
+}
