@@ -7,6 +7,7 @@ class NewsTable extends React.Component {
 		return (
 			<tr>
 				<td>{moment(news.timestamp * 1000).format('YYYY-MM-DD HH:mm:ss')}</td>
+				<td>{moment(news.event_time * 1000).format('YYYY-MM-DD')}</td>
 				<td>{news.title}</td>
 				<td>{news.summary}</td>
 				<td>{news.thumbnail}</td>

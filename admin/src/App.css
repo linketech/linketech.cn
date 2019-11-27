@@ -26,7 +26,6 @@
   background-color: rgb(255, 251, 255);
   color: rgb(34, 7, 7);
   float: left;
-  /* padding: 30px; */
   font-size: 30px;
   line-height:50px;
 }
@@ -41,7 +40,6 @@
 
 .section {
   width:1000px;
-  /* padding:10px; */
   display: inline-block;
 }
 
@@ -57,6 +55,7 @@ p.left {
 }
 
 ul {
+  display: inline;
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -64,7 +63,7 @@ ul {
   background-color: #f1f1f1;
 }
 
-li a {
+.nav ul li a {
   display: block;
   color: #000;
   padding: 8px 10px 8px 16px;
@@ -82,7 +81,11 @@ li a:hover:not(.active) {
   color: white;
 }
 
-input[type=text] {
+.url_text {
+  display: inline-block;
+}
+
+.url_text input[type=text] {
   width: 250px;
   box-sizing: border-box;
   border: 2px solid #ccc;
@@ -96,7 +99,7 @@ input[type=text] {
   transition: width 0.4s ease-in-out;
 }
 
-input[type=text]:focus {
+.url_text input[type=text]:focus {
   width: 80%;
 }
 
@@ -110,14 +113,14 @@ input[type=button], input[type=submit], input[type=reset] {
   cursor: pointer;
 }
 
-table {
+.newstable table {
   border-collapse: collapse;
   table-layout: fixed;
   overflow: auto;
   width: 100%;
 }
 
-th, td {
+.newstable th, .newstable td {
   border: 1px solid black;
   text-align: left;
   word-break: break-all;
@@ -126,7 +129,7 @@ th, td {
 
 tr:nth-child(even){background-color: #f2f2f2}
 
-th {
+.newstable th {
   background-color: #4CAF50;
   color: white;
 }

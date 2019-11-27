@@ -168,7 +168,8 @@ router.get('/news', async (ctx) => {
 
 router.post('/news', async (ctx) => {
 	console.log(`ctx.request.body: ${JSON.stringify(ctx.request.body)}`)
-	const { input, page_url } = ctx.request.body
+	const { input, page_url, event_time } = ctx.request.body
+	const et_ms = new Date(event_time).valueOf()
 	const isShimo = /shimo\.im/.test(input)
 	const isWeixin = /weixin\.qq\.com/.test(input)
 
@@ -220,7 +221,7 @@ router.post('/news', async (ctx) => {
 		thumbnail = `/img/?url=${imgs[ 0 ]}`
 		const rs = await ctx.db.collection('news').insertOne({
 			project,
-			timestamp: moment().unix(),
+			timestamp: moment(et_ms).unix(),
 			title,
 			summary,
 			thumbnail,

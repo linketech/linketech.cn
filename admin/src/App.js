@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { trackPromise } from 'react-promise-tracker'
 
 import './App.css'
 import logo from './logo2.png'
@@ -9,11 +10,17 @@ import Navigation from './components/Navigation'
 import NewsContext from './components/news-context'
 import actions from './redux/actions'
 
+import 'react-dates/initialize'
+import 'react-dates/lib/css/_datepicker.css'
+import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css'
+
 class App extends React.Component {
 	componentDidMount () {
-		this.getNewsApi()
-			.then((res) => this.props.news_change(res.data))
-			.catch((err) => console.error(err.stack))
+		trackPromise(
+			this.getNewsApi()
+				.then((res) => this.props.news_change(res.data))
+				.catch((err) => console.error(err.stack)),
+		)
 	}
 
 	getNewsApi = async () => {

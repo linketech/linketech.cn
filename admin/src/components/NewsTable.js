@@ -1,6 +1,7 @@
 import React from 'react'
 import NewsRow from './NewsRow'
 import NewsContext from './news-context'
+import { Spinner } from './spinner'
 
 class NewsTable extends React.Component {
 	render () {
@@ -14,12 +15,13 @@ class NewsTable extends React.Component {
 			)
 		})
 		return (
-			<div>
+			<div className="newstable">
 				<h1>NewsTable</h1>
 				<table>
 					<thead>
 						<tr>
 							<th>Date</th>
+							<th>EventTime</th>
 							<th>Title</th>
 							<th>Summary</th>
 							<th>Thumbnail</th>
@@ -30,6 +32,7 @@ class NewsTable extends React.Component {
 						{rows}
 					</tbody>
 				</table>
+				<Spinner />
 			</div>
 		)
 	}
