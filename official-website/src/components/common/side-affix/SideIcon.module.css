@@ -1,0 +1,45 @@
+.icon-container {
+	width: 55px;
+	height: 55px;
+	background-color: #f5f5f5;
+	box-shadow: 0px 3px 6px 0px rgba(175, 175, 175, 0.5);
+	/* 以上设计图 */
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 13px;
+}
+
+.icon-container:hover {
+	background: rgba(67, 52, 234, 1);
+}
+
+#gotop {
+	position: static;
+}
+
+.detail-info {
+	background: rgba(67, 52, 234, 1);
+	position: fixed;
+	right: 100px;
+}
+
+.detail-text {
+	color: #fff;
+	font-size: 22px;
+	font-family: SourceHanSansCN-Medium;
+	font-weight: 500;
+	/* 以上设计图 */
+	line-height: 55px;
+	padding: 25px;
+}
+
+.detail-qrcode {
+	margin-top: 20px;
+}
+
+@media only screen and (max-width: 991px) {
+	.other-icon {
+		display: none;
+	}
+}

@@ -1,0 +1,77 @@
+.root {
+	background-color: #eff1f5;
+	/* height: 964px; */
+	padding-bottom: 100px;
+}
+
+.title {
+	color: #333;
+	font-size: 36px;
+	font-family: SourceHanSansCN-Bold;
+	font-weight: bold;
+	/* 以上设计图 */
+	margin-top: 0;
+	margin-bottom: 120px;
+	padding-top: 100px;
+}
+
+.flex-container {
+	/* 响应式 */
+	max-width: 1200px;
+	margin: 0 auto;
+	display: flex;
+	justify-content: space-between;
+}
+
+.list-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.list-item {
+	width: 510px;
+	height: 110px;
+	background-color: #fff;
+	display: flex;
+	align-items: center;
+	margin-left: 20px;
+}
+
+.item-img {
+	margin-left: 65px;
+}
+
+.item-text {
+	color: #666;
+	font-size: 26px;
+	font-family: SourceHanSansCN-Bold;
+	font-weight: bold;
+	/* 以上设计图 */
+	margin-left: 27px;
+}
+
+@media only screen and (max-width: 991px) {
+	.flex-container {
+		flex-direction: column;
+	}
+	.adjacent-img {
+		order: -1;
+	}
+	.img {
+		width: 80%;
+		text-align: center;
+		padding-bottom: 50px;
+	}
+	.list-item {
+		width: 100%;
+		margin-top: 30px;
+		margin-left: 0;
+	}
+	.item-img {
+		margin-left: 20px;
+	}
+	.list-item {
+		padding-right: 20px;
+	}
+}

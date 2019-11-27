@@ -1,0 +1,58 @@
+.img-container {
+	width: 1920px;
+	height: 740px;
+}
+
+.slider-container {
+	/* 响应式 */
+	max-width: 1200px;
+	margin: 0 auto;
+	text-align: left;
+	padding: 0 20px;
+}
+
+.slider-title {
+	color: #333;
+	font-size: 56px;
+	font-family: SourceHanSansCN-Heavy;
+	font-weight: 800;
+	/* 以上设计图 */
+	margin: 0;
+	padding-top: 120px;
+	padding-bottom: 50px;
+}
+
+.slider-feature {
+	color: #333;
+	font-size: 28px;
+	font-family: SourceHanSansCN-Regular;
+	/* 以上设计图 */
+	margin: 0;
+	padding-top: 10px;
+}
+
+.slider-detail {
+	width: 276px;
+	height: 80px;
+	background-color: rgba(255, 198, 0, 1);
+	box-shadow: 0px 4px 10px 0px rgba(45, 4, 36, 0.35);
+
+	color: #fff;
+	font-size: 30px;
+	font-family: SourceHanSansCN-Regular;
+	/* 以上设计图 */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	margin-top: 40px;
+}
+
+@media only screen and (max-width: 991px) {
+	.slider-title {
+		font-size: 40px;
+	}
+	.slider-feature {
+		font-size: 25px;
+	}
+}

@@ -1,0 +1,79 @@
+.contact-container {
+	/* 响应式 */
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+.flex-container {
+	display: flex;
+	justify-content: space-around;
+}
+
+.flex-element {
+	min-height: 275px;
+	flex: 1 1 400px;
+	box-sizing: border-box;
+	padding-top: 80px;
+}
+
+.flex-element:nth-child(n + 2)::before {
+	content: ' ';
+	float: left;
+	background-color: #cfcfcf;
+	width: 1px;
+	height: 60px;
+	margin-top: 50px;
+}
+
+.flex-element > p {
+	margin: 0;
+}
+
+.item__name {
+	color: #333;
+	font-size: 14px;
+	font-family: SourceHanSansCN-Medium;
+	font-weight: 500;
+	/* 以上设计图 */
+	padding-top: 10px;
+	padding-bottom: 20px;
+}
+
+.item__detail {
+	color: #333;
+	font-size: 16px;
+	font-family: SourceHanSansCN-Normal;
+	/* 以上设计图 */
+	padding: 0 30px;
+	padding-bottom: 5px;
+}
+
+.item__comment {
+	color: #999;
+	font-size: 14px;
+	font-family: SourceHanSansCN-Normal;
+	/* 以上设计图 */
+}
+
+.map-container {
+	height: 600px;
+	padding-bottom: 180px;
+}
+
+.info-window {
+	padding-left: 10px;
+}
+
+.map-title {
+	color: #333;
+	font-size: 18px;
+	font-family: SourceHanSansCN-Normal;
+	/* 以上设计图 */
+}
+
+.map-address {
+	color: #666;
+	font-size: 14px;
+	font-family: SourceHanSansCN-Normal;
+	/* 以上设计图 */
+}

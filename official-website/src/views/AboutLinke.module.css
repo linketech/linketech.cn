@@ -1,0 +1,22 @@
+.banner__subtitle {
+	font-size: 36px;
+	font-family: SourceHanSansCN-Medium;
+	font-weight: 500;
+	/* 以上设计图 */
+	/* margin-bottom: 20px; */
+	color: #fff;
+	position: absolute;
+	top: 60%;
+	width: 100%;
+	text-align: center;
+}
+
+.banner__bar {
+	width: 103px;
+	height: 6px;
+	background-color: #fff;
+	/* 以上设计图 */
+	margin: 0 auto;
+	position: absolute;
+	top: 0;
+}

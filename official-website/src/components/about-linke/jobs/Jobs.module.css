@@ -1,0 +1,84 @@
+.jobs-container {
+	/* 响应式 */
+	max-width: 1200px;
+	margin: 0 auto;
+	padding-top: 40px;
+	padding-bottom: 180px;
+	text-align: left;
+}
+
+.job__bar {
+	height: 80px;
+	border: 1px solid #cfcfcf;
+	cursor: pointer;
+}
+.job__bar > span {
+	/* 为保持垂直居中而写死 */
+	line-height: 80px;
+}
+.job__name {
+	color: #333;
+	font-size: 24px;
+	font-family: SourceHanSansCN-Normal;
+	/* 以上设计图 */
+	margin-left: 25px;
+}
+.job__location {
+	color: #999;
+	font-size: 16px;
+	font-family: SourceHanSansCN-Normal;
+	/* 以上设计图 */
+	margin-left: 35px;
+}
+.switch-icon {
+	float: right;
+	/* 为保持垂直居中而写死 */
+	line-height: 80px !important;
+	margin-right: 25px;
+}
+
+.job__detail {
+	background-color: #f3f3f3;
+	color: #333;
+	padding-top: 20px;
+	padding-left: 25px;
+	padding-bottom: 30px;
+}
+.detail__bold {
+	font-family: SourceHanSansCN-Medium;
+	font-size: 18px;
+	/* 以上设计图 */
+	font-weight: bold;
+}
+.detail__item {
+	line-height: 2em;
+}
+.detail__application {
+	background-color: #4334ea;
+	color: #fff;
+	display: flex;
+	width: 160px;
+	height: 50px;
+	justify-content: center;
+	align-items: center;
+	margin: 0;
+}
+
+.job__bar:hover {
+	background: linear-gradient(to left, #584af3, #5e2ca1);
+}
+.job__bar:hover > * {
+	color: #fff;
+}
+
+@media only screen and (max-width: 400px) {
+	.job__name {
+		margin-left: 0;
+	}
+	.job__location {
+		margin-left: 10px;
+	}
+	.switch-icon {
+		margin-right: 5px;
+	}
+}

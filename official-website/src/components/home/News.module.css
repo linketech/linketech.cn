@@ -1,0 +1,112 @@
+.flex-container {
+	max-width: 1200px;
+	margin: 0 auto;
+
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column;
+	padding: 0 20px;
+}
+.news-container {
+	text-align: left;
+	/* max-width: 580px; */
+	flex: 1 1 580px;
+}
+.news-big-title {
+	color: #999;
+	font-size: 72px;
+	font-family: SourceHanSansCN-Bold;
+	font-weight: bold;
+	/* 以上设计图 */
+	margin: 0;
+	padding-top: 60px;
+	/* padding-bottom: 30px; */
+	/* padding: 0; */
+}
+.news-small-title {
+	color: #333;
+	font-size: 36px;
+	font-family: SourceHanSansCN-Bold;
+	font-weight: bold;
+	/* 以上设计图 */
+	margin-left: 30px;
+}
+.news-title {
+	color: #333;
+	font-size: 24px;
+	font-family: SourceHanSansCN-Bold;
+	font-weight: bold;
+	/* 以上设计图 */
+	margin: 0;
+	line-height: 1.5em;
+	padding-top: 30px;
+	padding-bottom: 25px;
+}
+.news-hr {
+	border-top: 1px solid rgba(207, 207, 207, 1);
+	padding-bottom: 15px;
+}
+.news-paragraph {
+	color: #666;
+	font-size: 20px;
+	font-family: SourceHanSansCN-Medium;
+	font-weight: 500;
+	/* 以上设计图 */
+	margin: 0;
+	line-height: 1.8em;
+}
+.more-info {
+	background-color: rgba(211, 218, 245, 1);
+	width: 183px;
+	height: 56px;
+
+	color: #3f4e85;
+	font-size: 20px;
+	font-family: SourceHanSansCN-Normal;
+	/* 以上设计图 */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	margin: 50px auto;
+}
+
+.image-container {
+	padding-top: 60px;
+}
+.news-image {
+	/* 不能同时制定宽和高 */
+	max-width: 440px;
+	width: 100%;
+	background-size: cover;
+	border-top-left-radius: 30px;
+	border-bottom-right-radius: 30px;
+}
+
+.large-screen {
+	display: none;
+}
+.small-screen {
+	padding: 0 20px;
+}
+
+@media only screen and (min-width: 992px) {
+	.flex-container {
+		flex-direction: row;
+	}
+	.small-screen {
+		display: none;
+	}
+	.large-screen {
+		display: block;
+		flex: 1 1;
+		padding-right: 40px;
+		text-align: left;
+	}
+	.image-container {
+		padding-top: 120px;
+	}
+	.more-info {
+		margin: 50px 0;
+	}
+}

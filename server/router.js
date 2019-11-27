@@ -197,7 +197,7 @@ router.post('/news', async (ctx) => {
 			})
 			$('img').map((i, ele) => {
 				imgs[ i ] = $(ele).data('src')
-				$(ele).attr('src', `/img/?url=${imgs[ i ]}`)
+				$(ele).attr('src', `/api/img/?url=${imgs[ i ]}`)
 			})
 			content = $('.ql-editor').html()
 			// 第一段有可能是空行，要确保 summary 有内容
@@ -210,7 +210,7 @@ router.post('/news', async (ctx) => {
 			})
 			$('#js_content img').map((i, ele) => {
 				imgs[ i ] = $(ele).data('src')
-				$(ele).attr('src', `/img/?url=${imgs[ i ]}`)
+				$(ele).attr('src', `/api/img/?url=${imgs[ i ]}`)
 			})
 			content = $('#js_content')
 				.html()
@@ -218,7 +218,8 @@ router.post('/news', async (ctx) => {
 		}
 
 		summary = p.filter((item) => item !== '')[ 0 ]
-		thumbnail = `/img/?url=${imgs[ 0 ]}`
+		// 后端入口为 /api/
+		thumbnail = `/api/img/?url=${imgs[ 0 ]}`
 		const rs = await ctx.db.collection('news').insertOne({
 			project,
 			timestamp: moment(et_ms).unix(),

@@ -1,0 +1,27 @@
+.root {
+	/* 响应式 */
+	max-width: 1200px;
+	margin: 0 auto;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+.root * {
+	word-wrap: break-word;
+}
+
+.return-button {
+	color: #4334ea;
+	width: 150px;
+	height: 50px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 1px solid #4334ea;
+	border-radius: 25px;
+	margin: 50px;
+}
+.return-button:hover {
+	color: #fff;
+	background-color: #4334ea;
+}

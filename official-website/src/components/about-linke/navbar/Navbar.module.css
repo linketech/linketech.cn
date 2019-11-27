@@ -1,0 +1,10 @@
+.navbar {
+	box-shadow: 0px 1px 10px 0px rgba(17, 29, 54, 0.25);
+	/* 以上设计图 */
+}
+
+.items-container {
+	/* 响应式 */
+	max-width: 1200px;
+	margin: 0 auto !important;
+}

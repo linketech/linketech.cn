@@ -1,0 +1,43 @@
+.nav-item__item {
+	color: #4e5357;
+}
+
+@media only screen and (min-width: 991px) {
+	.nav-item__container {
+		/* 无奈的解决方案 */
+		display: inline-block;
+		float: left;
+	}
+	.nav-item__container:hover > .nav-item__item {
+		background: rgba(67, 52, 234, 1);
+		color: #fff;
+	}
+
+	.nav-item__item {
+		font-size: 20px;
+		font-family: SourceHanSansCN-Regular;
+		color: #4e5357;
+		/* 以上设计图 */
+		display: block;
+		position: relative;
+		/* 上下 padding 是魔数 */
+		padding: 28px 30px;
+	}
+
+	.nav-item__submenu {
+		background-color: rgba(0, 0, 0, 0.5);
+	}
+
+	.submenu__item {
+		display: inline;
+	}
+	.submenu__item:hover > a {
+		background: rgba(67, 52, 234, 1);
+	}
+	.submenu__item > a {
+		color: #fff !important;
+		display: block;
+		padding: 5px 0;
+		margin-bottom: 5px;
+	}
+}

@@ -1,0 +1,42 @@
+.header-container {
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+.slogan {
+	color: #666;
+	font-size: 16px;
+	font-family: SourceHanSansCN-Normal;
+	line-height: 36px;
+	/* 以上设计图 */
+	margin-left: 20px;
+}
+
+/* 耦合，无奈之举 */
+.header-container .nav-phone-icon {
+	position: absolute;
+	top: 30px;
+	right: 20px;
+	z-index: 1;
+	display: none;
+	width: 16px;
+	height: 22px;
+	cursor: pointer;
+}
+
+@media only screen and (max-width: 991px) {
+	.header-container .nav-phone-icon {
+		display: block;
+	}
+	.slogan {
+		display: none;
+	}
+}
+
+.logo-container {
+	height: 87px;
+}
+
+.logo-link {
+	line-height: 87px;
+}

@@ -1,0 +1,18 @@
+.banner__subtitle {
+	font-size: 72px;
+	font-family: SourceHanSansCN-Bold;
+	text-shadow: 0px 3px 6px rgba(17, 29, 54, 0.5);
+	margin: 0;
+	/* padding-top: 70px; */
+	color: #fff;
+	position: absolute;
+	top: 50%;
+	width: 100%;
+	text-align: center;
+}
+
+@media only screen and (max-width: 991px) {
+	.banner__subtitle {
+		font-size: 40px;
+	}
+}

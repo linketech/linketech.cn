@@ -1,0 +1,87 @@
+.team-container {
+	background-color: #f0f0f0;
+	padding-bottom: 100px;
+}
+
+.team-title {
+	color: #333;
+	font-size: 36px;
+	font-family: SourceHanSansCN-Medium;
+	font-weight: 500;
+	/* 以上设计图 */
+	margin: 0;
+	padding-top: 40px;
+	padding-bottom: 30px;
+}
+
+.members-container {
+	/* 响应式 */
+	max-width: 1200px;
+	margin: 0 auto;
+	display: flex;
+	justify-content: space-between;
+}
+
+.member__container {
+	background-color: #fff;
+	width: 320px;
+	height: 512px;
+	margin-bottom: 20px;
+}
+
+.member__info {
+	color: #333;
+	box-sizing: border-box;
+	height: 364px;
+	padding-top: 48px;
+	border-bottom: 1px solid rgba(231, 231, 231, 1);
+}
+
+.member__name {
+	font-size: 24px;
+	font-family: SourceHanSansCN-Bold;
+	font-weight: bold;
+	/* 以上设计图 */
+	margin: 0;
+	padding-top: 20px;
+}
+
+.member__duty {
+	font-size: 18px;
+	font-family: SourceHanSansCN-Regular;
+	/* 以上设计图 */
+	margin: 0;
+	padding-top: 15px;
+}
+
+.member__achievements {
+	padding-top: 24px;
+	padding-bottom: 36px;
+}
+
+.member__achievement {
+	color: #666;
+	font-size: 16px;
+	font-family: SourceHanSansCN-Regular;
+	line-height: 24px;
+	/* 以上设计图 */
+	margin: 0;
+}
+
+.member__comment {
+	color: #999;
+	font-size: 14px;
+	line-height: 24px;
+	/* 以上设计图 */
+	margin: 0;
+}
+
+@media only screen and (max-width: 991px) {
+	.members-container {
+		flex-direction: column;
+		align-items: center;
+	}
+	.team-container {
+		padding-bottom: 20px;
+	}
+}

@@ -1,0 +1,56 @@
+.TA-container {
+	padding-bottom: 100px;
+}
+
+.TA-title {
+	font-size: 36px;
+	font-family: SourceHanSansCN-Bold;
+	color: #333;
+	/* 以上是设计图给出的 CSS */
+	margin: 0;
+	padding: 100px 0;
+}
+
+.flex-container {
+	/* 响应式 */
+	max-width: 1200px;
+	margin: 0 auto;
+	display: flex;
+	justify-content: space-between;
+}
+
+.feature-icon {
+	transition: transform 0.2s ease-in-out;
+}
+
+.feature-icon:hover {
+	transform: scale(1.1);
+}
+
+.features {
+	border-top: 1px solid #9f9f9f;
+	padding-top: 30px;
+	margin-top: 50px;
+}
+
+.feature {
+	font-size: 18px;
+	font-family: SourceHanSansCN-Normal;
+	color: #666;
+	line-height: 16px;
+}
+
+@media only screen and (max-width: 991px) {
+	.flex-container {
+		flex-direction: column;
+	}
+	.features {
+		border-top: 0;
+		margin-top: 10px;
+		padding-top: 0;
+		padding-bottom: 30px;
+	}
+	.TA-container {
+		padding-bottom: 0;
+	}
+}

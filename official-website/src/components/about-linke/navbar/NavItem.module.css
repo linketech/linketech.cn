@@ -1,0 +1,32 @@
+.item-container {
+	height: 150px;
+	border-left: 1px solid #cfcfcf;
+	border-right: 1px solid #cfcfcf;
+}
+
+.selected {
+	background: linear-gradient(to left, #584af3, #5e2ca1);
+}
+
+.item__icon {
+	padding-top: 20px;
+	padding-bottom: 15px;
+}
+
+.item__name {
+	color: #666;
+	font-size: 24px;
+	font-family: SourceHanSansCN-Normal;
+	/* 以上设计图 */
+	margin: 0;
+}
+
+.light-text {
+	color: #fff;
+}
+
+@media only screen and (max-width: 991px) {
+	.item__name {
+		font-size: 16px;
+	}
+}
