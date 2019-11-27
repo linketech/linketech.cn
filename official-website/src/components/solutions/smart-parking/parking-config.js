@@ -18,7 +18,8 @@ import applicationScenario2 from './application-scenario-2.jpg'
 export const banner = {
 	title: '智慧停车系统',
 	imgUrl: bannerImg,
-	videoUrl: '',
+	videoUrl:
+		'https://staticsmart-iovnet-18q0uddqn.now.sh/linketech-website/smart-parking-03.07.mp4',
 }
 export const coreCompetitiveness = {
 	title: '核心竞争力',
