@@ -36,12 +36,14 @@ export default class AboutLinke extends Component {
 	componentDidMount() {
 		const isDev = checkIsDev()
 		axios
-			// .get('http://172.16.2.33:3000/news')
 			.get(`${isDev ? 'http://localhost:8080' : ''}/api/news`)
 			.then((res) => {
 				const data = res.data.data
-				// 留意 project 可能为 '/linke'，未来可能改成正则匹配
-				const newsList = data.filter((item) => item.project === 'linke')
+				const newsList = data
+					// 留意 project 可能为 '/linke'，未来可能改成正则匹配
+					.filter((item) => item.project === 'linke')
+					// 手动按时间排序，防止插入旧新闻在前
+					.sort((a, b) => b.timestamp - a.timestamp)
 				this.setState({ newsList }, () => this.computeCurrent(1))
 			})
 			.catch((err) => console.log(err))
