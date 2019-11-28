@@ -19,7 +19,7 @@
 	},
 	"scripts": {
 		"start": "react-scripts start",
-		"local-build": "react-scripts build && rm build/static/js/*.map && cp docs/CNAME build/CNAME && cp docs/README.md build/README.md && rm docs -r && mv build docs",
+		"local-build": "react-scripts build && rm build/static/js/*.map",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject",
 		"predeploy": "yarn build",
