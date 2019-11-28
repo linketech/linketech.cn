@@ -1,0 +1,26 @@
+{
+	"name": "linketech-website",
+	"version": 2,
+	"builds": [
+		{ "src": "/official-website/build/**/*", "use": "@now/static" },
+		{ "src": "/admin/build/admin/**/*", "use": "@now/static" },
+		{ "src": "/index.js", "use": "@now/node-server" }
+	],
+	"routes": [
+		{ "src": "/home", "dest": "/official-website/build" },
+		{ "src": "/core-tech", "dest": "/official-website/build" },
+		{ "src": "/smart-parking", "dest": "/official-website/build" },
+		{ "src": "/accurate-locating", "dest": "/official-website/build" },
+		{ "src": "/wireless-router", "dest": "/official-website/build" },
+		{ "src": "/about/(.*)", "dest": "/official-website/build" },
+		{ "src": "/api/(.*)", "dest": "/" },
+		{ "src": "/static/(.*)", "dest": "/official-website/build/static/$1" },
+		{ "src": "/(.*)", "dest": "/official-website/build/$1" }
+	],
+	"env": {
+		"JWT_SECRET": "@jwt-secret",
+		"MONGODB_DB": "@mongodb-db",
+		"MONGODB_USER": "@mongodb-user",
+		"MONGODB_PASSWORD": "@mongodb-password"
+	}
+}

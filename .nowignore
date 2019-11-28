@@ -1,0 +1,12 @@
+node_modules
+public
+src
+
+.env
+.eslintrc*
+.gitignore
+config-overrides.js
+/*.json
+README.md
+LICENSE.md
+yarn.lock
