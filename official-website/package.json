@@ -20,6 +20,7 @@
 	"scripts": {
 		"start": "react-scripts start",
 		"local-build": "react-scripts build && rm build/static/js/*.map",
+		"build": "react-scripts build && rm build/static/js/*.map",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject",
 		"predeploy": "yarn build",
