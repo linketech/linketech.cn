@@ -13,6 +13,8 @@
 		{ "src": "/accurate-locating", "dest": "/official-website/build" },
 		{ "src": "/wireless-router", "dest": "/official-website/build" },
 		{ "src": "/about/(.*)", "dest": "/official-website/build" },
+		{ "src": "/admin", "dest": "/admin/build/admin" },
+		{ "src": "/admin/static/(.*)", "dest": "/admin/build/admin/static/$1" },
 		{ "src": "/api/(.*)", "dest": "/" },
 		{ "src": "/static/(.*)", "dest": "/official-website/build/static/$1" },
 		{ "src": "/(.*)", "dest": "/official-website/build/$1" }
