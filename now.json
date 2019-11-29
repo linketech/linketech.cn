@@ -1,11 +1,7 @@
 {
 	"name": "linketech-website",
 	"version": 2,
-	"builds": [
-		{ "src": "/official-website/build/**/*", "use": "@now/static" },
-		{ "src": "/admin/build/admin/**/*", "use": "@now/static" },
-		{ "src": "/index.js", "use": "@now/node-server" }
-	],
+	"builds": [{ "src": "/index.js", "use": "@now/node-server" }],
 	"routes": [
 		{ "src": "/home", "dest": "/official-website/build" },
 		{ "src": "/core-tech", "dest": "/official-website/build" },
