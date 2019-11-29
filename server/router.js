@@ -9,7 +9,9 @@ const jwt = require('jsonwebtoken')
 const User = require('./models/user')
 const util_mongodb = require('./db')
 
-const router = new Router()
+const router = new Router({
+	prefix: '/api'
+})
 mongoose.connect(util_mongodb.MONGO_URL, { useUnifiedTopology: true })
 
 const verifyInput = (uname, pwd, ctx) => {
