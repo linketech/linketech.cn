@@ -1,7 +1,23 @@
 {
 	"name": "linketech-website",
 	"version": 2,
-	"builds": [{ "src": "/index.js", "use": "@now/node-server" }],
+	"builds": [
+		{
+			"src": "/official-website/package.json",
+			"use": "@now/static-build",
+			"config": {
+				"distDir": "build"
+			}
+		},
+		{
+			"src": "/admin/package.json",
+			"use": "@now/static-build",
+			"config": {
+				"distDir": "build/admin"
+			}
+		},
+		{ "src": "/index.js", "use": "@now/node-server" }
+	],
 	"routes": [
 		{ "src": "/home", "dest": "/official-website/build" },
 		{ "src": "/core-tech", "dest": "/official-website/build" },
