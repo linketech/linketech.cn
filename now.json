@@ -13,7 +13,7 @@
 			"src": "/admin/package.json",
 			"use": "@now/static-build",
 			"config": {
-				"distDir": "build/admin"
+				"distDir": "build"
 			}
 		},
 		{ "src": "/index.js", "use": "@now/node-server" }
