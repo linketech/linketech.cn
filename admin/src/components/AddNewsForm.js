@@ -42,7 +42,7 @@ class AddNewsForm extends React.Component {
 		data.append('input', this.props.input)
 		data.append('event_time', this.props.date)
 		data.append('page_url', project_name)
-		const res = await fetch('/news', { method: 'POST', body: data, mode: 'cors' })
+		const res = await fetch('/api/news', { method: 'POST', body: data, mode: 'cors' })
 		const body = await res.json()
 		if (body.status === 200) {
 			trackPromise(
