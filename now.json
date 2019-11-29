@@ -4,32 +4,26 @@
 	"builds": [
 		{
 			"src": "/official-website/package.json",
-			"use": "@now/static-build",
-			"config": {
-				"distDir": "build"
-			}
+			"use": "@now/static-build"
 		},
 		{
 			"src": "/admin/package.json",
-			"use": "@now/static-build",
-			"config": {
-				"distDir": "build"
-			}
+			"use": "@now/static-build"
 		},
 		{ "src": "/index.js", "use": "@now/node-server" }
 	],
 	"routes": [
-		{ "src": "/home", "dest": "/official-website/build" },
-		{ "src": "/core-tech", "dest": "/official-website/build" },
-		{ "src": "/smart-parking", "dest": "/official-website/build" },
-		{ "src": "/accurate-locating", "dest": "/official-website/build" },
-		{ "src": "/wireless-router", "dest": "/official-website/build" },
-		{ "src": "/about/(.*)", "dest": "/official-website/build" },
-		{ "src": "/admin", "dest": "/admin/build/admin" },
-		{ "src": "/admin/static/(.*)", "dest": "/admin/build/admin/static/$1" },
-		{ "src": "/api/(.*)", "dest": "/" },
-		{ "src": "/static/(.*)", "dest": "/official-website/build/static/$1" },
-		{ "src": "/(.*)", "dest": "/official-website/build/$1" }
+		{ "src": "/home", "dest": "/official-website" },
+		{ "src": "/core-tech", "dest": "/official-website" },
+		{ "src": "/smart-parking", "dest": "/official-website" },
+		{ "src": "/accurate-locating", "dest": "/official-website" },
+		{ "src": "/wireless-router", "dest": "/official-website" },
+		{ "src": "/about/(.*)", "dest": "/official-website" },
+		{ "src": "/admin", "dest": "/admin" },
+		{ "src": "/admin/static/(.*)", "dest": "/admin/static/$1" },
+		{ "src": "/api(.*)", "dest": "/" },
+		{ "src": "/static/(.*)", "dest": "/official-website/static/$1" },
+		{ "src": "/(.*)", "dest": "/official-website/$1" }
 	],
 	"env": {
 		"JWT_SECRET": "@jwt-secret",
