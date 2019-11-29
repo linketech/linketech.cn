@@ -1,6 +1,5 @@
 node_modules
 
-.env
 .eslintrc*
 .gitignore
 config-overrides.js
