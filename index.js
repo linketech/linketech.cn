@@ -14,7 +14,9 @@ app.use(cors({
 app.use(body({ multipart: true }))
 app.use(async (ctx, next) => {
 	try {
-		app.context.db = await util_mongodb.connection()
+		if (!ctx.db) {
+			app.context.db = await util_mongodb.connection()
+		}
 		await next()
 	} catch (err) {
 		ctx.response.status = err.statusCode || err.status || 500
