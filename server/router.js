@@ -10,7 +10,7 @@ const User = require('./models/user')
 const util_mongodb = require('./db')
 
 const router = new Router({
-	prefix: '/api',
+	prefix: '/api'
 })
 mongoose.connect(util_mongodb.MONGO_URL, { useUnifiedTopology: true })
 
@@ -169,7 +169,7 @@ router.get('/news', async (ctx) => {
 router.post('/news', async (ctx) => {
 	console.log(`ctx.request.body: ${JSON.stringify(ctx.request.body)}`)
 	const { input, page_url, event_time } = ctx.request.body
-	const et_ms = new Date(event_time).valueOf()
+	const et_ms = (new Date(event_time)).valueOf()
 	const isShimo = /shimo\.im/.test(input)
 	const isWeixin = /weixin\.qq\.com/.test(input)
 
@@ -222,7 +222,8 @@ router.post('/news', async (ctx) => {
 		thumbnail = `/api/img/?url=${imgs[ 0 ]}`
 		const rs = await ctx.db.collection('news').insertOne({
 			project,
-			timestamp: moment(et_ms).unix(),
+			timestamp: moment().unix(),
+			event_time: moment(et_ms).unix(),
 			title,
 			summary,
 			thumbnail,
