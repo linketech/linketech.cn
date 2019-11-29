@@ -18,8 +18,8 @@ class App extends React.Component {
 	componentDidMount () {
 		trackPromise(
 			this.getNewsApi()
-				.then((res) => this.props.news_change(res.data))
-				.catch((err) => console.error(err.stack)),
+				.then(res => this.props.news_change(res.data))
+				.catch(err => console.error(err.stack))
 		)
 	}
 
@@ -40,9 +40,9 @@ class App extends React.Component {
 					</div>
 					<Navigation></Navigation>
 					<NewsContext.Provider value={this.props.news}>
-						<Route exact path='/' component={Home} />
-						<Route path='/linke' component={Section} />
-						<Route path='/dbj' component={Section} />
+						<Route exact path="/" component={Home} />
+						<Route path="/linke" component={Section} />
+						<Route path="/dbj" component={Section} />
 					</NewsContext.Provider>
 				</div>
 			</Router>
@@ -55,13 +55,13 @@ class Home extends React.Component {
 		return (
 			<div>
 				<h1>Home</h1>
-				<p className='left'>This is home page</p>
+				<p className="left">This is home page</p>
 			</div>
 		)
 	}
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
 	return { news: state.news }
 }
 
