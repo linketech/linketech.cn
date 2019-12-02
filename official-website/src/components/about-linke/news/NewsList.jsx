@@ -59,7 +59,9 @@ export default class NewsList extends Component {
 										<h3 className={styles['news__title']}>{newsItem.title}</h3>
 										<p className={styles['news__date']}>
 											<time>
-												{moment(newsItem.timestamp * 1000).format('YYYY-MM-DD')}
+												{moment(newsItem.event_time * 1000).format(
+													'YYYY-MM-DD',
+												)}
 											</time>
 										</p>
 										{newsItem._id ? (
