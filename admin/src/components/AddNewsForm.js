@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { SingleDatePicker } from 'react-dates'
-import { Spinner } from './spinner'
 import { trackPromise } from 'react-promise-tracker'
 
 import actions from '../redux/actions'
