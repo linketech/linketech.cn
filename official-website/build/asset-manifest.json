@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/static/css/main.3fdbd04e.chunk.css",
+    "main.css": "/static/css/main.8305c79d.chunk.css",
     "main.js": "/static/js/main.f4b2177f.chunk.js",
     "main.js.map": "/static/js/main.f4b2177f.chunk.js.map",
     "runtime~main.js": "/static/js/runtime~main.a8a9905a.js",
@@ -9,10 +9,10 @@
     "static/js/2.b86fb891.chunk.js": "/static/js/2.b86fb891.chunk.js",
     "static/js/2.b86fb891.chunk.js.map": "/static/js/2.b86fb891.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.a71e8f3bfd384403efcb0a7a0fd28b0a.js": "/precache-manifest.a71e8f3bfd384403efcb0a7a0fd28b0a.js",
+    "precache-manifest.b12531bb9970d58b3aa6c7126277d4d9.js": "/precache-manifest.b12531bb9970d58b3aa6c7126277d4d9.js",
     "service-worker.js": "/service-worker.js",
     "static/css/2.90172c5a.chunk.css.map": "/static/css/2.90172c5a.chunk.css.map",
-    "static/css/main.3fdbd04e.chunk.css.map": "/static/css/main.3fdbd04e.chunk.css.map",
+    "static/css/main.8305c79d.chunk.css.map": "/static/css/main.8305c79d.chunk.css.map",
     "static/media/2019-05-14.jpg": "/static/media/2019-05-14.7c3a229e.jpg",
     "static/media/QRcode.jpg": "/static/media/QRcode.8d5262bc.jpg",
     "static/media/about-linke-banner.jpg": "/static/media/about-linke-banner.8c585087.jpg",

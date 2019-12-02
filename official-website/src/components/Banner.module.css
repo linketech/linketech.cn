@@ -13,6 +13,7 @@
 	top: 20%;
 	width: 100%;
 	text-align: center;
+	white-space: nowrap;
 }
 
 .banner .banner__title {
