@@ -43,7 +43,7 @@ export default class AboutLinke extends Component {
 					// 留意 project 可能为 '/linke'，未来可能改成正则匹配
 					.filter((item) => item.project === 'linke')
 					// 手动按时间排序，防止插入旧新闻在前
-					.sort((a, b) => b.timestamp - a.timestamp)
+					.sort((a, b) => b.event_time - a.event_time)
 				this.setState({ newsList }, () => this.computeCurrent(1))
 			})
 			.catch((err) => console.log(err))
