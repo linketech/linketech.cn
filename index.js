@@ -27,6 +27,13 @@ app.use(async (ctx, next) => {
 	}
 })
 app.use(router.routes(), router.allowedMethods())
+app.use(async (ctx, next) => {
+	const rex = /\/api\/\w+/
+	if (!rex.test(ctx.url)) {
+		console.info('redirecting to /home')
+		ctx.redirect('/')
+	}
+})
 app.use((() => {
 	const MAX = 1024
 	function tldr (json) {
