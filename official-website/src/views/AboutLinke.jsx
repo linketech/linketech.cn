@@ -29,7 +29,9 @@ export default class AboutLinke extends Component {
 		newsList: [],
 		currentList: [],
 		currentPage: 0,
-		newsContent: null,
+		newsTitle: '无效新闻，请返回',
+		newsEventTime: 0,
+		newsContent: '',
 		isDev: false,
 	}
 
@@ -64,7 +66,13 @@ export default class AboutLinke extends Component {
 			case '/about/jobs':
 				return <Jobs />
 			case '/about/news-detail':
-				return <NewsDetail newsContent={this.state.newsContent} />
+				return (
+					<NewsDetail
+						newsTitle={this.state.newsTitle}
+						newsEventTime={this.state.newsEventTime}
+						newsContent={this.state.newsContent}
+					/>
+				)
 			case '/about/news':
 				// 通过传递给子组件回调函数，使得子组件向父组件传递消息
 				return (
@@ -72,7 +80,7 @@ export default class AboutLinke extends Component {
 						newsList={this.state.newsList}
 						currentList={this.state.currentList}
 						currentPage={this.state.currentPage}
-						readNewsContent={this.readNewsContent}
+						readNews={this.readNews}
 						computeCurrent={this.computeCurrent}
 						isDev={this.state.isDev}
 					/>
@@ -83,15 +91,19 @@ export default class AboutLinke extends Component {
 	}
 
 	/**
-	 * 用于在新闻列表中获取 newsContent，以便传入 news-detail
+	 * 用于在新闻列表中获取 newsTitle, newsEventTime, newsContent，以便传入 news-detail
 	 *
 	 * @memberof AboutLinke
 	 */
-	readNewsContent = (content) => {
+	readNews = (title, event_time, content) => {
 		const newsContent = this.state.isDev
 			? content.replace(/\/api\/img/g, 'http://localhost:8080/api/img')
 			: content
-		this.setState({ newsContent })
+		this.setState({
+			newsTitle: title,
+			newsEventTime: event_time,
+			newsContent,
+		})
 	}
 
 	/**

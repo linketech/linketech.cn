@@ -23,9 +23,9 @@ export default class NewsList extends Component {
 	 *
 	 * @memberof NewsList
 	 */
-	handleClick = (content) => () => {
-		const { readNewsContent } = this.props
-		readNewsContent(content)
+	handleClick = (title, event_time, content) => () => {
+		const { readNews } = this.props
+		readNews(title, event_time, content)
 	}
 
 	render() {
@@ -43,7 +43,11 @@ export default class NewsList extends Component {
 								>
 									<Link
 										to='/about/news-detail'
-										onClick={this.handleClick(newsItem.content)}
+										onClick={this.handleClick(
+											newsItem.title,
+											newsItem.event_time,
+											newsItem.content,
+										)}
 										className={styles['link']}
 									>
 										<img

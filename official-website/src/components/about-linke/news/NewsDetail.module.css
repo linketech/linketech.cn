@@ -10,6 +10,28 @@
 	word-wrap: break-word;
 }
 
+/* 新闻标题 */
+.newsInfo h3 {
+	color: #333;
+	font-size: 30px;
+	font-family: SourceHanSansCN-Normal;
+	/* 以上设计图 */
+	margin: 0;
+	padding-top: 80px;
+}
+/* 发布时间 */
+.newsInfo b {
+	color: #999;
+	font-size: 16px;
+	font-family: SourceHanSansCN-Normal;
+	/* 以上设计图 */
+	display: block;
+	padding-top: 20px;
+	padding-bottom: 30px;
+	border-bottom: 1px solid #cfcfcf;
+	margin-bottom: 50px;
+}
+
 .return-button {
 	color: #4334ea;
 	width: 150px;
