@@ -26,14 +26,6 @@ app.use(async (ctx, next) => {
 		ctx.app.emit('error', err, ctx)
 	}
 })
-app.use(router.routes(), router.allowedMethods())
-app.use(async (ctx, next) => {
-	const rex = /\/api\/\w+/
-	if (!rex.test(ctx.url)) {
-		console.info('redirecting to /home')
-		ctx.redirect('/')
-	}
-})
 app.use((() => {
 	const MAX = 1024
 	function tldr (json) {
@@ -49,6 +41,14 @@ app.use((() => {
 		console.info(request.ip, request.protocol, request.method, request.url, '<<', response.status, tldr(response.body))
 	}
 })())
+app.use(router.routes(), router.allowedMethods())
+app.use(async (ctx, next) => {
+	const rex = /\/api\/\w+/
+	if (!rex.test(ctx.url)) {
+		console.info('redirecting to /home')
+		ctx.redirect('/')
+	}
+})
 
 app.listen(port, () => {
 	console.log(`server is listening on port ${port}`)
