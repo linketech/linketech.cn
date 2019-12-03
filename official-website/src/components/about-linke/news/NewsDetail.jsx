@@ -34,8 +34,14 @@ export default class NewsDetail extends Component {
 						__html: this.props.newsContent,
 					}}
 					className={'ql-editor ql-blank'}
-					style={{ padding: 0 }}
+					style={{ padding: 0, minHeight: 'auto' }}
 				/>
+				<style jsx>{`
+					.ql-editor > p {
+						padding-left: 0 !important;
+						padding-right: 0 !important;
+					}
+				`}</style>
 				<Link to='/about/news' className={styles['return-button']}>
 					返回
 				</Link>
