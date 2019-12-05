@@ -14,7 +14,6 @@ import WirelessRouter from './views/WirelessRouter.jsx'
 import AboutLinke from './views/AboutLinke.jsx'
 
 import styles from './App.module.css'
-import 'antd/dist/antd.css'
 
 class App extends Component {
 	render() {

@@ -18,7 +18,6 @@ export default class VideoButton extends Component {
 	}
 
 	showDrawer = () => {
-		console.log('showDrawer')
 		this.setState({
 			visible: true,
 			innerHeight: window.innerHeight,
@@ -27,7 +26,6 @@ export default class VideoButton extends Component {
 	}
 
 	onClose = () => {
-		console.log('onClose')
 		this.setState({
 			visible: false,
 		})
@@ -48,13 +46,15 @@ export default class VideoButton extends Component {
 					closable={true}
 					onClose={this.onClose}
 					visible={this.state.visible}
-					height={this.state.innerHeight}>
+					height={this.state.innerHeight}
+				>
 					<div className={styles['video-container']}>
 						<video
 							controls
 							height={this.state.innerHeight - 100}
 							width={this.state.innerWidth - 50}
-							preload='metadata'>
+							preload='metadata'
+						>
 							<source src={this.props.videoUrl} type='video/mp4' />
 							Sorry, your browser doesn&#39;t support embedded videos.
 						</video>

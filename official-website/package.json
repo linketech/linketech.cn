@@ -19,10 +19,10 @@
 		"styled-jsx": "^3.2.4"
 	},
 	"scripts": {
-		"start": "react-scripts start",
-		"local-build": "react-scripts build && rm build/static/js/*.map",
-		"build": "react-scripts build && rm build/static/js/*.map",
-		"test": "react-scripts test",
+		"start": "react-app-rewired start",
+		"local-build": "react-app-rewired build && rm build/static/js/*.map",
+		"build": "react-app-rewired build && rm build/static/js/*.map",
+		"test": "react-app-rewired test",
 		"eject": "react-scripts eject",
 		"predeploy": "yarn build",
 		"deploy": "gh-pages -b master -d build"
@@ -41,7 +41,9 @@
 		"eslint": "^5.16.0",
 		"eslint-config-airbnb-base": "^13.1.0",
 		"eslint-plugin-import": "^2.17.2",
-		"eslint-plugin-react": "^7.12.4"
+		"eslint-plugin-react": "^7.12.4",
+		"prerender-spa-plugin": "3.4.0",
+		"react-app-rewired": "2.0.2"
 	},
 	"babel": {
 		"plugins": [
