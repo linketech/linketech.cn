@@ -167,7 +167,6 @@ router.get('/news', async (ctx) => {
 })
 
 router.post('/news', async (ctx) => {
-	console.log(`ctx.request.body: ${JSON.stringify(ctx.request.body)}`)
 	const { input, page_url, event_time } = ctx.request.body
 	const et_ms = (new Date(event_time)).valueOf()
 	const isShimo = /shimo\.im/.test(input)
@@ -197,7 +196,7 @@ router.post('/news', async (ctx) => {
 			})
 			$('img').map((i, ele) => {
 				imgs[ i ] = $(ele).data('src')
-				$(ele).attr('src', `/api/img/?url=${imgs[ i ]}`)
+				$(ele).attr('src', `/img/${encodeURIComponent(imgs[ i ])}`)
 			})
 			content = $('.ql-editor').html()
 			// 第一段有可能是空行，要确保 summary 有内容
@@ -210,7 +209,7 @@ router.post('/news', async (ctx) => {
 			})
 			$('#js_content img').map((i, ele) => {
 				imgs[ i ] = $(ele).data('src')
-				$(ele).attr('src', `/api/img/?url=${imgs[ i ]}`)
+				$(ele).attr('src', `/img/${encodeURIComponent(imgs[ i ])}`)
 			})
 			content = $('#js_content')
 				.html()
@@ -218,8 +217,7 @@ router.post('/news', async (ctx) => {
 		}
 
 		summary = p.filter((item) => item !== '')[ 0 ]
-		// 后端入口为 /api/
-		thumbnail = `/api/img/?url=${imgs[ 0 ]}`
+		thumbnail = `/img/${encodeURIComponent(imgs[ 0 ])}`
 		const rs = await ctx.db.collection('news').insertOne({
 			project,
 			timestamp: moment().unix(),
@@ -253,6 +251,44 @@ router.post('/news', async (ctx) => {
 			message: 'invalid params',
 			data: [],
 		}
+	}
+})
+
+router.delete('/news', async (ctx) => {
+	console.log(`ctx.query: ${JSON.stringify(ctx.query)}`)
+	const params = ctx.query.id
+	try {
+		if (typeof params === 'string') {
+			console.log('string')
+			await ctx.db.collection('news').deleteOne({ _id: mongoose.Types.ObjectId(params) })
+			ctx.status = 200
+			ctx.body = {
+				status: ctx.status,
+				message: 'Delete succeed',
+				data: [],
+			}
+		}
+		else if (params instanceof Array) {
+			console.log('array')
+			const promise_arr = params.map(e => ctx.db.collection('news').deleteOne({ _id: mongoose.Types.ObjectId(e) }))
+			await Promise.all(promise_arr)
+			ctx.status = 200
+			ctx.body = {
+				status: ctx.status,
+				message: 'Delete succeed',
+				data: [],
+			}
+		}
+		else {
+			ctx.status = 400
+			ctx.body = {
+				status: ctx.status,
+				message: 'invalid params',
+				data: [],
+			}
+		}
+	} catch (error) {
+		console.error(error.stack)
 	}
 })
 
@@ -297,6 +333,21 @@ router.get('/img', async (ctx) => {
 			encoding: null,
 		}
 		const img = await rp.get(options)
+		ctx.status = 200
+		ctx.body = img
+	} catch (error) {
+		console.error(error.stack)
+	}
+})
+
+router.get('/img/:filename', async (ctx) => {
+	const url = decodeURIComponent(ctx.params.filename)
+	try {
+		const img = await rp({
+			method: 'GET',
+			url,
+			encoding: null
+		})
 		ctx.status = 200
 		ctx.body = img
 	} catch (error) {
