@@ -1,13 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route } from "react-router-dom"
 import { trackPromise } from 'react-promise-tracker'
 
 import './App.css'
 import logo from './logo2.png'
 import Section from './components/Section'
 import Navigation from './components/Navigation'
-import NewsContext from './components/news-context'
 import actions from './redux/actions'
 
 import 'react-dates/initialize'
@@ -33,17 +32,15 @@ class App extends React.Component {
 	render () {
 		return (
 			<Router>
-				<div className='App'>
-					<div className='header'>
-						<img src={logo} className='App-logo' alt='logo' />
+				<div className="App">
+					<div className="header">
+						<img src={logo} className="App-logo" alt="logo" />
 						<h1>Linke Technology</h1>
 					</div>
 					<Navigation></Navigation>
-					<NewsContext.Provider value={this.props.news}>
-						<Route exact path="/" component={Home} />
-						<Route path="/linke" component={Section} />
-						<Route path="/dbj" component={Section} />
-					</NewsContext.Provider>
+					<Route exact path="/" component={Home} />
+					<Route path="/linke" component={Section} />
+					<Route path="/dbj" component={Section} />
 				</div>
 			</Router>
 		)

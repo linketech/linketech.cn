@@ -134,6 +134,71 @@ tr:nth-child(even){background-color: #f2f2f2}
   color: white;
 }
 
+.newstable {
+  display: inline;
+}
+
 label {
   margin: 20px 20px 0 0;
+}
+
+button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 10px 20px 0;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+  float: right;
+}
+
+button:hover {
+  background-color: white;
+  color: #4CAF50;
+}
+
+input[type="checkbox"] {
+  display: none;
+}
+
+.cb_style {
+  display: none;
+}
+
+#status_header {
+  display: none;
+}
+
+#delete_btn {
+  display: none;
+}
+
+.selected_style + label{
+  background-color: white;
+  border-radius: 5px;
+  border:1px solid #d3d3d3;
+  width:20px;
+  height:20px;
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 20px;
+}
+
+.selected_style:checked + label{
+    background-color: #eee;
+}
+
+.selected_style:checked + label:after{
+    content:"\2714";
+}
+
+form {
+  margin-top: 50px;
 }

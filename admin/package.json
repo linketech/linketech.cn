@@ -6,6 +6,7 @@
 		"antd": "^3.25.2",
 		"moment": "^2.24.0",
 		"react": "^16.11.0",
+		"react-confirm-alert": "^2.4.1",
 		"react-dates": "^21.5.0",
 		"react-dom": "^16.11.0",
 		"react-loader-spinner": "^3.1.5",
@@ -17,8 +18,7 @@
 	},
 	"scripts": {
 		"start": "react-scripts start",
-		"local-build": "react-scripts build && rm build/static/js/*.map && mv build admin && mkdir build && mv admin build",
-		"build": "react-scripts build && rm build/static/js/*.map"
+		"local-build": "react-scripts build && rm build/static/js/*.map"
 	},
 	"browserslist": {
 		"production": [

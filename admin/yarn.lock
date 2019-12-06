@@ -9001,6 +9001,11 @@ react-app-polyfill@^1.0.4:
     regenerator-runtime "0.13.3"
     whatwg-fetch "3.0.0"
 
+react-confirm-alert@^2.4.1:
+  version "2.4.1"
+  resolved "https://registry.npm.taobao.org/react-confirm-alert/download/react-confirm-alert-2.4.1.tgz#cc0837edd80271ea1c5e93840537399e99b07ff3"
+  integrity sha1-zAg37dgCceocXpOEBTc5npmwf/M=
+
 react-dates@^21.5.0:
   version "21.5.0"
   resolved "https://registry.npm.taobao.org/react-dates/download/react-dates-21.5.0.tgz#d75472d447fe5cc25512e7bf5ff38b15dca6299d"

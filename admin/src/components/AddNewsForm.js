@@ -54,7 +54,7 @@ class AddNewsForm extends React.Component {
 	}
 
 	render () {
-		console.log(`props: { section_url: ${this.props.section_url}, date: ${this.props.date}, input: ${this.props.input}, focused: ${this.props.focused}}`)
+		console.log(`[AddNewsForm props]: { section_url: ${this.props.section_url}, date: ${this.props.date}, input: ${this.props.input}, focused: ${this.props.focused}}`)
 		return (
 			<form onSubmit={this.handleSubmit}>
 				<label>URL:</label>

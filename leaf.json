@@ -1,0 +1,9 @@
+{
+	"name": "linketech-alpha",
+	"static": ["official-website/build", "admin/build"],
+	"env": {
+		"MONGODB_USER": null,
+		"MONGODB_PASSWORD": null,
+		"MONGODB_DB": "website"
+	}
+}
