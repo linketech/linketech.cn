@@ -18,7 +18,8 @@
 	},
 	"scripts": {
 		"start": "react-scripts start",
-		"local-build": "react-scripts build && rm build/static/js/*.map"
+		"local-build": "react-scripts build && rm build/static/js/*.map && mv build admin && mkdir build && mv admin build",
+		"build": "react-scripts build && rm build/static/js/*.map"
 	},
 	"browserslist": {
 		"production": [
