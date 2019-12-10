@@ -7,7 +7,7 @@
 		"client": "cd admin && yarn start",
 		"server": "nodemon index.js",
 		"dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
-		"build": "cd admin && npm run build && cd ../official-website && npm run build"
+		"build": "cd admin && npm run local-build && cd ../official-website && npm run local-build"
 	},
 	"eslintConfig": {
 		"extends": "react-app"
