@@ -8,10 +8,9 @@ const jwt = require('jsonwebtoken')
 
 const User = require('./models/user')
 const util_mongodb = require('./db')
+const prefix = '/api'
 
-const router = new Router({
-	prefix: '/api'
-})
+const router = new Router({ prefix })
 mongoose.connect(util_mongodb.MONGO_URL, { useUnifiedTopology: true })
 
 const verifyInput = (uname, pwd, ctx) => {
@@ -196,7 +195,7 @@ router.post('/news', async (ctx) => {
 			})
 			$('img').map((i, ele) => {
 				imgs[ i ] = $(ele).data('src')
-				$(ele).attr('src', `/img/${encodeURIComponent(imgs[ i ])}`)
+				$(ele).attr('src', `${prefix}/img/${crypto.createHash('md5').update(imgs[ i ]).digest("hex")}.file?url=${encodeURIComponent(imgs[ i ])}`)
 			})
 			content = $('.ql-editor').html()
 			// 第一段有可能是空行，要确保 summary 有内容
@@ -209,7 +208,7 @@ router.post('/news', async (ctx) => {
 			})
 			$('#js_content img').map((i, ele) => {
 				imgs[ i ] = $(ele).data('src')
-				$(ele).attr('src', `/img/${encodeURIComponent(imgs[ i ])}`)
+				$(ele).attr('src', `${prefix}/img/${crypto.createHash('md5').update(imgs[ i ]).digest("hex")}.file?url=${encodeURIComponent(imgs[ i ])}`)
 			})
 			content = $('#js_content')
 				.html()
@@ -343,13 +342,19 @@ router.get('/img', async (ctx) => {
 router.get('/img/:filename', async (ctx) => {
 	const url = decodeURIComponent(ctx.params.filename)
 	try {
-		const img = await rp({
+		const res = await rp({
 			method: 'GET',
-			url,
-			encoding: null
+			url: ctx.query.url || url,
+			encoding: null,
+			resolveWithFullResponse: true,
+			simple: false,
+			headers: {
+				'if-none-match': ctx.headers[ 'if-none-match' ] || '',
+			},
 		})
-		ctx.status = 200
-		ctx.body = img
+		ctx.status = res.statusCode
+		ctx.body = res.body
+		ctx.set('ETag', res.headers[ 'etag' ])
 	} catch (error) {
 		console.error(error.stack)
 	}
