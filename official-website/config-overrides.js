@@ -20,6 +20,7 @@ const addConfigPlugin = (config, env) => {
 					'/wireless-router',
 					'/about/introduction',
 					'/about/news',
+					'/about/news-detail',
 					'/about/jobs',
 					'/about/contact',
 				],
