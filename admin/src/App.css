@@ -1,6 +1,28 @@
+@import 'antd/dist/antd.css';
+
+.login-form {
+  height: 500px;
+  top: 30%;
+  left: 37%;
+  transition: translate(-50%, -50%);
+  position: absolute;
+  display: inline-block;
+}
+
+.login-form-forgot {
+  float: right;
+}
+
+.login-form-button {
+  width: 100%;
+  float: none;
+}
+
 .App {
   text-align: center;
-  display: block;
+  position: relative;
+  height: 1000px;
+  vertical-align: middle;
 }
 
 .App-logo {
@@ -103,7 +125,7 @@ li a:hover:not(.active) {
   width: 80%;
 }
 
-input[type=button], input[type=submit], input[type=reset] {
+.mystyle input[type=button], input[type=submit], input[type=reset] {
   background-color: #4CAF50;
   border: none;
   color: white;
@@ -142,7 +164,7 @@ label {
   margin: 20px 20px 0 0;
 }
 
-button {
+button.normal_btn {
   background-color: #4CAF50;
   border: none;
   color: white;
@@ -152,13 +174,13 @@ button {
   display: inline-block;
   font-size: 16px;
   margin: 4px 10px 20px 0;
-  -webkit-transition-duration: 0.4s; /* Safari */
+  -webkit-transition-duration: 0.4s;
   transition-duration: 0.4s;
   cursor: pointer;
   float: right;
 }
 
-button:hover {
+button.normal_btn:hover {
   background-color: white;
   color: #4CAF50;
 }
@@ -199,6 +221,22 @@ input[type="checkbox"] {
     content:"\2714";
 }
 
-form {
+.addnews_form {
   margin-top: 50px;
+}
+
+.ant-dropdown-button {
+  margin: 0 8px 8px 0;
+}
+
+.ant-col-sm-16 {
+  display: block;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width:30%;
+}
+
+.dropdown_style {
+  display: inline;
+  float: right;
 }

@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { SingleDatePicker } from 'react-dates'
 import { trackPromise } from 'react-promise-tracker'
+import { message } from 'antd'
 
 import actions from '../redux/actions'
 
@@ -47,8 +48,11 @@ class AddNewsForm extends React.Component {
 			trackPromise(
 				this.getNewsApi()
 					.then(res => this.props.news_change(res.data))
-					.then(() => alert('insert succeed'))
-					.catch(err => console.error(err.stack))
+					.then(() => message.success('insert succeed'))
+					.catch((err) => {
+						console.error(err.stack)
+						message.error(err.message)
+					})
 			)
 		}
 	}
@@ -56,11 +60,11 @@ class AddNewsForm extends React.Component {
 	render () {
 		console.log(`[AddNewsForm props]: { section_url: ${this.props.section_url}, date: ${this.props.date}, input: ${this.props.input}, focused: ${this.props.focused}}`)
 		return (
-			<form onSubmit={this.handleSubmit}>
+			<form className="addnews_form" onSubmit={this.handleSubmit}>
 				<label>URL:</label>
 				<div className="url_text">
 					<label>
-						<input type="text" onChange={this.handleInputChange} placeholder="please paste an url here"></input>
+						<input className="mystyle_input" type="text" onChange={this.handleInputChange} placeholder="please paste an url here"></input>
 					</label>
 				</div>
 				<SingleDatePicker
@@ -72,7 +76,7 @@ class AddNewsForm extends React.Component {
 					isOutsideRange={() => false} // allow all days include past days
 					showClearDate={true}
 				/>
-				<input type="submit" value="Submit"></input>
+				<input className="mystyle_input" type="submit" value="Submit"></input>
 			</form>
 		)
 	}

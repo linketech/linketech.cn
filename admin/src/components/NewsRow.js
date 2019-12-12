@@ -38,7 +38,6 @@ class NewsRow extends React.Component {
 				<td>{news.title}</td>
 				<td>{news.summary}</td>
 				<td>{news.thumbnail}</td>
-				<td>{news.content}</td>
 			</tr>
 		)
 	}

@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { confirmAlert } from 'react-confirm-alert' // Import
 import { trackPromise } from 'react-promise-tracker'
+import { message } from 'antd'
 
 import actions from '../redux/actions'
 import NewsRow from './NewsRow'
@@ -19,8 +20,14 @@ class NewsTable extends React.Component {
 	componentDidMount () {
 		trackPromise(
 			this.getNewsApi()
-				.then(res => this.props.news_change(res.data))
-				.catch(err => console.error(err.stack))
+				.then((res) => {
+					this.props.news_change(res.data)
+					message.success(res.message)
+				})
+				.catch((err) => {
+					console.error(err.stack)
+					message.error(err.message)
+				})
 		)
 	}
 
@@ -83,9 +90,12 @@ class NewsTable extends React.Component {
 				.then(res => this.props.news_change(res.data))
 				.then(() => {
 					this.selectModeOff(eles)
-					alert('Delete succeed')
+					message.success('Delete succeed')
 				})
-				.catch(err => console.error(err.stack))
+				.catch((err) => {
+					console.error(err.stack)
+					message.error(err.message)
+				})
 		)
 	}
 
@@ -102,8 +112,8 @@ class NewsTable extends React.Component {
 		return (
 			<div className="newstable">
 				<h1>NewsTable</h1>
-				<button id="manage_btn" onClick={this.onSelectStatusChange}>Manage news</button>
-				<button id="delete_btn" onClick={() => {
+				<button id="manage_btn" className="normal_btn" onClick={this.onSelectStatusChange}>Manage news</button>
+				<button id="delete_btn" className="normal_btn" onClick={() => {
 					confirmAlert({
 						customUI: ({ onClose }) => {
 							return (
@@ -129,7 +139,6 @@ class NewsTable extends React.Component {
 							<th>Title</th>
 							<th>Summary</th>
 							<th>Thumbnail</th>
-							<th>Content</th>
 						</tr>
 					</thead>
 					<tbody>

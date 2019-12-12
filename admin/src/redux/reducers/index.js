@@ -1,5 +1,5 @@
 import moment from "moment"
-import { NEWS_CHANGE, INPUT_CHANGE, DATE_CHANGE, FOCUSE_CHANGE, RESET_NEWS, SELECTED_ITEMS_CHANGE, SELECT_MODE_CHANGE, PARENT_ITEMS_CHANGE } from '../actionTypes'
+import { NEWS_CHANGE, INPUT_CHANGE, DATE_CHANGE, FOCUSE_CHANGE, RESET_NEWS, SELECTED_ITEMS_CHANGE, SELECT_MODE_CHANGE, PARENT_ITEMS_CHANGE, LOGIN_STATUS_CHANGE } from '../actionTypes'
 
 function getInitialState () {
 	return {
@@ -9,7 +9,10 @@ function getInitialState () {
 		focused: false,
 		items: [],
 		select_mode: false,
-		parent_items: []
+		parent_items: [],
+		isLogin: false,
+		userId: null,
+		username: null
 	}
 }
 
@@ -45,6 +48,10 @@ export default function (state = getInitialState(), action) {
 		case PARENT_ITEMS_CHANGE:
 			const { parent_items } = action.payload
 			return { ...state, parent_items }
+
+		case LOGIN_STATUS_CHANGE:
+			const { isLogin, userId, username } = action.payload
+			return { ...state, isLogin, userId, username }
 
 		default:
 			return state

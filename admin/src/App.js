@@ -1,65 +1,63 @@
 import React from 'react'
+import { withRouter } from "react-router-dom"
 import { connect } from 'react-redux'
-import { BrowserRouter as Router, Route } from "react-router-dom"
-import { trackPromise } from 'react-promise-tracker'
+import { message } from 'antd'
 
-import './App.css'
-import logo from './logo2.png'
-import Section from './components/Section'
-import Navigation from './components/Navigation'
 import actions from './redux/actions'
+import './App.css'
+import LoginForm from './components/LoginForm'
+import Home from './components/Home'
 
 import 'react-dates/initialize'
 import 'react-dates/lib/css/_datepicker.css'
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css'
+import RegisterForm from './components/RegisterForm'
 
 class App extends React.Component {
 	componentDidMount () {
-		trackPromise(
-			this.getNewsApi()
-				.then(res => this.props.news_change(res.data))
-				.catch(err => console.error(err.stack))
-		)
+		this.getLoginStatus()
+			.then((res) => {
+				if (res.status === 200) {
+					message.success(res.message)
+					this.props.login_status_change(true, res.data._id, res.data.username)
+				} else {
+					message.warning(res.message)
+					this.props.login_status_change(false, null, null)
+				}
+			})
+			.catch(err => console.error(err.stack))
 	}
 
-	getNewsApi = async () => {
-		const response = await fetch('/api/news')
+	getRegisterBtnClick = async (isClicked) => {
+		console.log(`isClicked: ${isClicked}`)
+		if (isClicked) {
+			this.props.history.push('/register')
+		}
+	}
+
+	getLoginStatus = async () => {
+		const response = await fetch('/api/user/info')
 		const body = await response.json()
-		if (response.status !== 200) throw new Error(body.message)
 		return body
 	}
 
 	render () {
-		return (
-			<Router>
+		console.log(`[App props]: ${JSON.stringify(this.props)}`)
+		if (this.props.location.pathname === '/register') {
+			return <RegisterForm />
+		} else {
+			return (
 				<div className="App">
-					<div className="header">
-						<img src={logo} className="App-logo" alt="logo" />
-						<h1>Linke Technology</h1>
-					</div>
-					<Navigation></Navigation>
-					<Route exact path="/" component={Home} />
-					<Route path="/linke" component={Section} />
-					<Route path="/dbj" component={Section} />
+					{ !this.props.isLogin && <LoginForm btnClicked={this.getRegisterBtnClick.bind(this)} />}
+					{ this.props.isLogin && <Home isLogin={this.props.isLogin} username={this.props.username} userId={this.props.userId} />}
 				</div>
-			</Router>
-		)
-	}
-}
-
-class Home extends React.Component {
-	render () {
-		return (
-			<div>
-				<h1>Home</h1>
-				<p className="left">This is home page</p>
-			</div>
-		)
+			)
+		}
 	}
 }
 
 const mapStateToProps = state => {
-	return { news: state.news }
+	return { isLogin: state.isLogin, userId: state.userId, username: state.username }
 }
 
-export default connect(mapStateToProps, actions)(App)
+export default withRouter(connect(mapStateToProps, actions)(App))
