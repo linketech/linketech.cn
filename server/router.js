@@ -216,7 +216,7 @@ router.post('/news', async (ctx) => {
 		}
 
 		summary = p.filter((item) => item !== '')[ 0 ]
-		thumbnail = `/img/${encodeURIComponent(imgs[ 0 ])}`
+		thumbnail = `${prefix}/img/${crypto.createHash('md5').update(imgs[ 0 ]).digest("hex")}.file?url=${encodeURIComponent(imgs[ 0 ])}`
 		const rs = await ctx.db.collection('news').insertOne({
 			project,
 			timestamp: moment().unix(),
