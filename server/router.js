@@ -81,8 +81,7 @@ router.post('/user/register', async (ctx) => {
 		username,
 		password: hash,
 		salt,
-		phone,
-		sessionId: null
+		phone
 	})
 	await user.save()
 	ctx.status = 200
