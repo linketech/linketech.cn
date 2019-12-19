@@ -1,10 +1,9 @@
 import moment from "moment"
-import { NEWS_CHANGE, INPUT_CHANGE, DATE_CHANGE, FOCUSE_CHANGE, RESET_NEWS, SELECTED_ITEMS_CHANGE, SELECT_MODE_CHANGE, PARENT_ITEMS_CHANGE, LOGIN_STATUS_CHANGE } from '../actionTypes'
+import { NEWS_CHANGE, DATE_CHANGE, FOCUSE_CHANGE, RESET_NEWS, SELECTED_ITEMS_CHANGE, SELECT_MODE_CHANGE, PARENT_ITEMS_CHANGE, LOGIN_STATUS_CHANGE } from '../actionTypes'
 
 function getInitialState () {
 	return {
 		news: [],
-		input: '',
 		date: moment(),
 		focused: false,
 		items: [],
@@ -21,10 +20,6 @@ export default function (state = getInitialState(), action) {
 		case NEWS_CHANGE:
 			const { news } = action.payload
 			return { ...state, news }
-
-		case INPUT_CHANGE:
-			const { value } = action.payload
-			return { ...state, input: value }
 
 		case DATE_CHANGE:
 			const { date } = action.payload

@@ -1,9 +1,6 @@
 import React from 'react'
 import { withRouter } from "react-router-dom"
-import { connect } from 'react-redux'
-import { Form, Input, Select, Button, message } from 'antd'
-
-import actions from '../redux/actions'
+import { Form, Input, Select, Button, message, PageHeader, Layout } from 'antd'
 
 const { Option } = Select
 
@@ -27,8 +24,8 @@ class RegistrationForm extends React.Component {
 		e.preventDefault()
 		this.props.form.validateFieldsAndScroll((err, values) => {
 			if (err) {
-				console.error(err.stack)
 				message.error('frontend error')
+				return
 			}
 			this.onRegister(values)
 				.then((res) => {
@@ -89,9 +86,7 @@ class RegistrationForm extends React.Component {
 	}
 
 	render () {
-		console.log(`state: ${JSON.stringify(this.state)}`)
 		const { getFieldDecorator } = this.props.form
-
 		const formItemLayout = {
 			labelCol: {
 				xs: { span: 24 },
@@ -119,69 +114,74 @@ class RegistrationForm extends React.Component {
 		})(
 			<Select style={{ width: 70, height: 30 }}>
 				<Option value="86">+86</Option>
-			</Select>,
+			</Select>
 		)
 
 		return (
-			<Form {...formItemLayout} style={{ margin: "200px 20px 0 30px" }} onSubmit={this.handleSubmit}>
-				<Form.Item label="Username">
-					{getFieldDecorator('username', {
-						rules: [
-							{
-								required: true,
-								message: 'Please input your username!',
-							},
-							{
-								validator: this.checkUsername,
-							},
-						],
-					})(<Input type="text" onBlur={this.handleUsernameBlur} />)}
-				</Form.Item>
-				<Form.Item label="Password" hasFeedback>
-					{getFieldDecorator('password', {
-						rules: [
-							{
-								required: true,
-								message: 'Please input your password!',
-							},
-							{
-								validator: this.validateToNextPassword,
-							},
-						],
-					})(<Input.Password />)}
-				</Form.Item>
-				<Form.Item label="Confirm Password" hasFeedback>
-					{getFieldDecorator('confirm', {
-						rules: [
-							{
-								required: true,
-								message: 'Please confirm your password!',
-							},
-							{
-								validator: this.compareToFirstPassword,
-							},
-						],
-					})(<Input.Password onBlur={this.handleConfirmBlur} />)}
-				</Form.Item>
-				<Form.Item label="Phone Number">
-					{getFieldDecorator('phone', {
-						rules: [{ required: true, message: 'Please input your phone number!' }],
-					})(<Input addonBefore={prefixSelector} style={{ width: '100%' }} />)}
-				</Form.Item>
-				<Form.Item {...tailFormItemLayout}>
-					<Button type="primary" htmlType="submit">
+			<Layout>
+				<PageHeader
+					style={{
+						border: '1px solid rgb(235, 237, 240)',
+					}}
+					onBack={() => this.props.history.push('/login')}
+					title="Register Page"
+				/>
+				<Form {...formItemLayout} style={{ margin: "200px 30px 300px 30px", padding: "60px", borderStyle: "groove", borderWidth: "3px", backgroundColor: "white" }} onSubmit={this.handleSubmit}>
+					<Form.Item label="Username">
+						{getFieldDecorator('username', {
+							rules: [
+								{
+									required: true,
+									message: 'Please input your username!',
+								},
+								{
+									validator: this.checkUsername,
+								},
+							],
+						})(<Input type="text" onBlur={this.handleUsernameBlur} />)}
+					</Form.Item>
+					<Form.Item label="Password" hasFeedback>
+						{getFieldDecorator('password', {
+							rules: [
+								{
+									required: true,
+									message: 'Please input your password!',
+								},
+								{
+									validator: this.validateToNextPassword,
+								},
+							],
+						})(<Input.Password />)}
+					</Form.Item>
+					<Form.Item label="Confirm Password" hasFeedback>
+						{getFieldDecorator('confirm', {
+							rules: [
+								{
+									required: true,
+									message: 'Please confirm your password!',
+								},
+								{
+									validator: this.compareToFirstPassword,
+								},
+							],
+						})(<Input.Password onBlur={this.handleConfirmBlur} />)}
+					</Form.Item>
+					<Form.Item label="Phone Number">
+						{getFieldDecorator('phone', {
+							rules: [{ required: true, message: 'Please input your phone number!' }],
+						})(<Input addonBefore={prefixSelector} style={{ width: '100%' }} />)}
+					</Form.Item>
+					<Form.Item {...tailFormItemLayout}>
+						<Button type="primary" htmlType="submit">
 						Register
-					</Button>
-				</Form.Item>
-			</Form>
+						</Button>
+					</Form.Item>
+				</Form>
+			</Layout>
 		)
 	}
 }
 
 const RegisterForm = Form.create({ name: 'register' })(RegistrationForm)
 
-const mapStateToProps = state => {
-	return { }
-}
-
-export default withRouter(connect(mapStateToProps, actions)(RegisterForm))
+export default withRouter(RegisterForm)

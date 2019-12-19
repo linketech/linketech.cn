@@ -1,16 +1,12 @@
 import React from 'react'
 import { withRouter } from "react-router-dom"
 import { connect } from 'react-redux'
-import { message } from 'antd'
+import { message, Layout } from 'antd'
 
 import actions from './redux/actions'
 import './App.css'
 import LoginForm from './components/LoginForm'
 import Home from './components/Home'
-
-import 'react-dates/initialize'
-import 'react-dates/lib/css/_datepicker.css'
-import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css'
 import RegisterForm from './components/RegisterForm'
 
 class App extends React.Component {
@@ -28,29 +24,32 @@ class App extends React.Component {
 			.catch(err => console.error(err.stack))
 	}
 
-	getRegisterBtnClick = async (isClicked) => {
-		console.log(`isClicked: ${isClicked}`)
+	onStatusChange = (userId, username) => {
+		this.props.login_status_change(true, userId, username)
+	}
+
+	getRegisterBtnClick = (isClicked) => {
 		if (isClicked) {
 			this.props.history.push('/register')
 		}
 	}
 
 	getLoginStatus = async () => {
-		const response = await fetch('/api/user/info')
-		const body = await response.json()
+		const response = await fetch('/api/user/status')
+		const body = response.json()
 		return body
 	}
 
 	render () {
-		console.log(`[App props]: ${JSON.stringify(this.props)}`)
+		console.debug(`[App props]: ${JSON.stringify(this.props)}`)
 		if (this.props.location.pathname === '/register') {
 			return <RegisterForm />
 		} else {
 			return (
-				<div className="App">
-					{ !this.props.isLogin && <LoginForm btnClicked={this.getRegisterBtnClick.bind(this)} />}
+				<Layout style={ { height: "-webkit-fill-available" }}>
+					{ !this.props.isLogin && <LoginForm btnClicked={this.getRegisterBtnClick.bind(this)} statusChange={this.onStatusChange.bind(this)} />}
 					{ this.props.isLogin && <Home isLogin={this.props.isLogin} username={this.props.username} userId={this.props.userId} />}
-				</div>
+				</Layout>
 			)
 		}
 	}

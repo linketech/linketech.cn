@@ -1,158 +1,152 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { confirmAlert } from 'react-confirm-alert' // Import
-import { trackPromise } from 'react-promise-tracker'
-import { message } from 'antd'
+import moment from 'moment'
+import { message, Table, Button, Popconfirm, Typography, Layout } from 'antd'
 
 import actions from '../redux/actions'
-import NewsRow from './NewsRow'
-import { Spinner } from './spinner'
 
-import 'react-confirm-alert/src/react-confirm-alert.css' // Import css
+const { Title } = Typography
+const columns = [
+	{
+		title: 'CreateTime',
+		dataIndex: 'createTime',
+		key: 'createTime',
+		align: "center",
+		ellipsis: true
+	},
+	{
+		title: 'EventTime',
+		dataIndex: 'eventTime',
+		key: 'eventTime',
+		align: "center",
+		ellipsis: true
+	},
+	{
+		title: 'Title',
+		dataIndex: 'title',
+		key: 'title',
+		align: "center",
+		ellipsis: true
+	},
+	{
+		title: 'Summary',
+		dataIndex: 'summary',
+		key: 'summary',
+		align: "center",
+		ellipsis: true
+	},
+	{
+		title: 'Thumbnail',
+		dataIndex: 'thumbnail',
+		key: 'thumbnail',
+		align: "center",
+		ellipsis: true
+	},
+]
 
 class NewsTable extends React.Component {
 	constructor (props) {
 		super(props)
-		this.onSelectStatusChange = this.onSelectStatusChange.bind(this)
-		this.onConfirmDelete = this.onConfirmDelete.bind(this)
+		this.state = { selectedRowKeys: [] }
 	}
 
 	componentDidMount () {
-		trackPromise(
-			this.getNewsApi()
-				.then((res) => {
-					this.props.news_change(res.data)
-					message.success(res.message)
-				})
-				.catch((err) => {
-					console.error(err.stack)
-					message.error(err.message)
-				})
-		)
-	}
-
-	selectModeOn (ele_list) {
-		document.getElementById('manage_btn').innerHTML = 'Cancel'
-		document.getElementById('manage_btn').style[ 'backgroundColor' ] = 'red'
-		document.getElementById('status_header').style[ 'display' ] = 'table-cell'
-		document.getElementById('delete_btn').style[ 'display' ] = 'table-cell'
-		for (let i = 0; i < ele_list.length; i += 1) {
-			ele_list[ i ].style[ 'display' ] = 'table-cell'
-		}
-	}
-
-	selectModeOff (ele_list) {
-		document.getElementById('manage_btn').innerHTML = 'Manage news'
-		document.getElementById('manage_btn').style[ 'backgroundColor' ] = '#4CAF50'
-		document.getElementById('status_header').style[ 'display' ] = 'none'
-		document.getElementById('delete_btn').style[ 'display' ] = 'none'
-		for (let i = 0; i < ele_list.length; i += 1) {
-			ele_list[ i ].style[ 'display' ] = 'none'
-		}
+		this.getNewsApi()
+			.then((res) => {
+				this.props.news_change(res.data)
+				message.success(res.message)
+			})
+			.catch((err) => {
+				console.error(err.stack)
+				message.error(err.message)
+			})
 	}
 
 	getNewsApi = async () => {
 		const response = await fetch('/api/news')
 		const body = await response.json()
-		if (response.status !== 200) throw new Error(body.message)
+		if (response.status !== 200) {
+			message.error(response.statusText)
+			return
+		}
 		return body
 	}
 
-	getItems (items) {
-		this.props.parent_items_change(items)
-	}
-
-	onSelectStatusChange () {
-		const eles = document.getElementsByClassName('cb_style')
-		if (this.props.select_mode === false) {
-			this.selectModeOn(eles)
-		}
-		if (this.props.select_mode === true) {
-			this.selectModeOff(eles)
-		}
-		this.props.select_mode_change(!this.props.select_mode)
+	onSelectChange = selectedRowKeys => {
+		console.debug('selectedRowKeys changed: ', selectedRowKeys)
+		this.setState({ selectedRowKeys })
 	}
 
 	onConfirmDelete = async () => {
 		let url = '/api/news'
-		const eles = document.getElementsByClassName('cb_style')
-		if (this.props.parent_items.length > 0) {
-			if (this.props.parent_items.length === 1) {
-				url = `${url}?id=${this.props.parent_items[ 0 ]}`
+		if (this.state.selectedRowKeys.length > 0) {
+			if (this.state.selectedRowKeys.length === 1) {
+				url = `${url}?id=${this.state.selectedRowKeys[ 0 ]}`
 			}
-			if (this.props.parent_items.length > 1) {
-				url = `${url}?id=${this.props.parent_items.join('&id=')}`
+			if (this.state.selectedRowKeys.length > 1) {
+				url = `${url}?id=${this.state.selectedRowKeys.join('&id=')}`
 			}
 		}
-		trackPromise(
-			fetch(url, { method: 'DELETE', mode: 'cors' })
-				.then(() => this.getNewsApi())
-				.then(res => this.props.news_change(res.data))
-				.then(() => {
-					this.selectModeOff(eles)
-					message.success('Delete succeed')
-				})
-				.catch((err) => {
-					console.error(err.stack)
-					message.error(err.message)
-				})
-		)
+		fetch(url, { method: 'DELETE', mode: 'cors' })
+			.then(() => this.getNewsApi())
+			.then(res => this.props.news_change(res.data))
+			.then(() => {
+				message.success('Delete succeed')
+				this.setState({ selectedRowKeys: [] })
+			})
+			.catch((err) => {
+				console.error(err.stack)
+				message.error(err.message)
+			})
 	}
 
 	render () {
-		console.log(`[NewsTable props]: ${JSON.stringify(this.props)}`)
-		const rows = []
+		console.debug(`[NewsTable props]: ${JSON.stringify(this.props)}`)
 		const project_name = (this.props.section_url.split('/'))[ 1 ]
+		const { selectedRowKeys } = this.state
+		const rowSelection = {
+			selectedRowKeys,
+			onChange: this.onSelectChange,
+		}
+		const hasSelected = selectedRowKeys.length > 0
 		const filtered_list = this.props.news.filter(e => e.project === project_name)
-		filtered_list.forEach((ele, index) => {
-			rows.push(
-				<NewsRow news={ele} key={ele._id} index={index} getItems={this.getItems.bind(this)}></NewsRow>
-			)
-		})
+		const rows = filtered_list.map((e, index) => Object.assign({}, {
+			key: e._id,
+			createTime: moment(e.timestamp * 1000).format('YYYY-MM-DD HH:mm:ss'),
+			eventTime: moment(e.event_time * 1000).format('YYYY-MM-DD'),
+			title: e.title,
+			summary: e.summary,
+			thumbnail: e.thumbnail
+		}))
 		return (
-			<div className="newstable">
-				<h1>NewsTable</h1>
-				<button id="manage_btn" className="normal_btn" onClick={this.onSelectStatusChange}>Manage news</button>
-				<button id="delete_btn" className="normal_btn" onClick={() => {
-					confirmAlert({
-						customUI: ({ onClose }) => {
-							return (
-								<div className='custom-ui'>
-									<h1>Are you sure?</h1>
-									<p>You want to delete these news?</p>
-									<button onClick={onClose}>NO</button>
-									<button onClick={() => {
-										this.onConfirmDelete()
-										onClose()
-									}}>YES</button>
-								</div>
-							)
-						}
-					})
-				}}>Delete</button>
-				<table>
-					<thead>
-						<tr>
-							<th id="status_header">Status</th>
-							<th>Date</th>
-							<th>EventTime</th>
-							<th>Title</th>
-							<th>Summary</th>
-							<th>Thumbnail</th>
-						</tr>
-					</thead>
-					<tbody>
-						{rows}
-					</tbody>
-				</table>
-				<Spinner />
-			</div>
+			<Layout style={{ borderStyle: "groove", borderWidth: "3px", marginBottom: "30px", backgroundColor: "white" }}>
+				<div style={{ marginBottom: 10 }}>
+					<Popconfirm
+						title="Are you sure to delete these news?"
+						onConfirm={this.onConfirmDelete}
+						okText="Yes"
+						cancelText="No"
+					>
+						<Button style={{ width: "fit-content" }} type="primary" disabled={!hasSelected}>
+							Delete
+						</Button>
+					</Popconfirm>
+					<span style={{ marginLeft: 8 }}>
+						{hasSelected ? `Selected ${selectedRowKeys.length} items` : ''}
+					</span>
+				</div>
+				<Title style={{ textAlign: "center", marginBottom: "50px" }} level={2}>NewsTable</Title>
+				<Table rowSelection={rowSelection} columns={columns} dataSource={rows} bordered={true} pagination={{
+					pageSize: 5,
+					showTotal: (total, range) => `${range[ 0 ]}-${range[ 1 ]} of ${total} items`
+				}} />
+			</Layout>
 		)
 	}
 }
 
 const mapStateToProps = state => {
-	return { news: state.news, select_mode: state.select_mode, parent_items: state.parent_items }
+	return { news: state.news }
 }
 
 export default connect(mapStateToProps, actions)(NewsTable)
