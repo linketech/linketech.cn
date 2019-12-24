@@ -13,7 +13,7 @@ const wrapperFetch = async (url, options = { method: 'GET' }) => {
 	}
 }
 
-module.exports = {
+export {
 	wrapperPromiseFunc,
 	wrapperFetch
 }

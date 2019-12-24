@@ -6,8 +6,6 @@ import { connect } from 'react-redux'
 import actions from '../redux/actions'
 import { wrapperPromiseFunc, wrapperFetch } from '../util/func-handler'
 
-const wrapperFetch = null
-
 class NormalLoginForm extends React.Component {
 	handleSubmit = e => {
 		e.preventDefault()

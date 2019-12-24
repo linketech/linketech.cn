@@ -8,7 +8,6 @@ import './App.css'
 import LoginForm from './components/LoginForm'
 import Home from './components/Home'
 import RegisterForm from './components/RegisterForm'
-
 import { wrapperPromiseFunc, wrapperFetch } from './util/func-handler'
 
 class App extends React.Component {

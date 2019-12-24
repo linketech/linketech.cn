@@ -3,16 +3,16 @@ import { Route, Switch, Link, withRouter } from "react-router-dom"
 import { connect } from 'react-redux'
 import { Layout, Menu, Dropdown, Icon, Typography, message } from 'antd'
 
-import { wrapperPromiseFunc, wrapperFetch } from '../util/func-handler'
 
 import '../App.css'
 import actions from '../redux/actions'
 import logo from '../logo3.png'
 import Section from './Section'
 import RegisterForm from './RegisterForm'
+import { wrapperPromiseFunc, wrapperFetch } from '../util/func-handler'
 
 const { Title } = Typography
-const wrapperFetch = null
+
 class Home extends React.Component {
 	constructor (props) {
 		super(props)
