@@ -8,12 +8,10 @@ const jwt = require('jsonwebtoken')
 
 require('./models/Users')
 
-const util_mongodb = require('./db')
 const User = mongoose.model('User')
 
 const prefix = '/api'
 const router = new Router({ prefix })
-mongoose.connect(util_mongodb.MONGO_URL, { useUnifiedTopology: true })
 
 const setPassword = (pwd) => {
 	const salt = crypto.randomBytes(16).toString('hex')
@@ -49,7 +47,7 @@ router.post('/user/check' ,async (ctx) => {
 	const { username = null } = ctx.request.body || {}
 	const isUserExists = await User.findOne({ username })
 	if (isUserExists !== null) {
-		ctx.status = 400
+		ctx.status = 409
 		ctx.body = {
 			status: ctx.status,
 			message: 'username has been used',
@@ -93,10 +91,10 @@ router.post('/user/register', async (ctx) => {
 })
 
 router.post('/user/login', async (ctx) => {
-	const { username = null, password = null } = ctx.request.body || {}
+	const { username = null, password = null } = ctx.request.body
 	const user = await User.findOne({ username })
-	const exp = 3600 * 24 * 1000
-	if (!user || user === null) {
+	const exp = 3600 * 2 * 1000
+	if (!user) {
 		ctx.status = 404
 		ctx.body = {
 			status: ctx.status,
@@ -121,7 +119,6 @@ router.post('/user/login', async (ctx) => {
 	}
 	const token = generateJWT(payload, exp)
 	ctx.cookies.set('token', token, { maxAge: exp })
-	ctx.cookies.set('userId', payload._id, { maxAge: exp })
 	ctx.status = 200
 	ctx.body = {
 		status: ctx.status,
@@ -135,9 +132,9 @@ router.post('/user/login', async (ctx) => {
 })
 
 router.get('/user/status', async (ctx) => {
-	const userId = ctx.cookies.get('userId')
 	const token = ctx.cookies.get('token')
-	if (!token || !userId) {
+	const decoded = jwt.decode(token, process.env.JWT_SECRET)
+	if (!token) {
 		ctx.status = 401
 		ctx.body = {
 			status: ctx.status,
@@ -146,18 +143,16 @@ router.get('/user/status', async (ctx) => {
 		}
 		return
 	}
-	const docs = await User.findOne({ _id: mongoose.Types.ObjectId(userId) })
 	ctx.status = 200
 	ctx.body = {
 		status: ctx.status,
 		message: 'user has logined',
-		data: docs,
+		data: decoded,
 	}
 })
 
 router.get('/user/logout', async (ctx, next) => {
 	ctx.cookies.set('token')
-	ctx.cookies.set('userId')
 	ctx.status = 200
 	ctx.body = {
 		status: ctx.status,
@@ -276,7 +271,16 @@ router.post('/news', async (ctx) => {
 router.delete('/news', async (ctx) => {
 	const params = ctx.query.id
 	if (typeof params === 'string') {
-		await ctx.db.collection('news').deleteOne({ _id: mongoose.Types.ObjectId(params) })
+		const rs = await ctx.db.collection('news').deleteOne({ _id: mongoose.Types.ObjectId(params) })
+		if (rs.deletedCount !== 1) {
+			ctx.status = 500
+			ctx.body = {
+				status: ctx.status,
+				message: 'Delete failed, database error',
+				data: [],
+			}
+			return
+		}
 		ctx.status = 200
 		ctx.body = {
 			status: ctx.status,
@@ -285,8 +289,17 @@ router.delete('/news', async (ctx) => {
 		}
 	}
 	else if (params instanceof Array) {
-		const promise_arr = params.map(e => ctx.db.collection('news').deleteOne({ _id: mongoose.Types.ObjectId(e) }))
-		await Promise.all(promise_arr)
+		const objectid_arr = params.map(e => mongoose.Types.ObjectId(e))
+		const rs = await ctx.db.collection('news').deleteMany({ _id: { $in: objectid_arr } })
+		if (rs.deletedCount !== params.length) {
+			ctx.status = 500
+			ctx.body = {
+				status: ctx.status,
+				message: 'Delete failed, database error',
+				data: [],
+			}
+			return
+		}
 		ctx.status = 200
 		ctx.body = {
 			status: ctx.status,

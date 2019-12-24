@@ -3,21 +3,18 @@ import { connect } from 'react-redux'
 import { Input, Form, Button, DatePicker, message, Layout } from 'antd'
 
 import actions from '../redux/actions'
+import { wrapperFetch } from '../util/func-handler'
 
 class NormalAddForm extends React.Component {
 	constructor (props) {
 		super(props)
 		this.handleDateChange = this.handleDateChange.bind(this)
 		this.handleSubmit = this.handleSubmit.bind(this)
+		this.state = { committing: false }
 	}
 
 	getNewsApi = async () => {
-		const response = await fetch('/api/news')
-		const body = await response.json()
-		if (response.status !== 200) {
-			message.error(response.statusText)
-			return
-		}
+		const body = await wrapperFetch('/api/news')
 		return body
 	}
 
@@ -25,26 +22,32 @@ class NormalAddForm extends React.Component {
 		this.props.date_change(date)
 	}
 
-	handleSubmit = async (event) => {
-		event.preventDefault()
+	handleSubmit = (event) => {
+		this.setState({ committing: true })
 		const input = this.props.form.getFieldValue('input')
 		const data = new FormData()
 		const project_name = (this.props.section_url.split('/'))[ 1 ]
 		data.append('input', input)
 		data.append('event_time', this.props.date)
 		data.append('page_url', project_name)
-		const res = await fetch('/api/news', { method: 'POST', body: data, mode: 'cors' })
-		const body = await res.json()
-		if (body.status !== 200) {
-			message.error(body.message)
-			return
-		}
-		this.getNewsApi()
-			.then(res => this.props.news_change(res.data))
-			.then(() => message.success('insert succeed'))
-			.catch((err) => {
-				console.error(err.stack)
-				message.error(err.message)
+		wrapperFetch('/api/news', { method: 'POST', body: data, mode: 'cors' })
+			.then((post_body) => {
+				if (post_body.status !== 200) {
+					message.warning(post_body.message)
+					return
+				}
+			})
+			.then(() => this.getNewsApi())
+			.then((get_body) => {
+				if (get_body.status !== 200) {
+					message.warning(get_body.message)
+					return
+				}
+				this.props.news_change(get_body.data)
+			})
+			.then(() => {
+				message.success('insert succeed')
+				this.setState({ committing: false })
 			})
 	}
 
@@ -59,7 +62,7 @@ class NormalAddForm extends React.Component {
 							rules: [{ required: true, message: 'Please input a shimo-news url' }],
 						})(<Input placeholder="Please input a shimo-url here"/>)}
 						<DatePicker onChange={this.handleDateChange} placeholder="Select date"/>
-						<Button style={{ marginLeft: "20px" }} type="primary" htmlType="submit">
+						<Button style={{ marginLeft: "20px" }} type="primary" htmlType="submit" disabled={this.state.committing}>
 						Submit
 						</Button>
 					</Form.Item>

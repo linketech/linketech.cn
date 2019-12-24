@@ -2,12 +2,21 @@ const Koa = require('koa')
 const body = require('koa-body')
 const koajwt = require('koa-jwt')
 const cors = require('@koa/cors')
+const mongoose = require('mongoose')
 
 const app = new Koa()
 const router = require('./server/router')
 const util_mongodb = require('./server/db')
 
 const port = process.env.PORT || 8080
+
+mongoose.connect(util_mongodb.MONGO_URL, { useUnifiedTopology: true }, (err, db) => {
+	if (!err) {
+		console.log(`Connected to ${util_mongodb.MONGO_URL}`)
+	} else {
+		throw new Error('Failed to connect mongoose')
+	}
+})
 
 app.use(cors({
 	origin: '*'

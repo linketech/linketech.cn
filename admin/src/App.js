@@ -9,9 +9,11 @@ import LoginForm from './components/LoginForm'
 import Home from './components/Home'
 import RegisterForm from './components/RegisterForm'
 
+import { wrapperPromiseFunc, wrapperFetch } from './util/func-handler'
+
 class App extends React.Component {
 	componentDidMount () {
-		this.getLoginStatus()
+		wrapperPromiseFunc(this.getLoginStatus)
 			.then((res) => {
 				if (res.status === 200) {
 					message.success(res.message)
@@ -21,37 +23,27 @@ class App extends React.Component {
 					this.props.login_status_change(false, null, null)
 				}
 			})
-			.catch(err => console.error(err.stack))
 	}
 
 	onStatusChange = (userId, username) => {
 		this.props.login_status_change(true, userId, username)
 	}
 
-	getRegisterBtnClick = (isClicked) => {
-		if (isClicked) {
-			this.props.history.push('/register')
-		}
+	getRegisterBtnClick = () => {
+		this.props.history.push('/register')
 	}
 
 	getLoginStatus = async () => {
-		const response = await fetch('/api/user/status')
-		const body = response.json()
+		const body = await wrapperFetch('/api/user/status')
 		return body
 	}
 
 	render () {
 		console.debug(`[App props]: ${JSON.stringify(this.props)}`)
-		if (this.props.location.pathname === '/register') {
-			return <RegisterForm />
-		} else {
-			return (
-				<Layout style={ { height: "-webkit-fill-available" }}>
-					{ !this.props.isLogin && <LoginForm btnClicked={this.getRegisterBtnClick.bind(this)} statusChange={this.onStatusChange.bind(this)} />}
-					{ this.props.isLogin && <Home isLogin={this.props.isLogin} username={this.props.username} userId={this.props.userId} />}
-				</Layout>
-			)
-		}
+		return this.props.location.pathname === '/register' ? <RegisterForm /> : <Layout style={ { height: "-webkit-fill-available" }}>
+			{ !this.props.isLogin && <LoginForm btnClicked={this.getRegisterBtnClick} statusChange={this.onStatusChange.bind(this)} />}
+			{ this.props.isLogin && <Home isLogin={this.props.isLogin} username={this.props.username} userId={this.props.userId} />}
+		</Layout>
 	}
 }
 

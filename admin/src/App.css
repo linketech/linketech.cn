@@ -23,9 +23,21 @@ label {
   margin: 20px 20px 0 0;
 }
 
-.ant-col-sm-16 {
+.input-field {
   display: block;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  width:30%;
+  width:80%;
+}
+
+.ant-menu-item.navigation-style {
+  margin-bottom: 20px!important;
+}
+
+.link-style {
+  font-size: 30px!important;
+}
+
+.icon-style {
+  font-size: 20px!important;
 }

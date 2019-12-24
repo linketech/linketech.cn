@@ -4,6 +4,7 @@ import moment from 'moment'
 import { message, Table, Button, Popconfirm, Typography, Layout } from 'antd'
 
 import actions from '../redux/actions'
+import { wrapperPromiseFunc, wrapperFetch } from '../util/func-handler'
 
 const { Title } = Typography
 const columns = [
@@ -47,28 +48,19 @@ const columns = [
 class NewsTable extends React.Component {
 	constructor (props) {
 		super(props)
-		this.state = { selectedRowKeys: [] }
+		this.state = { selectedRowKeys: [], loading: false }
 	}
 
 	componentDidMount () {
-		this.getNewsApi()
+		wrapperPromiseFunc(this.getNewsApi)
 			.then((res) => {
 				this.props.news_change(res.data)
 				message.success(res.message)
 			})
-			.catch((err) => {
-				console.error(err.stack)
-				message.error(err.message)
-			})
 	}
 
 	getNewsApi = async () => {
-		const response = await fetch('/api/news')
-		const body = await response.json()
-		if (response.status !== 200) {
-			message.error(response.statusText)
-			return
-		}
+		const body = await wrapperFetch('/api/news')
 		return body
 	}
 
@@ -77,26 +69,27 @@ class NewsTable extends React.Component {
 		this.setState({ selectedRowKeys })
 	}
 
-	onConfirmDelete = async () => {
-		let url = '/api/news'
-		if (this.state.selectedRowKeys.length > 0) {
-			if (this.state.selectedRowKeys.length === 1) {
-				url = `${url}?id=${this.state.selectedRowKeys[ 0 ]}`
-			}
-			if (this.state.selectedRowKeys.length > 1) {
-				url = `${url}?id=${this.state.selectedRowKeys.join('&id=')}`
-			}
-		}
-		fetch(url, { method: 'DELETE', mode: 'cors' })
+	onConfirmDelete = () => {
+		const url = this.state.selectedRowKeys.length === 1 ? `/api/news?id=${this.state.selectedRowKeys[ 0 ]}` : `/api/news?id=${this.state.selectedRowKeys.join('&id=')}`
+		this.setState({ selectedRowKeys: [], loading: true })
+		wrapperFetch(url, { method: 'DELETE', mode: 'cors' })
+			.then((delete_res) => {
+				if (delete_res.status !== 200) {
+					message.warning(delete_res.message)
+					return
+				}
+			})
 			.then(() => this.getNewsApi())
-			.then(res => this.props.news_change(res.data))
+			.then((get_res) => {
+				if (get_res.status !== 200) {
+					message.warning(get_res.message)
+					return
+				}
+				this.props.news_change(get_res.data)
+			})
 			.then(() => {
 				message.success('Delete succeed')
-				this.setState({ selectedRowKeys: [] })
-			})
-			.catch((err) => {
-				console.error(err.stack)
-				message.error(err.message)
+				this.setState({ loading: false })
 			})
 	}
 
@@ -136,10 +129,15 @@ class NewsTable extends React.Component {
 					</span>
 				</div>
 				<Title style={{ textAlign: "center", marginBottom: "50px" }} level={2}>NewsTable</Title>
-				<Table rowSelection={rowSelection} columns={columns} dataSource={rows} bordered={true} pagination={{
-					pageSize: 5,
-					showTotal: (total, range) => `${range[ 0 ]}-${range[ 1 ]} of ${total} items`
-				}} />
+				<Table rowSelection={rowSelection} columns={columns} dataSource={rows} bordered={true}
+					loading={{
+						delay:500,
+						spinning: this.state.loading
+					}}
+					pagination={{
+						pageSize: 5,
+						showTotal: (total, range) => `${range[ 0 ]}-${range[ 1 ]} of ${total} items`
+					}} />
 			</Layout>
 		)
 	}

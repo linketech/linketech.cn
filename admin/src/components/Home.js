@@ -3,6 +3,8 @@ import { Route, Switch, Link, withRouter } from "react-router-dom"
 import { connect } from 'react-redux'
 import { Layout, Menu, Dropdown, Icon, Typography, message } from 'antd'
 
+import { wrapperPromiseFunc, wrapperFetch } from '../util/func-handler'
+
 import '../App.css'
 import actions from '../redux/actions'
 import logo from '../logo3.png'
@@ -10,7 +12,7 @@ import Section from './Section'
 import RegisterForm from './RegisterForm'
 
 const { Title } = Typography
-
+const wrapperFetch = null
 class Home extends React.Component {
 	constructor (props) {
 		super(props)
@@ -24,7 +26,7 @@ class Home extends React.Component {
 	}
 
 	componentDidMount () {
-		this.getLoginStatus()
+		wrapperPromiseFunc(this.getLoginStatus)
 			.then((res) => {
 				if (res.status === 200) {
 					message.success(res.message)
@@ -34,37 +36,29 @@ class Home extends React.Component {
 					this.props.history.push('/login')
 				}
 			})
-			.catch((err) => {
-				console.error(err.stack)
-				message.error(err.message)
-			})
 	}
 
 	getLoginStatus = async () => {
-		const response = await fetch('/api/user/status')
-		const body = response.json()
+		const body = await wrapperFetch('/api/user/status')
 		return body
 	}
 
 	onLogOut = async () => {
-		const response = await fetch(`/api/user/logout`)
-		const body = response.json()
+		const body = await wrapperFetch(`/api/user/logout`)
 		return body
 	}
 
 	onDropDownMenuClicked = (e) => {
-		if (e.key === '1') {
-			this.onLogOut()
+		if (e.key === 'logout') {
+			wrapperPromiseFunc(this.onLogOut)
 				.then((res) => {
 					if (res.status === 200) {
 						message.success(res.message)
 						this.props.login_status_change(false, null, null)
 						this.props.history.push('/')
+					} else {
+						message.warning(res.message)
 					}
-				})
-				.catch((err) => {
-					console.error(err.stack)
-					message.error(err.message)
 				})
 		}
 	}
@@ -73,10 +67,10 @@ class Home extends React.Component {
 		console.debug(`[Home props]: ${JSON.stringify(this.props)}`)
 		const menu = (
 			<Menu onClick={this.onDropDownMenuClicked}>
-				<Menu.Item key="0">
+				<Menu.Item key="info">
 					Personal Info
 				</Menu.Item>
-				<Menu.Item key="1">
+				<Menu.Item key="logout">
 					<Icon type="logout" />Logout
 				</Menu.Item>
 			</Menu>
@@ -88,17 +82,17 @@ class Home extends React.Component {
 						<img src={logo} width="130px" height="40px" alt="logo" />
 					</div>
 					<Menu theme="dark" mode="inline">
-						<Menu.Item style={{ marginBottom: "20px" }} key="1" title="home">
-							<Icon type="home" style={{ fontSize: "20px" }}/>
-							<span><Link style={{ fontSize: "30px" }} to="/home">Home</Link></span>
+						<Menu.Item className="navigation-style" key="1" title="home">
+							<Icon type="home" className="icon-style"/>
+							<span><Link className="link-style" to="/home">Home</Link></span>
 						</Menu.Item>
-						<Menu.Item style={{ marginBottom: "20px" }} key="2" title="linke">
-							<Icon type="table" style={{ fontSize: "20px" }}/>
-							<span><Link style={{ fontSize: "30px" }} to="/linke">Linke</Link></span>
+						<Menu.Item className="navigation-style" key="2" title="linke">
+							<Icon type="table" className="icon-style"/>
+							<span><Link className="link-style" to="/linke">Linke</Link></span>
 						</Menu.Item>
 						<Menu.Item key="3" title="dbj">
-							<Icon type="table" style={{ fontSize: "20px" }}/>
-							<span><Link style={{ fontSize: "30px" }} to="/dbj">DBJ</Link></span>
+							<Icon type="table" className="icon-style"/>
+							<span><Link className="link-style" to="/dbj">DBJ</Link></span>
 						</Menu.Item>
 					</Menu>
 				</Layout.Sider>
@@ -128,7 +122,7 @@ class Home extends React.Component {
 						</Switch>
 					</Layout.Content>
 					<Layout.Footer style={{ textAlign: 'center' }}>
-						Linke Technology ©2018 Created by Lee
+						Linke Technology ©2020 Created by Lee
 					</Layout.Footer>
 				</Layout>
 			</Layout>

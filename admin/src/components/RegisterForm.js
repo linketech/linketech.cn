@@ -2,6 +2,8 @@ import React from 'react'
 import { withRouter } from "react-router-dom"
 import { Form, Input, Select, Button, message, PageHeader, Layout } from 'antd'
 
+import { wrapperPromiseFunc, wrapperFetch } from '../util/func-handler'
+
 const { Option } = Select
 
 class RegistrationForm extends React.Component {
@@ -10,13 +12,12 @@ class RegistrationForm extends React.Component {
 		usernameDirty: false
 	}
 
-	onRegister = async (ele) => {
+	onRegister = async (username, password, phone) => {
 		const data = new FormData()
-		data.append('username', ele.username)
-		data.append('password', ele.password)
-		data.append('phone', ele.phone)
-		const response = await fetch('/api/user/register', { method: 'POST', mode: 'cors', body: data })
-		const body = response.json()
+		data.append('username', username)
+		data.append('password', password)
+		data.append('phone', phone)
+		const body = await wrapperFetch('/api/user/register', { method: 'POST', mode: 'cors', body: data })
 		return body
 	}
 
@@ -27,18 +28,14 @@ class RegistrationForm extends React.Component {
 				message.error('frontend error')
 				return
 			}
-			this.onRegister(values)
+			wrapperPromiseFunc(this.onRegister.bind(this, values.username, values.password, values.phone))
 				.then((res) => {
-					if (res.status === 200) {
-						message.success(res.message)
-					} else {
+					if (res.status !== 200) {
 						message.warning(res.message)
+						return
 					}
-				})
-				.then(() => this.props.history.push('/login'))
-				.catch((error) => {
-					console.error(error.stack)
-					message.error(error.message)
+					message.success(res.message)
+					this.props.history.push('/login')
 				})
 		})
 	}
@@ -127,7 +124,7 @@ class RegistrationForm extends React.Component {
 					title="Register Page"
 				/>
 				<Form {...formItemLayout} style={{ margin: "200px 30px 300px 30px", padding: "60px", borderStyle: "groove", borderWidth: "3px", backgroundColor: "white" }} onSubmit={this.handleSubmit}>
-					<Form.Item label="Username">
+					<Form.Item className="input-field" label="Username">
 						{getFieldDecorator('username', {
 							rules: [
 								{
@@ -140,7 +137,7 @@ class RegistrationForm extends React.Component {
 							],
 						})(<Input type="text" onBlur={this.handleUsernameBlur} />)}
 					</Form.Item>
-					<Form.Item label="Password" hasFeedback>
+					<Form.Item className="input-field" label="Password" hasFeedback>
 						{getFieldDecorator('password', {
 							rules: [
 								{
@@ -153,7 +150,7 @@ class RegistrationForm extends React.Component {
 							],
 						})(<Input.Password />)}
 					</Form.Item>
-					<Form.Item label="Confirm Password" hasFeedback>
+					<Form.Item className="input-field" label="Confirm Password" hasFeedback>
 						{getFieldDecorator('confirm', {
 							rules: [
 								{
@@ -166,7 +163,7 @@ class RegistrationForm extends React.Component {
 							],
 						})(<Input.Password onBlur={this.handleConfirmBlur} />)}
 					</Form.Item>
-					<Form.Item label="Phone Number">
+					<Form.Item className="input-field" label="Phone Number">
 						{getFieldDecorator('phone', {
 							rules: [{ required: true, message: 'Please input your phone number!' }],
 						})(<Input addonBefore={prefixSelector} style={{ width: '100%' }} />)}

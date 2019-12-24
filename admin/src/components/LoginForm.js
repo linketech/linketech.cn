@@ -4,6 +4,9 @@ import { Form, Icon, Input, Button, Checkbox, message, Layout } from 'antd'
 import { connect } from 'react-redux'
 
 import actions from '../redux/actions'
+import { wrapperPromiseFunc, wrapperFetch } from '../util/func-handler'
+
+const wrapperFetch = null
 
 class NormalLoginForm extends React.Component {
 	handleSubmit = e => {
@@ -13,7 +16,7 @@ class NormalLoginForm extends React.Component {
 				console.error(err.stack)
 				message.error(err.message)
 			}
-			this.onLogin(values)
+			wrapperPromiseFunc(this.onLogin.bind(this, values.username, values.password))
 				.then((res) => {
 					if (res.status !== 200) {
 						message.warning(res.message)
@@ -23,25 +26,19 @@ class NormalLoginForm extends React.Component {
 					this.props.statusChange(res.data.userId, res.data.username)
 				})
 				.then(() => this.props.history.push('/home'))
-				.catch((error) => {
-					console.error(error.stack)
-					message.error(error.message)
-				})
 		})
 	}
 
-	onLogin = async (ele) => {
+	onLogin = async (username, password) => {
 		const data = new FormData()
-		data.append('username', ele.username)
-		data.append('password', ele.password)
-		const response = await fetch('/api/user/login', { method: 'POST', mode: 'cors', body: data })
-		const body = response.json()
+		data.append('username', username)
+		data.append('password', password)
+		const body = await wrapperFetch('/api/user/login', { method: 'POST', mode: 'cors', body: data })
 		return body
 	}
 
-	onRegisterClicked = async (e) => {
-		e.preventDefault()
-		this.props.btnClicked(true)
+	onRegisterClicked = (e) => {
+		this.props.btnClicked()
 	}
 
 	render () {
@@ -77,7 +74,7 @@ class NormalLoginForm extends React.Component {
 						})(<Checkbox style={{ float: "left" }}>Remember me</Checkbox>)}
 						<a className="login-form-forgot" href="">Forgot password</a>
 						<Button type="primary" htmlType="submit" className="login-form-button">Log in</Button>
-						<span style={{ float: "right" }}>Or <a href="/register" onClick={this.onRegisterClicked.bind(this)}>register now!</a></span>
+						<span style={{ float: "right" }}>Or <a href="/register" onClick={this.onRegisterClicked}>register now!</a></span>
 					</Form.Item>
 				</Form>
 			</Layout>
