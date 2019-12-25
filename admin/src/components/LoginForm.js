@@ -23,15 +23,12 @@ class NormalLoginForm extends React.Component {
 					message.success(res.message)
 					this.props.statusChange(res.data.userId, res.data.username)
 				})
-				.then(() => this.props.history.push('/home'))
+				.then(() => this.props.history.push('/admin/home'))
 		})
 	}
 
 	onLogin = async (username, password) => {
-		const data = new FormData()
-		data.append('username', username)
-		data.append('password', password)
-		const body = await wrapperFetch('/api/user/login', { method: 'POST', mode: 'cors', body: data })
+		const body = await wrapperFetch('/api/user/login', { method: 'POST' }, { username, password })
 		return body
 	}
 
@@ -72,7 +69,7 @@ class NormalLoginForm extends React.Component {
 						})(<Checkbox style={{ float: "left" }}>Remember me</Checkbox>)}
 						<a className="login-form-forgot" href="">Forgot password</a>
 						<Button type="primary" htmlType="submit" className="login-form-button">Log in</Button>
-						<span style={{ float: "right" }}>Or <a href="/register" onClick={this.onRegisterClicked}>register now!</a></span>
+						<span style={{ float: "right" }}>Or <a href="/admin/register" onClick={this.onRegisterClicked}>register now!</a></span>
 					</Form.Item>
 				</Form>
 			</Layout>

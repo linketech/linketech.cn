@@ -72,7 +72,7 @@ class NewsTable extends React.Component {
 	onConfirmDelete = () => {
 		const url = this.state.selectedRowKeys.length === 1 ? `/api/news?id=${this.state.selectedRowKeys[ 0 ]}` : `/api/news?id=${this.state.selectedRowKeys.join('&id=')}`
 		this.setState({ selectedRowKeys: [], loading: true })
-		wrapperFetch(url, { method: 'DELETE', mode: 'cors' })
+		wrapperFetch(url, { method: 'DELETE' })
 			.then((delete_res) => {
 				if (delete_res.status !== 200) {
 					message.warning(delete_res.message)
@@ -95,7 +95,7 @@ class NewsTable extends React.Component {
 
 	render () {
 		console.debug(`[NewsTable props]: ${JSON.stringify(this.props)}`)
-		const project_name = (this.props.section_url.split('/'))[ 1 ]
+		const project_name = (this.props.section_url.split('/admin/'))[ 1 ]
 		const { selectedRowKeys } = this.state
 		const rowSelection = {
 			selectedRowKeys,

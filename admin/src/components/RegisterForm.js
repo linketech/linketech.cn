@@ -13,11 +13,11 @@ class RegistrationForm extends React.Component {
 	}
 
 	onRegister = async (username, password, phone) => {
-		const data = new FormData()
-		data.append('username', username)
-		data.append('password', password)
-		data.append('phone', phone)
-		const body = await wrapperFetch('/api/user/register', { method: 'POST', mode: 'cors', body: data })
+		const body = await wrapperFetch('/api/user/register', { method: 'POST' }, {
+			username,
+			password,
+			phone
+		})
 		return body
 	}
 
@@ -35,7 +35,7 @@ class RegistrationForm extends React.Component {
 						return
 					}
 					message.success(res.message)
-					this.props.history.push('/login')
+					this.props.history.push('/admin/login')
 				})
 		})
 	}
@@ -52,9 +52,7 @@ class RegistrationForm extends React.Component {
 
 	checkUsername = (rule, value, callback) => {
 		const { form } = this.props
-		const data = new FormData()
-		data.append('username', form.getFieldValue('username'))
-		fetch('/api/user/check', { method: 'POST', mode: 'cors', body: data })
+		fetch('/api/user/check', { method: 'POST' }, { username: form.getFieldValue('username') })
 			.then(res => res.json())
 			.then((body) => {
 				if (value && (body.status !== 200)) {
@@ -120,7 +118,7 @@ class RegistrationForm extends React.Component {
 					style={{
 						border: '1px solid rgb(235, 237, 240)',
 					}}
-					onBack={() => this.props.history.push('/login')}
+					onBack={() => this.props.history.push('/admin/login')}
 					title="Register Page"
 				/>
 				<Form {...formItemLayout} style={{ margin: "200px 30px 300px 30px", padding: "60px", borderStyle: "groove", borderWidth: "3px", backgroundColor: "white" }} onSubmit={this.handleSubmit}>

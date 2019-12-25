@@ -29,7 +29,7 @@ class App extends React.Component {
 	}
 
 	getRegisterBtnClick = () => {
-		this.props.history.push('/register')
+		this.props.history.push('/admin/register')
 	}
 
 	getLoginStatus = async () => {
@@ -39,7 +39,7 @@ class App extends React.Component {
 
 	render () {
 		console.debug(`[App props]: ${JSON.stringify(this.props)}`)
-		return this.props.location.pathname === '/register' ? <RegisterForm /> : <Layout style={ { height: "-webkit-fill-available" }}>
+		return this.props.location.pathname === '/admin/register' ? <RegisterForm /> : <Layout style={ { height: "-webkit-fill-available" }}>
 			{ !this.props.isLogin && <LoginForm btnClicked={this.getRegisterBtnClick} statusChange={this.onStatusChange.bind(this)} />}
 			{ this.props.isLogin && <Home isLogin={this.props.isLogin} username={this.props.username} userId={this.props.userId} />}
 		</Layout>

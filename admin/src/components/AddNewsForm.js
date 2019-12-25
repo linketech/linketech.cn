@@ -23,14 +23,15 @@ class NormalAddForm extends React.Component {
 	}
 
 	handleSubmit = (event) => {
+		event.preventDefault()
 		this.setState({ committing: true })
 		const input = this.props.form.getFieldValue('input')
-		const data = new FormData()
-		const project_name = (this.props.section_url.split('/'))[ 1 ]
-		data.append('input', input)
-		data.append('event_time', this.props.date)
-		data.append('page_url', project_name)
-		wrapperFetch('/api/news', { method: 'POST', body: data, mode: 'cors' })
+		const project_name = (this.props.section_url.split('/admin/'))[ 1 ]
+		wrapperFetch('/api/news', { method: 'POST' }, {
+			input,
+			event_time: this.props.date,
+			page_url: project_name
+		})
 			.then((post_body) => {
 				if (post_body.status !== 200) {
 					message.warning(post_body.message)

@@ -33,7 +33,7 @@ class Home extends React.Component {
 				} else {
 					message.warning(res.message)
 					this.props.login_status_change(false, null, null)
-					this.props.history.push('/login')
+					this.props.history.push('/admin/login')
 				}
 			})
 	}
@@ -55,7 +55,7 @@ class Home extends React.Component {
 					if (res.status === 200) {
 						message.success(res.message)
 						this.props.login_status_change(false, null, null)
-						this.props.history.push('/')
+						this.props.history.push('/admin')
 					} else {
 						message.warning(res.message)
 					}
@@ -84,15 +84,15 @@ class Home extends React.Component {
 					<Menu theme="dark" mode="inline">
 						<Menu.Item className="navigation-style" key="1" title="home">
 							<Icon type="home" className="icon-style"/>
-							<span><Link className="link-style" to="/home">Home</Link></span>
+							<span><Link className="link-style" to="/admin/home">Home</Link></span>
 						</Menu.Item>
 						<Menu.Item className="navigation-style" key="2" title="linke">
 							<Icon type="table" className="icon-style"/>
-							<span><Link className="link-style" to="/linke">Linke</Link></span>
+							<span><Link className="link-style" to="/admin/linke">Linke</Link></span>
 						</Menu.Item>
 						<Menu.Item key="3" title="dbj">
 							<Icon type="table" className="icon-style"/>
-							<span><Link className="link-style" to="/dbj">DBJ</Link></span>
+							<span><Link className="link-style" to="/admin/dbj">DBJ</Link></span>
 						</Menu.Item>
 					</Menu>
 				</Layout.Sider>
@@ -115,10 +115,10 @@ class Home extends React.Component {
 						}}
 					>
 						<Switch>
-							<Route exact path="/home" component={MainPage} />
-							<Route path="/register" component={RegisterForm} />
-							<Route path="/linke" component={Section} />
-							<Route path="/dbj" component={Section} />
+							<Route exact path="/admin/home" component={MainPage} />
+							<Route path="/admin/register" component={RegisterForm} />
+							<Route path="/admin/linke" component={Section} />
+							<Route path="/admin/dbj" component={Section} />
 						</Switch>
 					</Layout.Content>
 					<Layout.Footer style={{ textAlign: 'center' }}>
