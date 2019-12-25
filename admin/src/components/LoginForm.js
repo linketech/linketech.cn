@@ -1,5 +1,5 @@
 import React from 'react'
-import { withRouter } from "react-router-dom"
+import { withRouter, Link } from "react-router-dom"
 import { Form, Icon, Input, Button, Checkbox, message, Layout } from 'antd'
 import { connect } from 'react-redux'
 
@@ -69,7 +69,7 @@ class NormalLoginForm extends React.Component {
 						})(<Checkbox style={{ float: "left" }}>Remember me</Checkbox>)}
 						<a className="login-form-forgot" href="">Forgot password</a>
 						<Button type="primary" htmlType="submit" className="login-form-button">Log in</Button>
-						<span style={{ float: "right" }}>Or <a href="/admin/register" onClick={this.onRegisterClicked}>register now!</a></span>
+						<span style={{ float: "right" }}>Or <Link to="/admin/register" onClick={this.onRegisterClicked}>register now!</Link></span>
 					</Form.Item>
 				</Form>
 			</Layout>
