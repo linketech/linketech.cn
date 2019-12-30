@@ -2,7 +2,7 @@ import React from 'react'
 import { withRouter } from "react-router-dom"
 import { Form, Input, Select, Button, message, PageHeader, Layout } from 'antd'
 
-import { wrapperPromiseFunc, wrapperFetch } from '../util/func-handler'
+import { wrapperFetch } from '../util/func-handler'
 
 const { Option } = Select
 
@@ -18,26 +18,24 @@ class RegistrationForm extends React.Component {
 			password,
 			phone
 		})
-		return body
+		if (body.status !== 200) {
+			message.warning(body.message)
+			return
+		}
+		message.success(body.message)
+		this.props.history.push('/admin/login')
 	}
 
-	handleSubmit = e => {
+	handleSubmit = async (e) => {
 		e.preventDefault()
+		const values = this.props.form.getFieldsValue()
 		this.props.form.validateFieldsAndScroll((err, values) => {
 			if (err) {
 				message.error('frontend error')
 				return
 			}
-			wrapperPromiseFunc(this.onRegister.bind(this, values.username, values.password, values.phone))
-				.then((res) => {
-					if (res.status !== 200) {
-						message.warning(res.message)
-						return
-					}
-					message.success(res.message)
-					this.props.history.push('/admin/login')
-				})
 		})
+		await this.onRegister(values.username, values.password, values.phone)
 	}
 
 	handleConfirmBlur = e => {
@@ -52,8 +50,7 @@ class RegistrationForm extends React.Component {
 
 	checkUsername = (rule, value, callback) => {
 		const { form } = this.props
-		fetch('/api/user/check', { method: 'POST' }, { username: form.getFieldValue('username') })
-			.then(res => res.json())
+		wrapperFetch('/api/user/check', { method: 'POST' }, { username: form.getFieldValue('username') })
 			.then((body) => {
 				if (value && (body.status !== 200)) {
 					callback(body.message)

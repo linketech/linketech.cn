@@ -14,42 +14,58 @@ class NormalAddForm extends React.Component {
 	}
 
 	getNewsApi = async () => {
-		const body = await wrapperFetch('/api/news')
-		return body
+		const get_body = await wrapperFetch('/api/news')
+		if (get_body.status !== 200) {
+			message.warning(get_body.message)
+			return
+		}
+		this.props.news_change(get_body.data)
 	}
 
 	handleDateChange (date, dateString) {
 		this.props.date_change(date)
 	}
 
-	handleSubmit = (event) => {
+	handleSubmit = async (event) => {
 		event.preventDefault()
 		this.setState({ committing: true })
 		const input = this.props.form.getFieldValue('input')
 		const project_name = (this.props.section_url.split('/admin/'))[ 1 ]
-		wrapperFetch('/api/news', { method: 'POST' }, {
+		const post_body = await wrapperFetch('/api/news', { method: 'POST' }, {
 			input,
 			event_time: this.props.date,
 			page_url: project_name
 		})
-			.then((post_body) => {
-				if (post_body.status !== 200) {
-					message.warning(post_body.message)
-					return
-				}
-			})
-			.then(() => this.getNewsApi())
-			.then((get_body) => {
-				if (get_body.status !== 200) {
-					message.warning(get_body.message)
-					return
-				}
-				this.props.news_change(get_body.data)
-			})
-			.then(() => {
-				message.success('insert succeed')
-				this.setState({ committing: false })
-			})
+		if (post_body.status !== 200) {
+			message.warning(post_body.message)
+			return
+		}
+		message.success('insert succeed')
+		this.setState({ committing: false })
+		await this.getNewsApi()
+		// wrapperFetch('/api/news', { method: 'POST' }, {
+		// 	input,
+		// 	event_time: this.props.date,
+		// 	page_url: project_name
+		// })
+		// 	.then((post_body) => {
+		// 		if (post_body.status !== 200) {
+		// 			message.warning(post_body.message)
+		// 			return
+		// 		}
+		// 	})
+		// 	.then(() => this.getNewsApi())
+		// 	.then((get_body) => {
+		// 		if (get_body.status !== 200) {
+		// 			message.warning(get_body.message)
+		// 			return
+		// 		}
+		// 		this.props.news_change(get_body.data)
+		// 	})
+		// 	.then(() => {
+		// 		message.success('insert succeed')
+		// 		this.setState({ committing: false })
+		// 	})
 	}
 
 	render () {

@@ -4,32 +4,30 @@ import { Form, Icon, Input, Button, Checkbox, message, Layout } from 'antd'
 import { connect } from 'react-redux'
 
 import actions from '../redux/actions'
-import { wrapperPromiseFunc, wrapperFetch } from '../util/func-handler'
+import { wrapperFetch } from '../util/func-handler'
 
 class NormalLoginForm extends React.Component {
-	handleSubmit = e => {
+	handleSubmit = async (e) => {
 		e.preventDefault()
+		const values = this.props.form.getFieldsValue()
 		this.props.form.validateFields((err, values) => {
 			if (err) {
 				console.error(err.stack)
 				message.error(err.message)
 			}
-			wrapperPromiseFunc(this.onLogin.bind(this, values.username, values.password))
-				.then((res) => {
-					if (res.status !== 200) {
-						message.warning(res.message)
-						return
-					}
-					message.success(res.message)
-					this.props.statusChange(res.data.userId, res.data.username)
-				})
-				.then(() => this.props.history.push('/admin/home'))
 		})
+		await this.onLogin(values.username, values.password)
 	}
 
 	onLogin = async (username, password) => {
 		const body = await wrapperFetch('/api/user/login', { method: 'POST' }, { username, password })
-		return body
+		if (body.status !== 200) {
+			message.warning(body.message)
+			return
+		}
+		message.success(body.message)
+		this.props.statusChange(body.data.userId, body.data.username)
+		this.props.history.push('/admin/home')
 	}
 
 	onRegisterClicked = (e) => {

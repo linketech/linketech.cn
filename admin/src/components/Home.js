@@ -9,7 +9,7 @@ import actions from '../redux/actions'
 import logo from '../logo3.png'
 import Section from './Section'
 import RegisterForm from './RegisterForm'
-import { wrapperPromiseFunc, wrapperFetch } from '../util/func-handler'
+import { wrapperFetch } from '../util/func-handler'
 
 const { Title } = Typography
 
@@ -26,40 +26,34 @@ class Home extends React.Component {
 	}
 
 	componentDidMount () {
-		wrapperPromiseFunc(this.getLoginStatus)
-			.then((res) => {
-				if (res.status === 200) {
-					message.success(res.message)
-				} else {
-					message.warning(res.message)
-					this.props.login_status_change(false, null, null)
-					this.props.history.push('/admin/login')
-				}
-			})
+		this.getLoginStatus()
 	}
 
 	getLoginStatus = async () => {
 		const body = await wrapperFetch('/api/user/status')
-		return body
+		if (body.status === 200) {
+			message.success(body.message)
+			this.props.login_status_change(true, body.data._id, body.data.username)
+		} else {
+			message.warning(body.message)
+			this.props.login_status_change(false, null, null)
+		}
 	}
 
 	onLogOut = async () => {
 		const body = await wrapperFetch(`/api/user/logout`)
-		return body
+		if (body.status === 200) {
+			message.success(body.message)
+			this.props.login_status_change(false, null, null)
+			this.props.history.push('/admin')
+		} else {
+			message.warning(body.message)
+		}
 	}
 
-	onDropDownMenuClicked = (e) => {
+	onDropDownMenuClicked = async (e) => {
 		if (e.key === 'logout') {
-			wrapperPromiseFunc(this.onLogOut)
-				.then((res) => {
-					if (res.status === 200) {
-						message.success(res.message)
-						this.props.login_status_change(false, null, null)
-						this.props.history.push('/admin')
-					} else {
-						message.warning(res.message)
-					}
-				})
+			await this.onLogOut()
 		}
 	}
 

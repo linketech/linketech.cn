@@ -1,5 +1,5 @@
 import React from 'react'
-import { withRouter } from "react-router-dom"
+import { withRouter, Route } from "react-router-dom"
 import { connect } from 'react-redux'
 import { message, Layout } from 'antd'
 
@@ -8,20 +8,11 @@ import './App.css'
 import LoginForm from './components/LoginForm'
 import Home from './components/Home'
 import RegisterForm from './components/RegisterForm'
-import { wrapperPromiseFunc, wrapperFetch } from './util/func-handler'
+import { wrapperFetch } from './util/func-handler'
 
 class App extends React.Component {
 	componentDidMount () {
-		wrapperPromiseFunc(this.getLoginStatus)
-			.then((res) => {
-				if (res.status === 200) {
-					message.success(res.message)
-					this.props.login_status_change(true, res.data._id, res.data.username)
-				} else {
-					message.warning(res.message)
-					this.props.login_status_change(false, null, null)
-				}
-			})
+		this.getLoginStatus()
 	}
 
 	onStatusChange = (userId, username) => {
@@ -34,12 +25,19 @@ class App extends React.Component {
 
 	getLoginStatus = async () => {
 		const body = await wrapperFetch('/api/user/status')
-		return body
+		if (body.status === 200) {
+			message.success(body.message)
+			this.props.login_status_change(true, body.data._id, body.data.username)
+		} else {
+			message.warning(body.message)
+			this.props.login_status_change(false, null, null)
+		}
 	}
 
 	render () {
 		console.debug(`[App props]: ${JSON.stringify(this.props)}`)
 		return this.props.location.pathname === '/admin/register' ? <RegisterForm /> : <Layout style={ { height: "-webkit-fill-available" }}>
+			<Route path='/admin/register' component={LoginForm} />
 			{ !this.props.isLogin && <LoginForm btnClicked={this.getRegisterBtnClick} statusChange={this.onStatusChange.bind(this)} />}
 			{ this.props.isLogin && <Home isLogin={this.props.isLogin} username={this.props.username} userId={this.props.userId} />}
 		</Layout>

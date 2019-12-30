@@ -4,7 +4,7 @@ import moment from 'moment'
 import { message, Table, Button, Popconfirm, Typography, Layout } from 'antd'
 
 import actions from '../redux/actions'
-import { wrapperPromiseFunc, wrapperFetch } from '../util/func-handler'
+import { wrapperFetch } from '../util/func-handler'
 
 const { Title } = Typography
 const columns = [
@@ -52,16 +52,13 @@ class NewsTable extends React.Component {
 	}
 
 	componentDidMount () {
-		wrapperPromiseFunc(this.getNewsApi)
-			.then((res) => {
-				this.props.news_change(res.data)
-				message.success(res.message)
-			})
+		this.getNewsApi()
 	}
 
 	getNewsApi = async () => {
 		const body = await wrapperFetch('/api/news')
-		return body
+		this.props.news_change(body.data)
+		message.success(body.message)
 	}
 
 	onSelectChange = selectedRowKeys => {
@@ -69,28 +66,17 @@ class NewsTable extends React.Component {
 		this.setState({ selectedRowKeys })
 	}
 
-	onConfirmDelete = () => {
+	onConfirmDelete = async () => {
 		const url = this.state.selectedRowKeys.length === 1 ? `/api/news?id=${this.state.selectedRowKeys[ 0 ]}` : `/api/news?id=${this.state.selectedRowKeys.join('&id=')}`
 		this.setState({ selectedRowKeys: [], loading: true })
-		wrapperFetch(url, { method: 'DELETE' })
-			.then((delete_res) => {
-				if (delete_res.status !== 200) {
-					message.warning(delete_res.message)
-					return
-				}
-			})
-			.then(() => this.getNewsApi())
-			.then((get_res) => {
-				if (get_res.status !== 200) {
-					message.warning(get_res.message)
-					return
-				}
-				this.props.news_change(get_res.data)
-			})
-			.then(() => {
-				message.success('Delete succeed')
-				this.setState({ loading: false })
-			})
+		const delete_res = await wrapperFetch(url, { method: 'DELETE' })
+		if (delete_res.status !== 200) {
+			message.warning(delete_res.message)
+			return
+		}
+		message.success('Delete succeed')
+		this.setState({ loading: false })
+		await this.getNewsApi()
 	}
 
 	render () {
