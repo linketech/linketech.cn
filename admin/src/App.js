@@ -1,65 +1,51 @@
 import React from 'react'
+import { withRouter, Route } from "react-router-dom"
 import { connect } from 'react-redux'
-import { BrowserRouter as Router, Route } from "react-router-dom"
-import { trackPromise } from 'react-promise-tracker'
+import { message, Layout } from 'antd'
 
-import './App.css'
-import logo from './logo2.png'
-import Section from './components/Section'
-import Navigation from './components/Navigation'
 import actions from './redux/actions'
-
-import 'react-dates/initialize'
-import 'react-dates/lib/css/_datepicker.css'
-import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css'
+import './App.css'
+import LoginForm from './components/LoginForm'
+import Home from './components/Home'
+import RegisterForm from './components/RegisterForm'
+import { wrapperFetch } from './util/func-handler'
 
 class App extends React.Component {
 	componentDidMount () {
-		trackPromise(
-			this.getNewsApi()
-				.then(res => this.props.news_change(res.data))
-				.catch(err => console.error(err.stack))
-		)
+		this.getLoginStatus()
 	}
 
-	getNewsApi = async () => {
-		const response = await fetch('/api/news')
-		const body = await response.json()
-		if (response.status !== 200) throw new Error(body.message)
-		return body
+	onStatusChange = (userId, username) => {
+		this.props.login_status_change(true, userId, username)
+	}
+
+	getRegisterBtnClick = () => {
+		this.props.history.push('/admin/register')
+	}
+
+	getLoginStatus = async () => {
+		const body = await wrapperFetch('/api/user/status')
+		if (body.status === 200) {
+			message.success(body.message)
+			this.props.login_status_change(true, body.data._id, body.data.username)
+		} else {
+			message.warning(body.message)
+			this.props.login_status_change(false, null, null)
+		}
 	}
 
 	render () {
-		return (
-			<Router>
-				<div className="App">
-					<div className="header">
-						<img src={logo} className="App-logo" alt="logo" />
-						<h1>Linke Technology</h1>
-					</div>
-					<Navigation></Navigation>
-					<Route exact path="/" component={Home} />
-					<Route path="/linke" component={Section} />
-					<Route path="/dbj" component={Section} />
-				</div>
-			</Router>
-		)
-	}
-}
-
-class Home extends React.Component {
-	render () {
-		return (
-			<div>
-				<h1>Home</h1>
-				<p className="left">This is home page</p>
-			</div>
-		)
+		console.debug(`[App props]: ${JSON.stringify(this.props)}`)
+		return this.props.location.pathname === '/admin/register' ? <RegisterForm /> : <Layout style={ { height: "-webkit-fill-available" }}>
+			<Route path='/admin/register' component={LoginForm} />
+			{ !this.props.isLogin && <LoginForm btnClicked={this.getRegisterBtnClick} statusChange={this.onStatusChange.bind(this)} />}
+			{ this.props.isLogin && <Home isLogin={this.props.isLogin} username={this.props.username} userId={this.props.userId} />}
+		</Layout>
 	}
 }
 
 const mapStateToProps = state => {
-	return { news: state.news }
+	return { isLogin: state.isLogin, userId: state.userId, username: state.username }
 }
 
-export default connect(mapStateToProps, actions)(App)
+export default withRouter(connect(mapStateToProps, actions)(App))

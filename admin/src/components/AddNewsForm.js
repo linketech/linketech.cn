@@ -1,85 +1,98 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { SingleDatePicker } from 'react-dates'
-import { trackPromise } from 'react-promise-tracker'
+import { Input, Form, Button, DatePicker, message, Layout } from 'antd'
 
 import actions from '../redux/actions'
+import { wrapperFetch } from '../util/func-handler'
 
-class AddNewsForm extends React.Component {
+class NormalAddForm extends React.Component {
 	constructor (props) {
 		super(props)
-		this.handleInputChange = this.handleInputChange.bind(this)
 		this.handleDateChange = this.handleDateChange.bind(this)
 		this.handleSubmit = this.handleSubmit.bind(this)
-		this.handleFocuseChange = this.handleFocuseChange.bind(this)
+		this.state = { committing: false }
 	}
 
 	getNewsApi = async () => {
-		const response = await fetch('/api/news')
-		const body = await response.json()
-		if (response.status !== 200) throw new Error(body.message)
-		return body
+		const get_body = await wrapperFetch('/api/news')
+		if (get_body.status !== 200) {
+			message.warning(get_body.message)
+			return
+		}
+		this.props.news_change(get_body.data)
 	}
 
-	handleInputChange (event) {
-		this.props.input_change(event.target.value)
-	}
-
-	handleDateChange (date) {
+	handleDateChange (date, dateString) {
 		this.props.date_change(date)
-	}
-
-	handleFocuseChange (event) {
-		this.props.focuse_change(event.focused)
 	}
 
 	handleSubmit = async (event) => {
 		event.preventDefault()
-		this.props.reset_news()
-		const data = new FormData()
-		const project_name = (this.props.section_url.split('/'))[ 1 ]
-		data.append('input', this.props.input)
-		data.append('event_time', this.props.date)
-		data.append('page_url', project_name)
-		const res = await fetch('/api/news', { method: 'POST', body: data, mode: 'cors' })
-		const body = await res.json()
-		if (body.status === 200) {
-			trackPromise(
-				this.getNewsApi()
-					.then(res => this.props.news_change(res.data))
-					.then(() => alert('insert succeed'))
-					.catch(err => console.error(err.stack))
-			)
+		this.setState({ committing: true })
+		const input = this.props.form.getFieldValue('input')
+		const project_name = (this.props.section_url.split('/admin/'))[ 1 ]
+		const post_body = await wrapperFetch('/api/news', { method: 'POST' }, {
+			input,
+			event_time: this.props.date,
+			page_url: project_name
+		})
+		if (post_body.status !== 200) {
+			message.warning(post_body.message)
+			return
 		}
+		message.success('insert succeed')
+		this.setState({ committing: false })
+		await this.getNewsApi()
+		// wrapperFetch('/api/news', { method: 'POST' }, {
+		// 	input,
+		// 	event_time: this.props.date,
+		// 	page_url: project_name
+		// })
+		// 	.then((post_body) => {
+		// 		if (post_body.status !== 200) {
+		// 			message.warning(post_body.message)
+		// 			return
+		// 		}
+		// 	})
+		// 	.then(() => this.getNewsApi())
+		// 	.then((get_body) => {
+		// 		if (get_body.status !== 200) {
+		// 			message.warning(get_body.message)
+		// 			return
+		// 		}
+		// 		this.props.news_change(get_body.data)
+		// 	})
+		// 	.then(() => {
+		// 		message.success('insert succeed')
+		// 		this.setState({ committing: false })
+		// 	})
 	}
 
 	render () {
-		console.log(`[AddNewsForm props]: { section_url: ${this.props.section_url}, date: ${this.props.date}, input: ${this.props.input}, focused: ${this.props.focused}}`)
+		console.debug(`[AddNewsForm props]: { section_url: ${this.props.section_url}, date: ${this.props.date}, input: ${this.props.input}, focused: ${this.props.focused}}`)
+		const { getFieldDecorator } = this.props.form
 		return (
-			<form onSubmit={this.handleSubmit}>
-				<label>URL:</label>
-				<div className="url_text">
-					<label>
-						<input type="text" onChange={this.handleInputChange} placeholder="please paste an url here"></input>
-					</label>
-				</div>
-				<SingleDatePicker
-					date={this.props.date} // momentPropTypes.momentObj or null
-					id="datepicker_id" // PropTypes.string.isRequired,
-					onDateChange={this.handleDateChange} // PropTypes.func.isRequired
-					focused={this.props.focused} // PropTypes.bool
-					onFocusChange={this.handleFocuseChange} // PropTypes.func.isRequired
-					isOutsideRange={() => false} // allow all days include past days
-					showClearDate={true}
-				/>
-				<input type="submit" value="Submit"></input>
-			</form>
+			<Layout style={{ borderStyle: "groove", borderWidth: "3px", margin: "60px 0 50px 0", padding: "20px", backgroundColor: "white" }}>
+				<Form labelCol={{ span: 3 }} wrapperCol={{ span: 8 }} onSubmit={this.handleSubmit}>
+					<Form.Item label="SHIMO-URL">
+						{getFieldDecorator('input', {
+							rules: [{ required: true, message: 'Please input a shimo-news url' }],
+						})(<Input placeholder="Please input a shimo-url here"/>)}
+						<DatePicker onChange={this.handleDateChange} placeholder="Select date"/>
+						<Button style={{ marginLeft: "20px" }} type="primary" htmlType="submit" disabled={this.state.committing}>
+						Submit
+						</Button>
+					</Form.Item>
+				</Form>
+			</Layout>
 		)
 	}
 }
 
+const AddNewsForm = Form.create({ name: 'normal_login' })(NormalAddForm)
+
 const mapStateToProps = state => {
-	return { news: state.news, input: state.input, date: state.date, focused: state.focused }
+	return { news: state.news, date: state.date, focused: state.focused }
 }
 
 export default connect(mapStateToProps, actions)(AddNewsForm)

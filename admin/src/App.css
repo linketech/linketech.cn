@@ -1,204 +1,43 @@
-.App {
-  text-align: center;
+@import 'antd/dist/antd.css';
+
+.login-form {
   display: block;
+  margin: auto;
 }
 
-.App-logo {
-  height: 4ex;
-  float: left;
-  padding: 30px 0 0 10px;
-}
-
-.App-link {
+.register-form {
   display: block;
-  padding: 10px;
+  margin: auto;
 }
 
-.header {
-  background-color: #6b7180;
-  color: white;
-  padding: 10px 100px 10px 0;
-  text-align: center;
-  font-size: 140%;
+.login-form-forgot {
+  float: right;
 }
 
-.nav {
-  background-color: rgb(255, 251, 255);
-  color: rgb(34, 7, 7);
-  float: left;
-  font-size: 30px;
-  line-height:50px;
-}
-
-.footer {
-  background-color:#6b7180;
-  color:white;
-  clear:both;
-  text-align:center;
-  padding:5px;	 	 
-}
-
-.section {
-  width:1000px;
-  display: inline-block;
-}
-
-div {
-  margin: 0 0 30px 0;
-}
-
-p.left {
-  width: 70%;
-  text-align: start;
-  font-size: x-large;
-  display: inline-block;
-}
-
-ul {
-  display: inline;
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  width: 200px;
-  background-color: #f1f1f1;
-}
-
-.nav ul li a {
-  display: block;
-  color: #000;
-  padding: 8px 10px 8px 16px;
-  text-decoration: none;
-  text-align: center;
-}
-
-li a.active {
-  background-color: #4CAF50;
-  color: white;
-}
-
-li a:hover:not(.active) {
-  background-color: #555;
-  color: white;
-}
-
-.url_text {
-  display: inline-block;
-}
-
-.url_text input[type=text] {
-  width: 250px;
-  box-sizing: border-box;
-  border: 2px solid #ccc;
-  border-radius: 4px;
-  font-size: 16px;
-  background-color: white;
-  background-position: 10px 10px; 
-  background-repeat: no-repeat;
-  padding: 12px 20px 12px 40px;
-  -webkit-transition: width 0.4s ease-in-out;
-  transition: width 0.4s ease-in-out;
-}
-
-.url_text input[type=text]:focus {
-  width: 80%;
-}
-
-input[type=button], input[type=submit], input[type=reset] {
-  background-color: #4CAF50;
-  border: none;
-  color: white;
-  padding: 10px 32px;
-  text-decoration: none;
-  margin: 4px 2px;
-  cursor: pointer;
-}
-
-.newstable table {
-  border-collapse: collapse;
-  table-layout: fixed;
-  overflow: auto;
+.login-form-button {
   width: 100%;
-}
-
-.newstable th, .newstable td {
-  border: 1px solid black;
-  text-align: left;
-  word-break: break-all;
-  padding: 8px;
-}
-
-tr:nth-child(even){background-color: #f2f2f2}
-
-.newstable th {
-  background-color: #4CAF50;
-  color: white;
-}
-
-.newstable {
-  display: inline;
+  float: none;
 }
 
 label {
   margin: 20px 20px 0 0;
 }
 
-button {
-  background-color: #4CAF50;
-  border: none;
-  color: white;
-  padding: 16px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 10px 20px 0;
-  -webkit-transition-duration: 0.4s; /* Safari */
-  transition-duration: 0.4s;
-  cursor: pointer;
-  float: right;
+.input-field {
+  display: block;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  width:80%;
 }
 
-button:hover {
-  background-color: white;
-  color: #4CAF50;
+.ant-menu-item.navigation-style {
+  margin-bottom: 20px!important;
 }
 
-input[type="checkbox"] {
-  display: none;
+.link-style {
+  font-size: 30px!important;
 }
 
-.cb_style {
-  display: none;
-}
-
-#status_header {
-  display: none;
-}
-
-#delete_btn {
-  display: none;
-}
-
-.selected_style + label{
-  background-color: white;
-  border-radius: 5px;
-  border:1px solid #d3d3d3;
-  width:20px;
-  height:20px;
-  display: inline-block;
-  text-align: center;
-  vertical-align: middle;
-  line-height: 20px;
-}
-
-.selected_style:checked + label{
-    background-color: #eee;
-}
-
-.selected_style:checked + label:after{
-    content:"\2714";
-}
-
-form {
-  margin-top: 50px;
+.icon-style {
+  font-size: 20px!important;
 }

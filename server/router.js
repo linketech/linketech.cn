@@ -6,19 +6,12 @@ const cheerio = require('cheerio')
 const mongoose = require('mongoose')
 const jwt = require('jsonwebtoken')
 
-const User = require('./models/user')
-const util_mongodb = require('./db')
+require('./models/Users')
+
+const User = mongoose.model('User')
+
 const prefix = '/api'
-
 const router = new Router({ prefix })
-mongoose.connect(util_mongodb.MONGO_URL, { useUnifiedTopology: true })
-
-const verifyInput = (uname, pwd, ctx) => {
-	if (uname === null || pwd === null) {
-		return false
-	}
-	return true
-}
 
 const setPassword = (pwd) => {
 	const salt = crypto.randomBytes(16).toString('hex')
@@ -33,11 +26,12 @@ const validPassword = (password, hash, salt) => {
 	const new_hash = crypto
 		.pbkdf2Sync(password, salt, 1000, 64, 'sha512')
 		.toString('hex')
+
 	return new_hash === hash
 }
 
-const generateJWT = (payload) => {
-	return jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '24h' })
+const generateJWT = (payload, expiresIn) => {
+	return jwt.sign(payload, process.env.JWT_SECRET, { expiresIn })
 }
 
 router.get('/', async (ctx) => {
@@ -49,119 +43,136 @@ router.get('/', async (ctx) => {
 	}
 })
 
-router.post('/register', async (ctx, next) => {
-	const { username = null, password = null } = ctx.request.body || {}
-	const isParmasValid = verifyInput(username, password)
-	if (!isParmasValid) {
-		ctx.status = 400
-		return (ctx.body = {
-			status: ctx.status,
-			message: 'username and password can not be null',
-			data: [],
-		})
-	}
-	try {
-		const isUserExists = await User.findOne({ username })
-		if (!isUserExists) {
-			const { salt, hash } = setPassword(password)
-			const user = new User({
-				username,
-				password: hash,
-				salt,
-			})
-			await user.save()
-			ctx.status = 200
-			ctx.body = {
-				status: ctx.status,
-				message: 'register succeed',
-				data: [],
-			}
-		} else {
-			ctx.status = 200
-			ctx.body = {
-				status: ctx.status,
-				message: 'register failed, username existed',
-				data: [],
-			}
-		}
-	} catch (err) {
-		console.error(err.stack)
-		ctx.status = 500
+router.post('/user/check' ,async (ctx) => {
+	const { username = null } = ctx.request.body || {}
+	const isUserExists = await User.findOne({ username })
+	if (isUserExists !== null) {
+		ctx.status = 409
 		ctx.body = {
 			status: ctx.status,
-			message: 'server error',
+			message: 'username has been used',
 			data: [],
 		}
+		return
+	}
+	ctx.status = 200
+	ctx.body = {
+		status: ctx.status,
+		message: 'ok',
+		data: [],
 	}
 })
 
-router.post('/login', async (ctx, next) => {
-	const { username = null, password = null } = ctx.request.body || {}
-	const isParmasValid = verifyInput(username, password)
-	if (!isParmasValid) {
+router.post('/user/register', async (ctx) => {
+	const { username = null, password = null, phone = null } = ctx.request.body || {}
+	const { salt, hash } = setPassword(password)
+	if (!username || !password || !phone) {
 		ctx.status = 400
-		return (ctx.body = {
+		ctx.body = {
 			status: ctx.status,
-			message: 'username and password can not be null',
+			message: 'Please fill all fields',
 			data: [],
-		})
+		}
+		return
 	}
+	const user = new User({
+		username,
+		password: hash,
+		salt,
+		phone
+	})
+	await user.save()
+	ctx.status = 200
+	ctx.body = {
+		status: ctx.status,
+		message: 'register succeed',
+		data: [],
+	}
+})
 
-	try {
-		const user = await User.findOne({ username })
-		if (!user) {
-			ctx.status = 404
-			ctx.body = {
-				status: ctx.status,
-				message: 'username not exists',
-				data: [],
-			}
-		}
-		const isPasswordValid = validPassword(password, user.hash, user.salt)
-		if (!isPasswordValid) {
-			ctx.status = 401
-			ctx.body = {
-				status: ctx.status,
-				message: 'incorrect password',
-				data: [],
-			}
-		}
-		const payload = {
-			_id: user._id,
-			username: user.username,
-		}
-		const token = generateJWT(payload)
-		ctx.status = 200
+router.post('/user/login', async (ctx) => {
+	const { username = null, password = null } = ctx.request.body
+	const user = await User.findOne({ username })
+	const exp = 3600 * 2 * 1000
+	if (!user) {
+		ctx.status = 404
 		ctx.body = {
 			status: ctx.status,
-			message: 'login succeed',
-			data: token,
-		}
-	} catch (error) {
-		console.error(error.stack)
-		ctx.status = 500
-		ctx.body = {
-			status: ctx.status,
-			message: 'server error',
+			message: 'username not exists',
 			data: [],
 		}
+		return
+	}
+	const isPasswordValid = validPassword(password, user.password, user.salt)
+	if (!isPasswordValid) {
+		ctx.status = 400
+		ctx.body = {
+			status: ctx.status,
+			message: 'incorrect password',
+			data: [],
+		}
+		return
+	}
+	const payload = {
+		_id: user._id,
+		username: user.username,
+	}
+	const token = generateJWT(payload, exp)
+	ctx.cookies.set('token', token, { maxAge: exp })
+	ctx.status = 200
+	ctx.body = {
+		status: ctx.status,
+		message: 'login succeed',
+		data: {
+			userId: payload._id,
+			username: payload.username,
+			token
+		},
+	}
+})
+
+router.get('/user/status', async (ctx) => {
+	const token = ctx.cookies.get('token')
+	const decoded = jwt.decode(token, process.env.JWT_SECRET)
+	if (!token) {
+		ctx.status = 401
+		ctx.body = {
+			status: ctx.status,
+			message: 'user has not logined yet',
+			data: []
+		}
+		return
+	}
+	ctx.status = 200
+	ctx.body = {
+		status: ctx.status,
+		message: 'user has logined',
+		data: decoded,
+	}
+})
+
+router.get('/user/logout', async (ctx, next) => {
+	ctx.cookies.set('token')
+	ctx.status = 200
+	ctx.body = {
+		status: ctx.status,
+		message: 'logout succeed',
+		data: [],
 	}
 })
 
 router.get('/news', async (ctx) => {
-	try {
-		const news_list = await ctx.db
-			.collection('news')
-			.find()
-			.toArray()
-		ctx.status = 200
-		ctx.body = {
-			status: ctx.status,
-			message: 'success',
-			data: news_list,
-		}
-	} catch (error) {
-		console.error(error.stack)
+	const news_list = await ctx.db
+		.collection('news')
+		.find()
+		.sort({ event_time: -1, timestamp: -1 })
+		.toArray()
+
+	ctx.status = 200
+	ctx.body = {
+		status: ctx.status,
+		message: 'query succeed',
+		data: news_list,
 	}
 })
 
@@ -216,7 +227,7 @@ router.post('/news', async (ctx) => {
 		}
 
 		summary = p.filter((item) => item !== '')[ 0 ]
-		thumbnail = `${prefix}/img/${crypto.createHash('md5').update(imgs[ 0 ]).digest("hex")}.file?url=${encodeURIComponent(imgs[ 0 ])}`
+		thumbnail = `${prefix}/img/${encodeURIComponent(imgs[ 0 ])}`
 		const rs = await ctx.db.collection('news').insertOne({
 			project,
 			timestamp: moment().unix(),
@@ -233,11 +244,14 @@ router.post('/news', async (ctx) => {
 				message: 'Insert failed',
 				data: [],
 			}
+			return
 		}
 		const data = await ctx.db
 			.collection('news')
 			.find({ project })
+			.sort({ event_time: -1, timestamp: -1 })
 			.toArray()
+
 		ctx.status = 200
 		ctx.body = {
 			status: ctx.status,
@@ -245,8 +259,9 @@ router.post('/news', async (ctx) => {
 			data,
 		}
 	} else {
+		ctx.status = 400
 		ctx.body = {
-			status: 400,
+			status: ctx.status,
 			message: 'invalid params',
 			data: [],
 		}
@@ -254,110 +269,79 @@ router.post('/news', async (ctx) => {
 })
 
 router.delete('/news', async (ctx) => {
-	console.log(`ctx.query: ${JSON.stringify(ctx.query)}`)
 	const params = ctx.query.id
-	try {
-		if (typeof params === 'string') {
-			console.log('string')
-			await ctx.db.collection('news').deleteOne({ _id: mongoose.Types.ObjectId(params) })
-			ctx.status = 200
+	if (typeof params === 'string') {
+		const rs = await ctx.db.collection('news').deleteOne({ _id: mongoose.Types.ObjectId(params) })
+		if (rs.deletedCount !== 1) {
+			ctx.status = 500
 			ctx.body = {
 				status: ctx.status,
-				message: 'Delete succeed',
+				message: 'Delete failed, database error',
 				data: [],
 			}
+			return
 		}
-		else if (params instanceof Array) {
-			console.log('array')
-			const promise_arr = params.map(e => ctx.db.collection('news').deleteOne({ _id: mongoose.Types.ObjectId(e) }))
-			await Promise.all(promise_arr)
-			ctx.status = 200
-			ctx.body = {
-				status: ctx.status,
-				message: 'Delete succeed',
-				data: [],
-			}
-		}
-		else {
-			ctx.status = 400
-			ctx.body = {
-				status: ctx.status,
-				message: 'invalid params',
-				data: [],
-			}
-		}
-	} catch (error) {
-		console.error(error.stack)
-	}
-})
-
-router.get('/linke', async (ctx) => {
-	try {
-		const news_list = await ctx.db
-			.collection('news')
-			.find({ project: 'linke' })
-			.toArray()
 		ctx.status = 200
 		ctx.body = {
 			status: ctx.status,
-			message: 'This is news of linke',
-			data: news_list,
+			message: 'Delete succeed',
+			data: [],
 		}
-	} catch (error) {
-		console.error(error.stack)
 	}
-})
-
-router.get('/dbj', async (ctx) => {
-	try {
-		const news_list = await ctx.db
-			.collection('news')
-			.find({ project: 'dbj' })
-			.toArray()
+	else if (params instanceof Array) {
+		const objectid_arr = params.map(e => mongoose.Types.ObjectId(e))
+		const rs = await ctx.db.collection('news').deleteMany({ _id: { $in: objectid_arr } })
+		if (rs.deletedCount !== params.length) {
+			ctx.status = 500
+			ctx.body = {
+				status: ctx.status,
+				message: 'Delete failed, database error',
+				data: [],
+			}
+			return
+		}
 		ctx.status = 200
 		ctx.body = {
 			status: ctx.status,
-			message: 'This is news of dbj',
-			data: news_list,
+			message: 'Delete succeed',
+			data: [],
 		}
-	} catch (error) {
-		console.error(error.stack)
+	}
+	else {
+		ctx.status = 400
+		ctx.body = {
+			status: ctx.status,
+			message: 'invalid params',
+			data: [],
+		}
 	}
 })
 
 router.get('/img', async (ctx) => {
-	try {
-		const options = {
-			url: ctx.query.url,
-			encoding: null,
-		}
-		const img = await rp.get(options)
-		ctx.status = 200
-		ctx.body = img
-	} catch (error) {
-		console.error(error.stack)
+	const options = {
+		url: ctx.query.url,
+		encoding: null,
 	}
+	const img = await rp.get(options)
+	ctx.status = 200
+	ctx.body = img
 })
 
 router.get('/img/:filename', async (ctx) => {
 	const url = decodeURIComponent(ctx.params.filename)
-	try {
-		const res = await rp({
-			method: 'GET',
-			url: ctx.query.url || url,
-			encoding: null,
-			resolveWithFullResponse: true,
-			simple: false,
-			headers: {
-				'if-none-match': ctx.headers[ 'if-none-match' ] || '',
-			},
-		})
-		ctx.status = res.statusCode
-		ctx.body = res.body
-		ctx.set('ETag', res.headers[ 'etag' ])
-	} catch (error) {
-		console.error(error.stack)
-	}
+	const res = await rp({
+		method: 'GET',
+		url: ctx.query.url || url,
+		encoding: null,
+		resolveWithFullResponse: true,
+		simple: false,
+		headers: {
+			'if-none-match': ctx.headers[ 'if-none-match' ] || '',
+		},
+	})
+	ctx.status = res.statusCode
+	ctx.body = res.body
+	ctx.set('ETag', res.headers[ 'etag' ])
 })
 
 module.exports = router

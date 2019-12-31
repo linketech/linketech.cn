@@ -1,12 +1,22 @@
 const Koa = require('koa')
 const body = require('koa-body')
+const koajwt = require('koa-jwt')
 const cors = require('@koa/cors')
+const mongoose = require('mongoose')
 
 const app = new Koa()
 const router = require('./server/router')
 const util_mongodb = require('./server/db')
 
 const port = process.env.PORT || 8080
+
+mongoose.connect(util_mongodb.MONGO_URL, { useUnifiedTopology: true }, (err, db) => {
+	if (!err) {
+		console.log(`Connected to ${util_mongodb.MONGO_URL}`)
+	} else {
+		throw new Error('Failed to connect mongoose')
+	}
+})
 
 app.use(cors({
 	origin: '*'
@@ -19,13 +29,30 @@ app.use(async (ctx, next) => {
 		}
 		await next()
 	} catch (err) {
-		ctx.response.status = err.statusCode || err.status || 500
-		ctx.response.body = {
+		if (err.status === 401 || err.statusCode === 401) {
+			ctx.status = 401
+			ctx.body = {
+				status: ctx.status,
+				message: 'user has not logined yet or session expired',
+				data: []
+			}
+			return
+		}
+		ctx.status = err.statusCode || err.status || 500
+		ctx.body = {
+			status: ctx.status,
 			message: err.message,
+			data: []
 		}
 		ctx.app.emit('error', err, ctx)
 	}
 })
+app.use(koajwt({
+	secret: process.env.JWT_SECRET,
+	cookie: 'token'
+}).unless({
+	path: [/\/api\/user\/login/, /\/api\/user\/register/, /\/api\/user\/check/]
+}))
 app.use((() => {
 	const MAX = 1024
 	function tldr (json) {

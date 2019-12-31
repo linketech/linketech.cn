@@ -1,11 +1,8 @@
-import { NEWS_CHANGE, INPUT_CHANGE, DATE_CHANGE, FOCUSE_CHANGE, RESET_NEWS, SELECTED_ITEMS_CHANGE, SELECT_MODE_CHANGE, PARENT_ITEMS_CHANGE } from './actionTypes'
+import { NEWS_CHANGE, DATE_CHANGE, FOCUSE_CHANGE, RESET_NEWS, SELECTED_ITEMS_CHANGE, SELECT_MODE_CHANGE, PARENT_ITEMS_CHANGE, LOGIN_STATUS_CHANGE } from './actionTypes'
 
 export default {
 	news_change (news) {
 		return { type: NEWS_CHANGE, payload: { news } }
-	},
-	input_change (value) {
-		return { type: INPUT_CHANGE, payload: { value } }
 	},
 	date_change (date) {
 		return { type: DATE_CHANGE, payload: { date } }
@@ -24,5 +21,8 @@ export default {
 	},
 	parent_items_change (parent_items) {
 		return { type: PARENT_ITEMS_CHANGE, payload: { parent_items } }
+	},
+	login_status_change (isLogin, userId, username) {
+		return { type: LOGIN_STATUS_CHANGE, payload: { isLogin, userId, username } }
 	}
 }
