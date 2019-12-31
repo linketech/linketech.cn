@@ -2,7 +2,7 @@ import React from 'react'
 import { withRouter, Link } from "react-router-dom"
 import { Form, Icon, Input, Button, Checkbox, message, Layout } from 'antd'
 import { connect } from 'react-redux'
-
+import { promisify } from 'util'
 import actions from '../redux/actions'
 import { wrapperFetch } from '../util/func-handler'
 
@@ -10,12 +10,13 @@ class NormalLoginForm extends React.Component {
 	handleSubmit = async (e) => {
 		e.preventDefault()
 		const values = this.props.form.getFieldsValue()
-		this.props.form.validateFields((err, values) => {
-			if (err) {
-				console.error(err.stack)
-				message.error(err.message)
-			}
-		})
+		const validateFields = promisify(this.props.form.validateFields)
+		try {
+			await validateFields()
+		} catch (error) {
+			console.error(error.stack)
+			message.error(error.message)
+		}
 		await this.onLogin(values.username, values.password)
 	}
 

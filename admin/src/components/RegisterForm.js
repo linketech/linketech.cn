@@ -1,6 +1,7 @@
 import React from 'react'
 import { withRouter } from "react-router-dom"
 import { Form, Input, Select, Button, message, PageHeader, Layout } from 'antd'
+import { promisify } from 'util'
 
 import { wrapperFetch } from '../util/func-handler'
 
@@ -29,12 +30,13 @@ class RegistrationForm extends React.Component {
 	handleSubmit = async (e) => {
 		e.preventDefault()
 		const values = this.props.form.getFieldsValue()
-		this.props.form.validateFieldsAndScroll((err, values) => {
-			if (err) {
-				message.error('frontend error')
-				return
-			}
-		})
+		const validateFieldsAndScroll = promisify(this.props.form.validateFieldsAndScroll)
+		try {
+			await validateFieldsAndScroll()
+		} catch (error) {
+			console.error(error.stack)
+			message.error('frontend error')
+		}
 		await this.onRegister(values.username, values.password, values.phone)
 	}
 
