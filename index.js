@@ -51,7 +51,7 @@ app.use(koajwt({
 	secret: process.env.JWT_SECRET,
 	cookie: 'token'
 }).unless({
-	path: [/\/api\/user\/login/, /\/api\/user\/register/, /\/api\/user\/check/, /\/api\/news/]
+	path: [/\/api\/user\/login/, /\/api\/user\/register/, /\/api\/user\/check/, /\/api\/news/, /\/api\/img/, /\/api\/img\/[^\s]*url=\w+:\/\/[^\s]*/]
 }))
 app.use((() => {
 	const MAX = 1024
