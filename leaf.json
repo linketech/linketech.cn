@@ -1,9 +1,13 @@
 {
 	"name": "linketech-alpha",
 	"static": ["official-website/build", "admin/build"],
+	"build": null,
 	"env": {
 		"MONGODB_USER": null,
 		"MONGODB_PASSWORD": null,
-		"MONGODB_DB": "website"
+		"MONGODB_DB": "website",
+		"NODE_ENV": "production",
+		"JWT_SECRET": null,
+		"STATIC_FILES_MAX_AGE": 3600
 	}
 }
