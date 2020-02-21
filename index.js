@@ -1,27 +1,31 @@
+const request = require('request')
 const Koa = require('koa')
 const body = require('koa-body')
 const koajwt = require('koa-jwt')
 const cors = require('@koa/cors')
-const mongoose = require('mongoose')
-
-const app = new Koa()
 const router = require('./server/router')
 const util_mongodb = require('./server/db')
 
-const port = process.env.PORT || 8080
 
-mongoose.connect(util_mongodb.MONGO_URL, { useUnifiedTopology: true }, (err, db) => {
-	if (!err) {
-		console.log(`Connected to ${util_mongodb.MONGO_URL}`)
-	} else {
-		throw new Error('Failed to connect mongoose')
-	}
-})
+const port = process.env.PORT || 8080
+const app = new Koa()
 
 app.use(cors({
 	origin: '*'
 }))
 app.use(body({ multipart: true }))
+app.use(async (ctx, next) => {
+	if (ctx.url === '/') {
+		ctx.body = 'welcome home'
+		return
+	}
+	if (/\/api\/\w+/.test(ctx.url)) {
+		await next()
+		return
+	}
+	console.info(ctx.url, 'redirecting to /home')
+	ctx.body = request(`http://localhost:${port}/`)
+})
 app.use(async (ctx, next) => {
 	try {
 		if (!ctx.db) {
@@ -51,7 +55,7 @@ app.use(koajwt({
 	secret: process.env.JWT_SECRET,
 	cookie: 'token'
 }).unless({
-	path: [/\/api\/user\/login/, /\/api\/user\/register/, /\/api\/user\/check/, /\/api\/news/, /\/api\/img/]
+	path: ['/api/user/login', '/api/user/register', '/api/user/check', '/api/news', '/api/img']
 }))
 app.use((() => {
 	const MAX = 1024
@@ -69,14 +73,7 @@ app.use((() => {
 	}
 })())
 app.use(router.routes(), router.allowedMethods())
-app.use(async (ctx, next) => {
-	const rex = /\/api\/\w+/
-	if (!rex.test(ctx.url)) {
-		console.info('redirecting to /home')
-		ctx.redirect('/')
-	}
-})
 
 app.listen(port, () => {
-	console.log(`server is listening on port ${port}`)
+	console.log(`server is listening at port ${port}`)
 })

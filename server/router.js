@@ -13,6 +13,11 @@ const User = mongoose.model('User')
 const prefix = '/api'
 const router = new Router({ prefix })
 
+function ctxEnd({ctx, status = 200, message, data = []} = {}) {
+	ctx.status = status
+	ctx.body = { status, message, data }
+}
+
 const setPassword = (pwd) => {
 	const salt = crypto.randomBytes(16).toString('hex')
 	const hash = crypto.pbkdf2Sync(pwd, salt, 1000, 64, 'sha512').toString('hex')
@@ -35,44 +40,24 @@ const generateJWT = (payload, expiresIn) => {
 }
 
 router.get('/', async (ctx) => {
-	ctx.status = 200
-	ctx.body = {
-		status: ctx.status,
-		message: 'This is home of news-admin project',
-		data: [],
-	}
+	ctxEnd({ ctx, message: 'This is home of news-admin project' })
 })
 
 router.post('/user/check' ,async (ctx) => {
 	const { username = null } = ctx.request.body || {}
 	const isUserExists = await User.findOne({ username })
 	if (isUserExists !== null) {
-		ctx.status = 409
-		ctx.body = {
-			status: ctx.status,
-			message: 'username has been used',
-			data: [],
-		}
+		ctxEnd({ ctx, status: 409, message: 'username has been used' })
 		return
 	}
-	ctx.status = 200
-	ctx.body = {
-		status: ctx.status,
-		message: 'ok',
-		data: [],
-	}
+	ctxEnd({ ctx, message: 'ok' })
 })
 
 router.post('/user/register', async (ctx) => {
 	const { username = null, password = null, phone = null } = ctx.request.body || {}
 	const { salt, hash } = setPassword(password)
 	if (!username || !password || !phone) {
-		ctx.status = 400
-		ctx.body = {
-			status: ctx.status,
-			message: 'Please fill all fields',
-			data: [],
-		}
+		ctxEnd({ ctx, status: 400, message: 'Please fill all fields' })
 		return
 	}
 	const user = new User({
@@ -82,12 +67,7 @@ router.post('/user/register', async (ctx) => {
 		phone
 	})
 	await user.save()
-	ctx.status = 200
-	ctx.body = {
-		status: ctx.status,
-		message: 'register succeed',
-		data: [],
-	}
+	ctxEnd({ ctx, message: 'register succeed' })
 })
 
 router.post('/user/login', async (ctx) => {
@@ -95,22 +75,12 @@ router.post('/user/login', async (ctx) => {
 	const user = await User.findOne({ username })
 	const exp = 3600 * 2 * 1000
 	if (!user) {
-		ctx.status = 404
-		ctx.body = {
-			status: ctx.status,
-			message: 'username not exists',
-			data: [],
-		}
+		ctxEnd({ ctx, status: 404, message: 'username not exists' })
 		return
 	}
 	const isPasswordValid = validPassword(password, user.password, user.salt)
 	if (!isPasswordValid) {
-		ctx.status = 400
-		ctx.body = {
-			status: ctx.status,
-			message: 'incorrect password',
-			data: [],
-		}
+		ctxEnd({ ctx, status: 400, message: 'incorrect password' })
 		return
 	}
 	const payload = {
@@ -119,46 +89,30 @@ router.post('/user/login', async (ctx) => {
 	}
 	const token = generateJWT(payload, exp)
 	ctx.cookies.set('token', token, { maxAge: exp })
-	ctx.status = 200
-	ctx.body = {
-		status: ctx.status,
-		message: 'login succeed',
+	ctxEnd({
+		ctx,
+		message: 'incorrect password',
 		data: {
 			userId: payload._id,
 			username: payload.username,
 			token
-		},
-	}
+		}
+	})
 })
 
 router.get('/user/status', async (ctx) => {
 	const token = ctx.cookies.get('token')
 	const decoded = jwt.decode(token, process.env.JWT_SECRET)
 	if (!token) {
-		ctx.status = 401
-		ctx.body = {
-			status: ctx.status,
-			message: 'user has not logined yet',
-			data: []
-		}
+		ctxEnd({ ctx, status: 401, message: 'user has not logined yet' })
 		return
 	}
-	ctx.status = 200
-	ctx.body = {
-		status: ctx.status,
-		message: 'user has logined',
-		data: decoded,
-	}
+	ctxEnd({ ctx, message: 'user has logined', data: decoded })
 })
 
 router.get('/user/logout', async (ctx, next) => {
 	ctx.cookies.set('token')
-	ctx.status = 200
-	ctx.body = {
-		status: ctx.status,
-		message: 'logout succeed',
-		data: [],
-	}
+	ctxEnd({ ctx, message: 'logout success' })
 })
 
 router.get('/news', async (ctx) => {
@@ -168,12 +122,7 @@ router.get('/news', async (ctx) => {
 		.sort({ event_time: -1, timestamp: -1 })
 		.toArray()
 
-	ctx.status = 200
-	ctx.body = {
-		status: ctx.status,
-		message: 'query succeed',
-		data: news_list,
-	}
+	ctxEnd({ ctx, message: 'query success', data: news_list })
 })
 
 router.post('/news', async (ctx) => {
@@ -181,6 +130,7 @@ router.post('/news', async (ctx) => {
 	const et_ms = (new Date(event_time)).valueOf()
 	const isShimo = /shimo\.im/.test(input)
 	const isWeixin = /weixin\.qq\.com/.test(input)
+	const toImgQs = url => `${crypto.createHash('md5').update(url).digest('hex')}.file?url=${encodeURIComponent(url)}`
 
 	if (page_url && (isShimo || isWeixin)) {
 		const project = page_url
@@ -202,11 +152,11 @@ router.post('/news', async (ctx) => {
 		if (isShimo) {
 			title = $('#editor .ql-title-box ').data().value
 			$('.ql-editor p').map((i, ele) => {
-				p[ i ] = $(ele).text()
+				p[i] = $(ele).text()
 			})
 			$('img').map((i, ele) => {
-				imgs[ i ] = $(ele).data('src')
-				$(ele).attr('src', `${prefix}/img/${crypto.createHash('md5').update(imgs[ i ]).digest("hex")}.file?url=${encodeURIComponent(imgs[ i ])}`)
+				imgs[i] = $(ele).data('src')
+				$(ele).attr('src', `${prefix}/img/${toImgQs(imgs[i])}`)
 			})
 			content = $('.ql-editor').html()
 			// 第一段有可能是空行，要确保 summary 有内容
@@ -215,19 +165,19 @@ router.post('/news', async (ctx) => {
 				.text()
 				.trim()
 			$('#js_content span').map((i, ele) => {
-				p[ i ] = $(ele).text()
+				p[i] = $(ele).text()
 			})
 			$('#js_content img').map((i, ele) => {
-				imgs[ i ] = $(ele).data('src')
-				$(ele).attr('src', `${prefix}/img/${crypto.createHash('md5').update(imgs[ i ]).digest("hex")}.file?url=${encodeURIComponent(imgs[ i ])}`)
+				imgs[i] = $(ele).data('src')
+				$(ele).attr('src', `${prefix}/img/${toImgQs(imgs[i])}`)
 			})
 			content = $('#js_content')
 				.html()
 				.trim()
 		}
 
-		summary = p.filter((item) => item !== '')[ 0 ]
-		thumbnail = `${prefix}/img/${encodeURIComponent(imgs[ 0 ])}`
+		summary = p.filter((item) => item !== '')[0]
+		thumbnail = `${prefix}/img/${toImgQs(imgs[0])}`
 		const rs = await ctx.db.collection('news').insertOne({
 			project,
 			timestamp: moment().unix(),
@@ -237,13 +187,8 @@ router.post('/news', async (ctx) => {
 			thumbnail,
 			content,
 		})
-		if (!rs.insertedId || rs.insertedId === null) {
-			ctx.status = 400
-			ctx.body = {
-				status: ctx.status,
-				message: 'Insert failed',
-				data: [],
-			}
+		if (!rs.insertedId) {
+			ctxEnd({ ctx, status: 400, message: 'Insert failed' })
 			return
 		}
 		const data = await ctx.db
@@ -252,69 +197,30 @@ router.post('/news', async (ctx) => {
 			.sort({ event_time: -1, timestamp: -1 })
 			.toArray()
 
-		ctx.status = 200
-		ctx.body = {
-			status: ctx.status,
-			message: 'success',
-			data,
-		}
+
+		ctxEnd({ ctx, message: 'success', data })
 	} else {
-		ctx.status = 400
-		ctx.body = {
-			status: ctx.status,
-			message: 'invalid params',
-			data: [],
-		}
+		ctxEnd({ ctx, status: 400, message: 'invalid params' })
 	}
 })
 
 router.delete('/news', async (ctx) => {
-	const params = ctx.query.id
+	let params = ctx.query.id
 	if (typeof params === 'string') {
-		const rs = await ctx.db.collection('news').deleteOne({ _id: mongoose.Types.ObjectId(params) })
-		if (rs.deletedCount !== 1) {
-			ctx.status = 500
-			ctx.body = {
-				status: ctx.status,
-				message: 'Delete failed, database error',
-				data: [],
-			}
-			return
-		}
-		ctx.status = 200
-		ctx.body = {
-			status: ctx.status,
-			message: 'Delete succeed',
-			data: [],
-		}
+		params = [params]
 	}
-	else if (params instanceof Array) {
+	if (params instanceof Array) {
 		const objectid_arr = params.map(e => mongoose.Types.ObjectId(e))
 		const rs = await ctx.db.collection('news').deleteMany({ _id: { $in: objectid_arr } })
 		if (rs.deletedCount !== params.length) {
-			ctx.status = 500
-			ctx.body = {
-				status: ctx.status,
-				message: 'Delete failed, database error',
-				data: [],
-			}
+			ctxEnd({ ctx, status: 500, message: 'Delete failed, database error' })
 			return
 		}
-		ctx.status = 200
-		ctx.body = {
-			status: ctx.status,
-			message: 'Delete succeed',
-			data: [],
-		}
+		ctxEnd({ ctx, message: 'Delete succeed' })
+		return
 	}
-	else {
-		ctx.status = 400
-		ctx.body = {
-			status: ctx.status,
-			message: 'invalid params',
-			data: [],
-		}
-	}
+
+	ctxEnd({ ctx, status: 400, message: 'invalid params' })
 })
 
 router.get('/img', async (ctx) => {
