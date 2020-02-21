@@ -15,7 +15,7 @@ const connection = async () => {
 	console.log(`Connect to mongoose`)
 	await mongoose.connectAsync(MONGO_URL, { useUnifiedTopology: true, useNewUrlParser: true })
 	
-	const client = new MongoClient(MONGO_URL, { useNewUrlParser: true })
+	const client = new MongoClient(MONGO_URL, { useUnifiedTopology: true, useNewUrlParser: true })
 	console.log('Connect to mongo')
 	await client.connect()
 	const db = client.db(process.env.MONGODB_DB)

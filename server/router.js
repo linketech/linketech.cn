@@ -4,6 +4,7 @@ const crypto = require('crypto')
 const rp = require('request-promise')
 const cheerio = require('cheerio')
 const mongoose = require('mongoose')
+const util_mongodb = require('./db')
 const jwt = require('jsonwebtoken')
 
 require('./models/Users')
@@ -12,6 +13,21 @@ const User = mongoose.model('User')
 
 const prefix = '/api'
 const router = new Router({ prefix })
+
+async function ensureDB(ctx, next) {
+	if (!ctx.db) {
+		ctx.db = await util_mongodb.connection()
+	}
+	await next()
+}
+
+async function ensureLogin(ctx, next) {
+	if (!ctx.state.user) {
+		ctxEnd({ ctx, status: 401, message: 'user has not logined yet' })
+		return
+	}
+	await next()
+}
 
 function ctxEnd({ctx, status = 200, message, data = []} = {}) {
 	ctx.status = status
@@ -39,11 +55,7 @@ const generateJWT = (payload, expiresIn) => {
 	return jwt.sign(payload, process.env.JWT_SECRET, { expiresIn })
 }
 
-router.get('/', async (ctx) => {
-	ctxEnd({ ctx, message: 'This is home of news-admin project' })
-})
-
-router.post('/user/check' ,async (ctx) => {
+router.post('/user/check', ensureDB, async (ctx) => {
 	const { username = null } = ctx.request.body || {}
 	const isUserExists = await User.findOne({ username })
 	if (isUserExists !== null) {
@@ -53,7 +65,7 @@ router.post('/user/check' ,async (ctx) => {
 	ctxEnd({ ctx, message: 'ok' })
 })
 
-router.post('/user/register', async (ctx) => {
+router.post('/user/register', ensureDB, async (ctx) => {
 	const { username = null, password = null, phone = null } = ctx.request.body || {}
 	const { salt, hash } = setPassword(password)
 	if (!username || !password || !phone) {
@@ -70,7 +82,7 @@ router.post('/user/register', async (ctx) => {
 	ctxEnd({ ctx, message: 'register succeed' })
 })
 
-router.post('/user/login', async (ctx) => {
+router.post('/user/login', ensureDB, async (ctx) => {
 	const { username = null, password = null } = ctx.request.body
 	const user = await User.findOne({ username })
 	const exp = 3600 * 2 * 1000
@@ -91,7 +103,7 @@ router.post('/user/login', async (ctx) => {
 	ctx.cookies.set('token', token, { maxAge: exp })
 	ctxEnd({
 		ctx,
-		message: 'incorrect password',
+		message: 'correct password',
 		data: {
 			userId: payload._id,
 			username: payload.username,
@@ -100,14 +112,8 @@ router.post('/user/login', async (ctx) => {
 	})
 })
 
-router.get('/user/status', async (ctx) => {
-	const token = ctx.cookies.get('token')
-	const decoded = jwt.decode(token, process.env.JWT_SECRET)
-	if (!token) {
-		ctxEnd({ ctx, status: 401, message: 'user has not logined yet' })
-		return
-	}
-	ctxEnd({ ctx, message: 'user has logined', data: decoded })
+router.get('/user/status', ensureLogin, async (ctx) => {
+	ctxEnd({ ctx, message: 'user has logined', data: ctx.state.user })
 })
 
 router.get('/user/logout', async (ctx, next) => {
@@ -115,7 +121,7 @@ router.get('/user/logout', async (ctx, next) => {
 	ctxEnd({ ctx, message: 'logout success' })
 })
 
-router.get('/news', async (ctx) => {
+router.get('/news', ensureDB, async (ctx) => {
 	const news_list = await ctx.db
 		.collection('news')
 		.find()
@@ -125,7 +131,7 @@ router.get('/news', async (ctx) => {
 	ctxEnd({ ctx, message: 'query success', data: news_list })
 })
 
-router.post('/news', async (ctx) => {
+router.post('/news', ensureLogin, ensureDB, async (ctx) => {
 	const { input, page_url, event_time } = ctx.request.body
 	const et_ms = (new Date(event_time)).valueOf()
 	const isShimo = /shimo\.im/.test(input)
@@ -204,7 +210,7 @@ router.post('/news', async (ctx) => {
 	}
 })
 
-router.delete('/news', async (ctx) => {
+router.delete('/news', ensureDB, async (ctx) => {
 	let params = ctx.query.id
 	if (typeof params === 'string') {
 		params = [params]
