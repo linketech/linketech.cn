@@ -14,10 +14,13 @@ const User = mongoose.model('User')
 const prefix = '/api'
 const router = new Router({ prefix })
 
+let db = null
+
 async function ensureDB(ctx, next) {
-	if (!ctx.db) {
-		ctx.db = await util_mongodb.connection()
+	if (!db) {
+		db = await util_mongodb.connection()
 	}
+	ctx.db = db
 	await next()
 }
 

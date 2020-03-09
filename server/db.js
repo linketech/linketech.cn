@@ -4,12 +4,7 @@ const { MongoClient } = require('mongodb')
 
 mongoose.connectAsync = promisify(mongoose.connect).bind(mongoose)
 
-let MONGO_URL
-if (process.env.NODE_ENV === 'development') {
-	MONGO_URL = `mongodb://localhost:27017/${process.env.MONGODB_DB}`
-} else {
-	MONGO_URL = `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASSWORD}@cluster0-rofhu.mongodb.net/${process.env.MONGODB_DB}?retryWrites=true&w=majority`
-}
+const MONGO_URL = `mongodb://${process.env.MONGODB_USER}:${process.env.MONGODB_PASSWORD}@${process.env.MONGODB_HOST}:${process.env.MONGODB_PORT}?retryWrites=true&w=majority`
 
 const connection = async () => {
 	console.log(`Connect to mongoose`)
