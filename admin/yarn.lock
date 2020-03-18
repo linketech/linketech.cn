@@ -1593,9 +1593,9 @@ acorn-walk@^6.0.1:
   integrity sha1-Ejy487hMIXHx9/slJhWxx4prGow=
 
 acorn@^5.5.3:
-  version "5.7.3"
-  resolved "https://registry.npm.taobao.org/acorn/download/acorn-5.7.3.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Facorn%2Fdownload%2Facorn-5.7.3.tgz#67aa231bf8812974b85235a96771eb6bd07ea279"
-  integrity sha1-Z6ojG/iBKXS4UjWpZ3Hra9B+onk=
+  version "5.7.4"
+  resolved "https://registry.yarnpkg.com/acorn/-/acorn-5.7.4.tgz#3e8d8a9947d0599a1796d10225d7432f4a4acf5e"
+  integrity sha512-1D++VG7BhrtvQpNbBzovKNc1FLGGEE/oGe7b9xJm/RFHMBeUaUGpluV9RLjZa47YFdPcDAenEYuq9pQPcMdLJg==
 
 acorn@^6.0.1, acorn@^6.0.4, acorn@^6.2.1:
   version "6.3.0"
@@ -9105,14 +9105,6 @@ react-lifecycles-compat@^3.0.2, react-lifecycles-compat@^3.0.4:
   resolved "https://registry.npm.taobao.org/react-lifecycles-compat/download/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha1-TxonOv38jzSIqMUWv9p4+HI1I2I=
 
-react-loader-spinner@^3.1.5:
-  version "3.1.5"
-  resolved "https://registry.npm.taobao.org/react-loader-spinner/download/react-loader-spinner-3.1.5.tgz#e9a40c6032fddf0eba319e525cc613c5d698e4f9"
-  integrity sha1-6aQMYDL93w66MZ5SXMYTxdaY5Pk=
-  dependencies:
-    babel-runtime "^6.26.0"
-    prop-types "^15.6.2"
-
 react-moment-proptypes@^1.6.0:
   version "1.7.0"
   resolved "https://registry.npm.taobao.org/react-moment-proptypes/download/react-moment-proptypes-1.7.0.tgz#89881479840a76c13574a86e3bb214c4ba564e7a"
@@ -9137,11 +9129,6 @@ react-portal@^4.2.0:
   integrity sha1-VACDHNsK5k3MuBKBIc8HYImrGv0=
   dependencies:
     prop-types "^15.5.8"
-
-react-promise-tracker@^2.0.5:
-  version "2.0.5"
-  resolved "https://registry.npm.taobao.org/react-promise-tracker/download/react-promise-tracker-2.0.5.tgz#01b7cb2819f530ed829232e717c78bf77d39e4bb"
-  integrity sha1-AbfLKBn1MO2CkjLnF8eL93055Ls=
 
 react-redux@^7.1.1:
   version "7.1.1"
