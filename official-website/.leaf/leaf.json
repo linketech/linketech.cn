@@ -1,0 +1,17 @@
+{
+  "name": "linke-official-website",
+  "description": "",
+  "server": ".",
+  "domain": "linke-official-website.leaf.linketech.cn",
+  "static": [
+    "."
+  ],
+  "env": {},
+  "build": "react-app-rewired build",
+  "serverless": {
+    "memory": 256,
+    "timeout": 60,
+    "logTTL": 180
+  },
+  "timer": {}
+}

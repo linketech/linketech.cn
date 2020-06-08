@@ -50,17 +50,17 @@ app.use(async ({ request, response, state: { user: { username = 'anonymous' } = 
 })
 
 app.use(router.routes(), router.allowedMethods())
-app.use(async (ctx) => {
-	if (ctx.url === '/') {
-		ctx.body = 'welcome home'
-		return
-	}
+// app.use(async (ctx) => {
+// 	if (ctx.url === '/') {
+// 		ctx.body = 'welcome home'
+// 		return
+// 	}
 
-	if (ctx.method === 'GET' && ctx.status === 404) {
-		console.info(ctx.url, 'redirecting to /home')
-		ctx.body = request(`http://localhost:${port}/`)
-	}
-})
+	// if (ctx.method === 'GET' && ctx.status === 404) {
+	// 	console.info(ctx.url, 'redirecting to /home')
+	// 	ctx.body = request(`http://localhost:${port}/`)
+	// }
+// })
 
 app.listen(port, () => {
 	console.log(`server is listening at port ${port}`)
