@@ -1,19 +1,43 @@
+
 .header-container {
+	/* max-width: 1200px; */
+	margin: 0 auto;
+	height: 64px;
+	top: 0px;
+	position: relative;
+	z-index: 999;
+}
+
+.header-container:hover {
+	background: white;
+}
+
+.header-container:hover .slogan{
+	color: black;
+}
+
+.navigationbar-container {
 	max-width: 1200px;
 	margin: 0 auto;
+	height: 100%;
 }
 
 .slogan {
-	color: #666;
-	font-size: 16px;
-	font-family: SourceHanSansCN-Normal;
+	color: white;
+	font-size: 14px;
+	font-family: SourceHanSansCN-Normal,PingFang SC Regular;
 	line-height: 36px;
 	/* 以上设计图 */
 	margin-left: 20px;
 }
 
+.slogan:hover {
+	color: black;
+}
+
+
 /* 耦合，无奈之举 */
-.header-container .nav-phone-icon {
+.navigationbar-container .nav-phone-icon {
 	position: absolute;
 	top: 30px;
 	right: 20px;
@@ -24,19 +48,33 @@
 	cursor: pointer;
 }
 
+.nav-phone-icon-black {
+	color: black;
+}
+
 @media only screen and (max-width: 991px) {
-	.header-container .nav-phone-icon {
+	.navigationbar-container .nav-phone-icon {
 		display: block;
 	}
+	.nav-phone-icon {
+        color: white;
+	}
+
+	.nav-phone-icon:hover {
+		color: black;
+	}
+
 	.slogan {
 		display: none;
 	}
 }
 
 .logo-container {
-	height: 87px;
+	height: 100%;
+	padding: 14px 0px;
 }
 
 .logo-link {
-	line-height: 87px;
+	/* line-height: 100%;  */
+	height: 100%;
 }

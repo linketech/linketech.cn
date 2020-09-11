@@ -1,8 +1,9 @@
 import homeBanner from './home-banner.jpg'
 
-import slider1 from './slider-1.jpg'
-import slider2 from './slider-2.jpg'
-import slider3 from './slider-3.jpg'
+import slider_parking from './slider_parking.png'
+import slider_dms from './slider_dms.png'
+import slider_uu from './slider_uu.png'
+import slider_mercku from './slider_mercku.png'
 
 // import newsPhoto from './home-news-photo.jpg'
 import newsPhoto from './2019-05-14.jpg'
@@ -10,7 +11,7 @@ import newsPhoto from './2019-05-14.jpg'
 import aboutBackground from './home-about-background.jpg'
 
 export const banner = {
-	title: '物联网+智能停车场',
+	title: '',//'物联网+智能停车场',
 	imgUrl: homeBanner,
 }
 
@@ -18,29 +19,40 @@ export const carousels = [
 	{
 		title: '智慧停车系统解决方案',
 		features: [
-			'NB-IoT技术使得在停车位上安装传感器变得容易，',
-			'进而能够将海量的停车位进行数字化智慧管理...',
+			'基于NB-IoT窄带物联网技术和自主研发的高灵敏双模车检器，',
+			'将车位状态的数字信息通过5G频段回传。',
 		],
 		href: '/smart-parking',
-		imgUrl: slider1,
+		imgUrl: slider_parking,
 	},
 	{
-		title: '精准定位系统解决方案',
+		title: '形变监测系统解决方案',
 		features: [
-			'优异的定位性能，定位精度高达2mm,比业界水平提升50倍，',
-			'成本降低10倍。实现产品100%国产化，且拥有完全知识产权。',
+			'毫米级别的静态定位精度，100%国产化，',
+			'完全自主知识产权及核心算法，',
+			'广泛应用在桥梁、铁路、大坝、楼宇等结构安全检测领域'
 		],
 		href: '/accurate-locating',
-		imgUrl: slider2,
+		imgUrl: slider_dms,
 	},
 	{
-		title: '高性能无线路由器解决方案',
+		title: 'UU加速盒',
 		features: [
-			'平均下载速率全球首次突破700Mb/s 。时延低，',
-			'空口时延小于3ms;高速率，传输速率超过720Mbps 。',
+			'独家为网易游戏赋能的加速器，',
+			'支持三大主机，采用自有知识产权的WHEMS天线，',
+			'解决产品运行时延时、卡机、掉线等问题。'
+		],
+		href: '/uu-box',
+		imgUrl: slider_uu,
+	},
+	{
+		title: 'Mercku路由器',
+		features: [
+			'为Mercku公司独家赋能的高性能WIFI路由器，',
+			'实测平均下载速率突破720Mbps（业界平均水平为400Mbps）。',
 		],
 		href: '/wireless-router',
-		imgUrl: slider3,
+		imgUrl: slider_mercku,
 	},
 ]
 
@@ -61,9 +73,11 @@ export const about = {
 	bigTitle: 'ABOUT US',
 	smallTitle: '关于我们',
 	paragraphs: [
-		'总部位于珠海横琴自贸区，在成都、南京、北京及加拿大滑铁卢设有分部。',
-		'公司专注于物联网及终端系统的自主研发，核心技术团队具有多年工程及研发经验，在理论突破指引下，',
-		'能够做出成本低、性能优异的无线产品。',
+		'总部位于珠海横琴自贸区，在成都、南京、北京及加拿大滑',
+		'铁卢设有分部。',
+		'公司专注于物联网及终端系统的自主研发，核心技术团队',
+		'具有多年工程及研发经验，在理论突破指引下，能够做出',
+		'成本低、性能优异的无线产品。',
 	],
 }
 

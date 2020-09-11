@@ -14,14 +14,15 @@ import WirelessRouter from './views/WirelessRouter.jsx'
 import AboutLinke from './views/AboutLinke.jsx'
 
 import styles from './App.module.css'
+import UUBox from './views/UUBox.jsx'
 
 class App extends Component {
 	render() {
 		return (
 			<div className={styles['App']}>
 				<Router>
-					<Header />
 					<SideAffix />
+					<Header />
 					<ScrollToTop>
 						<Route exact path='/' render={() => <Redirect to='/home' />} />
 						<Route path='/home' component={Home} />
@@ -29,6 +30,7 @@ class App extends Component {
 						<Route path='/smart-parking' component={SmartParking} />
 						<Route path='/accurate-locating' component={AccurateLocating} />
 						<Route path='/wireless-router' component={WirelessRouter} />
+						<Route path='/uu-box' component={UUBox} />
 						<Route path='/about/:navId' component={AboutLinke} />
 					</ScrollToTop>
 					<Footer />

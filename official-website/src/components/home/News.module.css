@@ -5,7 +5,7 @@
 	display: flex;
 	justify-content: space-between;
 	flex-direction: column;
-	padding: 0 20px;
+	padding: 50px 20px;
 }
 .news-container {
 	text-align: left;
@@ -14,8 +14,8 @@
 }
 .news-big-title {
 	color: #999;
-	font-size: 72px;
-	font-family: SourceHanSansCN-Bold;
+	font-size: 45px;
+	font-family: SourceHanSansCN-Bold,PingFang SC Regular;
 	font-weight: bold;
 	/* 以上设计图 */
 	margin: 0;
@@ -25,16 +25,16 @@
 }
 .news-small-title {
 	color: #333;
-	font-size: 36px;
-	font-family: SourceHanSansCN-Bold;
+	font-size: 28px;
+	font-family: SourceHanSansCN-Bold,PingFang SC Regular;
 	font-weight: bold;
 	/* 以上设计图 */
 	margin-left: 30px;
 }
 .news-title {
 	color: #333;
-	font-size: 24px;
-	font-family: SourceHanSansCN-Bold;
+	font-size: 18px;
+	font-family: SourceHanSansCN-Bold,PingFang SC Regular;
 	font-weight: bold;
 	/* 以上设计图 */
 	margin: 0;
@@ -48,8 +48,8 @@
 }
 .news-paragraph {
 	color: #666;
-	font-size: 20px;
-	font-family: SourceHanSansCN-Medium;
+	font-size: 16px;
+	font-family: SourceHanSansCN-Medium,PingFang SC Regular;
 	font-weight: 500;
 	/* 以上设计图 */
 	margin: 0;
@@ -57,11 +57,14 @@
 }
 .more-info {
 	background-color: rgba(211, 218, 245, 1);
-	width: 183px;
-	height: 56px;
-
-	color: #3f4e85;
-	font-size: 20px;
+	color: white;
+	width: 150px;
+	height: 50px;
+	/* background-color: rgba(255, 198, 0, 1); */
+	background:linear-gradient(0deg,rgba(62,62,62,1),rgba(23,23,23,1));
+	box-shadow: 0px 4px 10px 0px rgba(45, 4, 36, 0.35);
+	border-radius:2px;
+	font-size: 16px;
 	font-family: SourceHanSansCN-Normal;
 	/* 以上设计图 */
 	display: flex;
@@ -76,11 +79,11 @@
 }
 .news-image {
 	/* 不能同时制定宽和高 */
-	max-width: 440px;
+	max-width: 350px;
 	width: 100%;
 	background-size: cover;
-	border-top-left-radius: 30px;
-	border-bottom-right-radius: 30px;
+	/* border-top-left-radius: 30px;
+	border-bottom-right-radius: 30px; */
 }
 
 .large-screen {

@@ -1,0 +1,45 @@
+.flex-container {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 150px 0;
+}
+
+/* .image-container {
+    width: 40%;
+} */
+
+.content-container {
+    width: 28%;
+    margin-top: 60px;
+}
+
+.content {
+    color: black;
+    font-family: SourceHanSansCN-Regular,PingFang SC Regular;
+    font-size: 16px;
+    text-align: right;
+    line-height: 35px;
+}
+
+@media only screen and (max-width: 991px) {
+	.flex-container {
+		flex-direction: column;
+    }
+
+    .product-image {
+        width: 80%;
+        height: auto;
+    }
+
+    .content-container {
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    .content {
+        text-align: center;
+    }
+}
+

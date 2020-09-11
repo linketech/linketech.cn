@@ -8,45 +8,45 @@
 }
 
 .job__bar {
-	height: 80px;
-	border: 1px solid #cfcfcf;
+	height: 60px;
+	border-bottom: 1px solid #CFCFCF;
 	cursor: pointer;
 }
 .job__bar > span {
 	/* 为保持垂直居中而写死 */
-	line-height: 80px;
+	line-height: 60px;
 }
 .job__name {
 	color: #333;
-	font-size: 24px;
-	font-family: SourceHanSansCN-Normal;
+	font-size: 18px;
+	font-family: SourceHanSansCN-Normal,PingFang SC Regular;
 	/* 以上设计图 */
 	margin-left: 25px;
 }
 .job__location {
 	color: #999;
-	font-size: 16px;
-	font-family: SourceHanSansCN-Normal;
+	font-size: 14px;
+	font-family: SourceHanSansCN-Normal,PingFang SC Regular;
 	/* 以上设计图 */
 	margin-left: 35px;
 }
 .switch-icon {
 	float: right;
 	/* 为保持垂直居中而写死 */
-	line-height: 80px !important;
-	margin-right: 25px;
+	line-height: 60px !important;
+	margin-right: 45px;
 }
 
 .job__detail {
 	background-color: #f3f3f3;
 	color: #333;
-	padding-top: 20px;
+	padding-top: 16px;
 	padding-left: 25px;
 	padding-bottom: 30px;
 }
 .detail__bold {
-	font-family: SourceHanSansCN-Medium;
-	font-size: 18px;
+	font-family: SourceHanSansCN-Medium,PingFang SC Regular;
+	font-size: 15px;
 	/* 以上设计图 */
 	font-weight: bold;
 }
@@ -54,18 +54,19 @@
 	line-height: 2em;
 }
 .detail__application {
-	background-color: #4334ea;
+	background:linear-gradient(to bottom, #171717, #3E3E3E);
 	color: #fff;
 	display: flex;
-	width: 160px;
-	height: 50px;
+	width: 140px;
+	height: 45px;
 	justify-content: center;
 	align-items: center;
 	margin: 0;
+	border-radius: 5px;
 }
 
 .job__bar:hover {
-	background: linear-gradient(to left, #584af3, #5e2ca1);
+	background: linear-gradient(to top, #3F87FC, #23ACFD);
 }
 .job__bar:hover > * {
 	color: #fff;

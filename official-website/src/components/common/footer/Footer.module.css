@@ -1,5 +1,5 @@
 .footer-background {
-	background-color: #272d30;
+	background-color: #1B1C1F;
 	color: #a8a8a8;
 }
 .footer-main a {
@@ -16,9 +16,10 @@
 }
 
 .row-container {
-	font-family: SourceHanSansCN-Normal;
+	font-family: SourceHanSansCN-Normal,PingFang SC Light;
 	text-align: left;
 	padding-top: 50px;
+	padding-bottom: 20px;
 }
 
 @media only screen and (max-width: 991px) {
@@ -46,25 +47,26 @@
 	color: #a8a8a8;
 }
 .hotline {
-	font-size: 24px;
+	font-size: 18px;
 }
 
 .qrcode {
-	width: 200px;
-	height: 200px;
+	width: 100px;
+	height: 100px;
 	background-color: #fff;
 	margin-left: 40px;
 }
 .qrcode-img {
-	width: 200px;
-	height: 200px;
+	width: 100%;
+	height: 100%;
 }
 
 .copyright {
 	margin: 0 auto;
 	border-top: 1px solid #535353;
-	font-family: SourceHanSansCN-Light;
-	padding: 20px 0;
+	font-family: SourceHanSansCN-Light,PingFang SC Regular;
+	padding: 40px 0;
+	font-size: 12px;
 }
 
 .a {

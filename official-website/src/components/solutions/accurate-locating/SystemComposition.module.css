@@ -1,13 +1,13 @@
 .root {
-	/* height: 764px; */
-	background-color: #eff1f5;
-	padding-bottom: 100px;
+	/* height: 850px; */
+	/* background-color: #eff1f5;
+	padding-bottom: 100px; */
 }
 
 .title {
 	color: #fff;
 	font-size: 38px;
-	font-family: SourceHanSansCN-Bold;
+	font-family: SourceHanSansCN-Bold,PingFang SC Regular;
 	font-weight: bold;
 	/* 以上设计图 */
 	margin: 0;
@@ -17,16 +17,68 @@
 .flex-container {
 	/* 响应式 */
 	max-width: 1200px;
+	height: 100%;
 	margin: 0 auto;
 	display: flex;
+	/* justify-content: space-between; */
+	align-items: center;
+}
+
+.list-container {
+	display: flex;
+	flex-direction: column;
 	justify-content: space-between;
-	padding-top: 120px;
+	margin-top: 242px;
+	margin-bottom: 242px;
+}
+
+.list-item {
+	width: 510px;
+	height: 122px;
+	/* background-color: #fff; */
+	display: flex;
+	align-items: center;
+	/* margin-left: 20px; */
+}
+
+/* .item-img {
+	margin-left: 65px;
+} */
+
+.item-text {
+	color:white;
+	font-size: 16px;
+	font-family: SourceHanSansCN-Blod;
+	font-weight: Bold;
+	/* 以上设计图 */
+	margin-left: 60px;
+	text-align: left;
+	margin-bottom: 10px;
+}
+
+.item-sub-text {
+	color: #D7DADC;
+	font-size: 14px;
+	font-family: SourceHanSansCN-Light,PingFang SC Regular;
+	margin-left: 60px;
+	text-align: left;
 }
 
 @media only screen and (max-width: 991px) {
 	.flex-container {
 		flex-direction: column;
 	}
+
+	.list-item {
+		width: 80%;
+		height: 150px;
+		margin: 0 auto;
+	}
+
+	.list-container {
+		margin: 200px auto;
+	}
+
 	.img {
 		width: 100%;
 	}

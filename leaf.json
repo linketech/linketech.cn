@@ -1,7 +1,11 @@
 {
 	"name": "linketech",
 	"static": ["official-website/build", "admin/build"],
-	"build": null,
+	"vpc": {
+		"VpcId": "vpc-m5etkh1xepf1p5he73efc",
+		"VSwitchIds": ["vsw-m5evqa01dujw41ybpdwrf"],
+		"SecurityGroupId": "sg-m5egjin2ub5c4qouaiei"
+	},
 	"env": {
 		"MONGODB_HOST": null,
 		"MONGODB_PORT": null,
@@ -9,6 +13,7 @@
 		"MONGODB_PASSWORD": null,
 		"MONGODB_DB": "website",
 		"JWT_SECRET": null,
-		"STATIC_FILES_MAX_AGE": 3600
+		"STATIC_FILES_MAX_AGE": 3600,
+		"PROXY_404_TO_ROOT": true
 	}
 }

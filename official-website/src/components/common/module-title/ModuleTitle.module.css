@@ -1,0 +1,70 @@
+
+.title-container {
+    max-width: 1200px;
+	margin: 0 auto;
+	padding-top: 40px;
+	padding-bottom: 45px;
+}
+
+.title-left-white {
+	font-size: 26px;
+	font-family: SourceHanSansCN-Bold,PingFang SC Regular;
+	font-weight: Bold;
+	color: white;
+	/* 以上是设计图给出的 CSS */
+	text-align: left;
+}
+
+
+.title-white {
+	font-size: 26px;
+	font-family: SourceHanSansCN-Bold,PingFang SC Regular;
+	font-weight: Bold;
+	color: white;
+	/* 以上是设计图给出的 CSS */
+	text-align: right;
+}
+
+.title-left {
+	font-size: 26px;
+	font-family: SourceHanSansCN-Bold,PingFang SC Regular;
+	font-weight: Bold;
+	color: black;
+	/* 以上是设计图给出的 CSS */
+	text-align: left;
+}
+
+.title {
+	color: #000000;
+	font-size: 26px;
+	font-family: SourceHanSansCN-Bold,PingFang SC Regular;
+	font-weight: Bold;
+	/* 以上设计图 */
+	text-align: right;
+}
+
+.line {
+	background: black;
+	height: 3px;
+	width: 40px;
+	float: right;
+}
+
+.line-left {
+	background: black;
+	height: 3px;
+	width: 40px;
+}
+
+.line-white {
+	background: white;
+	height: 3px;
+	width: 40px;
+	float: right;
+}
+
+.line-left-white {
+	background: white;
+	height: 3px;
+	width: 40px;
+}

@@ -32,7 +32,7 @@
 .item__name {
 	color: #333;
 	font-size: 14px;
-	font-family: SourceHanSansCN-Medium;
+	font-family: SourceHanSansCN-Medium,PingFang SC Regular;
 	font-weight: 500;
 	/* 以上设计图 */
 	padding-top: 10px;
@@ -41,8 +41,8 @@
 
 .item__detail {
 	color: #333;
-	font-size: 16px;
-	font-family: SourceHanSansCN-Normal;
+	font-size: 14px;
+	font-family: SourceHanSansCN-Normal,PingFang SC Regular;
 	/* 以上设计图 */
 	padding: 0 30px;
 	padding-bottom: 5px;
@@ -51,7 +51,7 @@
 .item__comment {
 	color: #999;
 	font-size: 14px;
-	font-family: SourceHanSansCN-Normal;
+	font-family: SourceHanSansCN-Normal,PingFang SC Regular;
 	/* 以上设计图 */
 }
 
@@ -67,13 +67,20 @@
 .map-title {
 	color: #333;
 	font-size: 18px;
-	font-family: SourceHanSansCN-Normal;
+	font-family: SourceHanSansCN-Normal,PingFang SC Regular;
 	/* 以上设计图 */
 }
 
 .map-address {
 	color: #666;
 	font-size: 14px;
-	font-family: SourceHanSansCN-Normal;
+	font-family: SourceHanSansCN-Normal,PingFang SC Regular;
 	/* 以上设计图 */
+}
+
+@media only screen and (max-width: 991px) {
+	.map-container {
+		padding: 20px;
+		height: 500px;
+	}
 }

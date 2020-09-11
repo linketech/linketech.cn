@@ -1,11 +1,7 @@
-.title {
-	color: #333;
-	font-size: 38px;
-	font-family: SourceHanSansCN-Bold;
-	font-weight: bold;
+.title-container {
 	/* 以上设计图 */
 	margin-top: 0;
-	margin-bottom: 128px;
+	margin-bottom: 20px;
 	padding-top: 120px;
 }
 
@@ -16,12 +12,19 @@
 	margin: 0 auto;
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: space-between;
+	/* justify-content: space-between; */
 	align-content: space-between;
 }
 
 .flex-item {
-	margin-bottom: 50px;
+	margin-bottom: 200px;
+	margin-right: 80px;
+}
+
+.name {
+	margin-top: 45px;
+	color: white;
+	font-size: 16px;
 }
 
 @media only screen and (max-width: 991px) {
@@ -31,11 +34,16 @@
 		justify-content: flex-start;
 		align-content: stretch;
 	}
-	.img {
-		width: 100%;
-		margin-bottom: 20px;
-	}
+
 	.flex-item {
-		padding: 200px 0;
+		margin: 40px auto;
+	}
+
+	.name {
+		margin-top: 25px;
+	}
+
+	.title-container {
+		padding-left: 160px;
 	}
 }

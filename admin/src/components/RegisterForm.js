@@ -120,7 +120,7 @@ class RegistrationForm extends React.Component {
 					onBack={() => this.props.history.push('/admin/login')}
 					title="Register Page"
 				/>
-				<Form {...formItemLayout} style={{ margin: "200px 30px 300px 30px", padding: "60px", borderStyle: "groove", borderWidth: "3px", backgroundColor: "white" }} onSubmit={this.handleSubmit}>
+				<Form {...formItemLayout} style={{ margin: "10px 300px", padding: "60px", borderStyle: "groove", borderWidth: "3px", backgroundColor: "white" }} onSubmit={this.handleSubmit}>
 					<Form.Item className="input-field" label="Username">
 						{getFieldDecorator('username', {
 							rules: [

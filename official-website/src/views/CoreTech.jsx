@@ -12,10 +12,12 @@ export default class CoreTech extends Component {
 		return (
 			<main>
 				<Banner title={banner.title} imgUrl={banner.imgUrl}>
-					<h2 className={styles['banner__subtitle']}>{banner.subtitle}</h2>
+					<div className={styles['banner__subtitle_container']}>
+						<h2 className={styles['banner__subtitle']}>{banner.subtitle}</h2>
+					</div>
 				</Banner>
-				<TechnicalAdvantages />
 				<EmpowermemtParts />
+				<TechnicalAdvantages />
 			</main>
 		)
 	}

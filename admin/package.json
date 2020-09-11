@@ -16,7 +16,7 @@
 	},
 	"scripts": {
 		"start": "react-scripts start",
-		"local-build": "react-scripts build && rm build/static/js/*.map && mv build admin && mkdir build && mv admin build",
+		"local-build": "react-scripts build && del build\\static\\js\\*.map && move build admin && mkdir build && move admin build",
 		"build": "react-scripts build && rm build/static/js/*.map"
 	},
 	"browserslist": {

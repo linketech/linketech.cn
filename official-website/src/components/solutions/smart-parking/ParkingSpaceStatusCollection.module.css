@@ -1,0 +1,67 @@
+.root {
+    height: 1016px;
+}
+
+.collection-container {
+    max-width: 1200px;
+    height:100%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.features-container {
+    display: flex;
+    justify-content: flex-end;
+    margin: 40px auto;
+}
+
+.features-item-container {
+    display: flex;
+    color: white;
+    align-items: flex-end;
+    margin-left: 40px;
+}
+
+.features-name {
+    margin-left: 15px;
+    font-size: 16px;
+    font-family: SourceHanSansCN-Regular,PingFang SC Regular;
+}
+
+.features-icon {
+    width: 40px;
+    height: 40px;
+}
+
+.slogan {
+    color: white;
+    text-align: right;
+    font-size: 16px;
+    font-family: SourceHanSansCN-Regular,PingFang SC Regular;
+}
+
+@media only screen and (max-width: 991px) {
+
+	.title-container {
+		margin-right: 50px;
+    }
+
+    .collection-container {
+        margin-right: 20px;
+    }
+
+    .collection-img {
+        width: 80%;
+        height: auto;
+    }
+
+    .features-container {
+        justify-content: center;
+    }
+
+    .slogan {
+        text-align: center;
+    }
+}

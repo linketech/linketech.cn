@@ -19,7 +19,7 @@
 	margin: 0 auto !important;
 }
 .news-item * {
-	max-width: 380px;
+	max-width: 320px;
 }
 .news-item p {
 	margin: 0;
@@ -30,11 +30,12 @@
 	/* max-width: 380px; */
 	width: 100%;
 	height: 280px;
+	object-fit: cover;
 }
 .news__title {
 	color: #333;
-	font-size: 18px;
-	font-family: SourceHanSansCN-Bold;
+	font-size: 16px;
+	font-family: SourceHanSansCN-Bold,PingFang SC Regular;
 	font-weight: bold;
 	/* 以上设计图 */
 	line-height: 40px;
@@ -42,7 +43,7 @@
 }
 .news__date {
 	color: #999;
-	font-size: 18px;
+	font-size: 16px;
 	font-family: SourceHanSansCN-Normal;
 	/* 以上设计图 */
 	padding-bottom: 10px;
@@ -52,7 +53,7 @@
 }
 .news__summary {
 	color: #666;
-	font-size: 16px;
+	font-size: 14px;
 	font-family: SourceHanSansCN-Normal;
 	/* 以上设计图 */
 	padding-top: 15px;

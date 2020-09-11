@@ -17,7 +17,7 @@ import { banner } from '../components/about-linke/about-config'
 
 function checkIsDev() {
 	const fontEndURL = document.documentURI
-	return /localhost:/.test(fontEndURL)
+	return  /localhost:/.test(fontEndURL)
 }
 
 export default class AboutLinke extends Component {
@@ -50,6 +50,8 @@ export default class AboutLinke extends Component {
 			})
 			.catch((err) => console.log(err))
 		this.setState({ isDev })
+		// const newsList = testnews.data;
+		// this.setState({ newsList }, () => this.computeCurrent(1))
 	}
 
 	/**
@@ -97,7 +99,7 @@ export default class AboutLinke extends Component {
 	 */
 	readNews = (title, event_time, content) => {
 		const newsContent = this.state.isDev
-			? content.replace(/\/api\/img/g, 'http://localhost:8080/api/img')
+			? content.replace(/\/api\/img/g, 'http://www.linketech.cn/api/img')
 			: content
 		this.setState({
 			newsTitle: title,
@@ -134,7 +136,10 @@ export default class AboutLinke extends Component {
 		return (
 			<main id='app-container'>
 				<Banner title={banner.title} imgUrl={banner.imgUrl}>
-					<h2 className={styles['banner__subtitle']}>{banner.subtitle}</h2>
+					<div className={styles['banner__subtitle-container']}>
+					{banner.subtitle}
+						{/* <h2 className={styles['banner__subtitle']}>{banner.subtitle}</h2> */}
+					</div>
 					{/* <div className={styles['banner__bar']} /> */}
 				</Banner>
 				<Navbar url={this.props.match.url} />

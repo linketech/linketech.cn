@@ -6,24 +6,25 @@ import { systemComposition } from './locating-config'
 export default class SystemComposition extends Component {
 	render() {
 		return (
-			<section>
-				<div
-					style={{
-						backgroundImage: `url(${systemComposition.imgUrl})`,
-					}}
-				>
-					<h3 className={styles['title']}>{systemComposition.title}</h3>
-				</div>
+			<section className={styles['root']} style={{
+				backgroundImage: `url(${systemComposition.imgUrl})`,
+			}}>
 				<div className={styles['flex-container']}>
-					{systemComposition.features.map((feature, index) => (
-						<div key={index}>
-							<img
-								src={feature.icon}
-								alt={feature.name}
-								className={styles['img']}
-							/>
-						</div>
-					))}
+					<div className={styles['list-container']}>
+						{systemComposition.features.map((feature, index) => (
+							<div key={index} className={styles['list-item']}>
+								<img
+									src={feature.icon}
+									alt={systemComposition.title}
+									className={styles['item-img']}
+								/>
+								<span>
+									<div className={styles['item-text']}>{feature.name}</div>
+									<div className={styles['item-sub-text']}>{feature.subname}</div>
+								</span>
+							</div>
+						))}
+					</div>
 				</div>
 			</section>
 		)

@@ -17,7 +17,9 @@ export default class Banner extends Component {
 				className={styles['banner']}
 			>
 				<img src={this.props.imgUrl} alt='' className={styles['img']} />
-				<h1 className={styles['banner__title']}>{this.props.title}</h1>
+				<div className={styles['container']}>
+					<h1 className={styles['banner__title']}>{this.props.title}</h1>
+				</div>
 				{this.props.children}
 			</section>
 		)

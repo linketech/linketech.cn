@@ -1,26 +1,31 @@
 .TA-container {
-	padding-bottom: 100px;
+	padding-bottom: 95px;
 }
 
-.TA-title {
-	font-size: 36px;
-	font-family: SourceHanSansCN-Bold;
-	color: #333;
-	/* 以上是设计图给出的 CSS */
-	margin: 0;
-	padding: 100px 0;
+.TA-title-container {
+	padding-top: 100px;
+	margin-left: 40px;
 }
 
 .flex-container {
 	/* 响应式 */
 	max-width: 1200px;
 	margin: 0 auto;
+	/* display: flex;
+	justify-content: space-between; */
+}
+
+.row-container {
+
 	display: flex;
-	justify-content: space-between;
+	padding: 29.5px 20px;
+	/* margin-bottom: 20px; */
 }
 
 .feature-icon {
 	transition: transform 0.2s ease-in-out;
+	width: 58px;
+	height: 58px;
 }
 
 .feature-icon:hover {
@@ -28,15 +33,19 @@
 }
 
 .features {
-	border-top: 1px solid #9f9f9f;
-	padding-top: 30px;
-	margin-top: 50px;
+	/* border-top: 1px solid #9f9f9f; */
+	/* padding-top: 30px;
+	margin-top: 50px;   */
+	flex: 1;
+	text-align: left;
+	margin-left: 60px;
+	padding-top: 5px;
 }
 
 .feature {
-	font-size: 18px;
-	font-family: SourceHanSansCN-Normal;
-	color: #666;
+	font-size: 16px;
+	font-family: SourceHanSansCN-Light,PingFang SC Regular;
+	color: white;
 	line-height: 16px;
 }
 
@@ -51,6 +60,10 @@
 		padding-bottom: 30px;
 	}
 	.TA-container {
-		padding-bottom: 0;
+		padding-bottom: 50px;
+	}
+
+	.row-container {
+		padding: 40px 40px;
 	}
 }

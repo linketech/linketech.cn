@@ -13,7 +13,7 @@ export default class NavItem extends Component {
 
 	constructor(props) {
 		super(props)
-		this.state = { isShowSubmenu: false }
+		this.state = { isShowSubmenu: false}
 	}
 
 	showSubmenu = () => {
@@ -32,7 +32,7 @@ export default class NavItem extends Component {
 				onMouseEnter={this.showSubmenu}
 				onMouseLeave={this.hideSubmenu}
 			>
-				<Link to={this.props.href} className={styles['nav-item__item']}>
+				<Link to={this.props.href} className= {styles[this.props.isHover?'nav-item__item-hover':'nav-item__item']}>
 					{this.props.name}
 				</Link>
 				<div className={styles['nav-item__submenu']}>

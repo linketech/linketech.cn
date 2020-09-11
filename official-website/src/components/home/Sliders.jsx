@@ -14,16 +14,7 @@ export default class Sliders extends Component {
 				{carousels.map((carousel, index) => (
 					// 最外面这层无法设置高宽
 					<div key={index}>
-						<div
-							className={styles['img-container']}
-							// 令轮播图撑满宽度
-							style={{
-								// backgroundImage: `url(${carousel.imgUrl})`,
-								background: `url(${carousel.imgUrl}) no-repeat center center`,
-								backgroundSize: 'cover',
-								minWidth: '100%',
-							}}
-						>
+						<div className={styles['root-container']}>
 							<div className={styles['slider-container']}>
 								<h3 className={styles['slider-title']}>{carousel.title}</h3>
 								{carousel.features.map((feature, jndex) => (
@@ -35,6 +26,9 @@ export default class Sliders extends Component {
 									<div className={styles['slider-detail']}>查看详情</div>
 								</Link>
 							</div>
+							<span className={styles['product-img-container']}>
+								<img src={carousel.imgUrl} className={styles['product-img']} alt={carousel.title}></img>
+							</span>
 						</div>
 					</div>
 				))}

@@ -1,53 +1,91 @@
-.root {
-	padding-bottom: 100px;
-}
-
-.title {
-	color: #333;
-	font-size: 36px;
-	font-family: SourceHanSansCN-Bold;
-	font-weight: bold;
-	/* 以上设计图 */
-	padding-top: 100px;
-	margin-top: 0;
-	margin-bottom: 100px;
-}
-
-.main-container {
-	/* 响应式 */
-	max-width: 1200px;
-	margin: 0 auto;
-}
-
 .flex-container {
-	display: flex;
-	justify-content: space-around;
+    max-width: 1200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 150px auto;
+}
+
+.schematic-container {
+    width: 50%;
+
+}
+
+.schematic-img {
+    width: 80%;
+    height: auto;
+}
+
+.summary-container {
+    width: 50%;
+}
+
+.summary {
+    color: black;
+    font-size: 16px;
+    font-family: SourceHanSansCN-Regular,PingFang SC Regular;
+    font-weight: Regular;
+    line-height: 35px;
+    text-align: right;
+    padding-left: 95px;
+}
+
+.summary-img-container {
+    display: flex;
+    justify-content: flex-end;
 }
 
 .competitiveness-icon {
-	transition: transform 0.2s ease-in-out;
-	width: 242px;
-	height: 209px;
-	margin: 20px auto;
-}
-
-.competitiveness-icon:hover {
-	transform: scale(1.1);
+    margin-left: 50px;
+    width: 160px;
+    height: auto;
 }
 
 .slogan {
-	color: #666;
-	font-size: 26px;
-	font-family: SourceHanSansCN-Bold;
-	font-weight: bold;
-	/* 以上设计图 */
-	margin-top: 117px;
-	border-top: 1px solid #9f9f9f;
-	padding-top: 48px;
+    margin-top: 30px;
+    color: #666666;
+    font-size: 14px;
+    text-align: right;
+    font-family: SourceHanSansCN-Regular,PingFang SC Regular;
+    font-weight: Regular;
 }
 
 @media only screen and (max-width: 991px) {
 	.flex-container {
-		flex-direction: column;
-	}
+        flex-direction: column;
+        margin: 100px auto;
+    }
+
+    .summary-container {
+        margin-top: 50px;
+        width: 80%;
+        /* width: 70%; */
+    }
+
+    .summary {
+        padding-left: 0px;
+    }
+
+    .summary-img-container {
+        flex-direction: column;
+        justify-content: center;
+
+    }
+
+    .competitiveness-icon {
+        margin: 0 auto;
+        margin-top: 30px;
+        /* margin-left: 40px; */
+        width: 50%;
+        height: auto;
+    }
+
+    .schematic-img {
+        width: 100%;
+        height: auto;
+    }
+
+    .summary {
+        font-size: 15px;
+    }
 }

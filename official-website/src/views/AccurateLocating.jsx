@@ -9,6 +9,7 @@ import {
 	banner,
 	coreCompetitiveness,
 } from '../components/solutions/accurate-locating/locating-config'
+import LocationDescript from '../components/solutions/accurate-locating/LocationDescript.jsx'
 
 export default class AccurateLocating extends Component {
 	render() {
@@ -19,8 +20,11 @@ export default class AccurateLocating extends Component {
 					title={coreCompetitiveness.title}
 					imgUrls={coreCompetitiveness.imgUrls}
 					slogan={coreCompetitiveness.slogan}
+					schematicUrl={coreCompetitiveness.schematicUrl}
+					summary={coreCompetitiveness.summary}
 				/>
 				<SystemComposition />
+				<LocationDescript />
 				<ApplicationScenario />
 			</main>
 		)

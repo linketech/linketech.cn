@@ -1,6 +1,6 @@
 .icon-container {
-	width: 55px;
-	height: 55px;
+	width: 45px;
+	height: 45px;
 	background-color: #f5f5f5;
 	box-shadow: 0px 3px 6px 0px rgba(175, 175, 175, 0.5);
 	/* 以上设计图 */
@@ -8,34 +8,39 @@
 	align-items: center;
 	justify-content: center;
 	margin-top: 13px;
+	border-radius: 5px;
 }
 
-.icon-container:hover {
+/* .icon-container:hover {
 	background: rgba(67, 52, 234, 1);
-}
+} */
 
 #gotop {
 	position: static;
 }
 
 .detail-info {
-	background: rgba(67, 52, 234, 1);
+	background: rgba(47, 47, 47, 1);
 	position: fixed;
 	right: 100px;
 }
 
 .detail-text {
 	color: #fff;
-	font-size: 22px;
-	font-family: SourceHanSansCN-Medium;
+	font-size: 18px;
+	font-family: SourceHanSansCN-Medium,PingFang SC Regular;
 	font-weight: 500;
 	/* 以上设计图 */
-	line-height: 55px;
+	line-height: 45px;
 	padding: 25px;
 }
 
 .detail-qrcode {
+	/* margin: 15px 15px; */
 	margin-top: 20px;
+	margin-bottom: 20px;
+	width: 100px;
+	height: 100px;
 }
 
 @media only screen and (max-width: 991px) {

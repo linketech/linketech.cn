@@ -22,15 +22,16 @@ export const banner = {
 	// subtitle: '紧耦合无线接收机理论',
 	// subtitle: '基于紧耦合无线接收机理论构建的赋能平台',
 	// subtitle: '打造基于紧耦合无线接收机理论构建的赋能平台',
-	subtitle: '打造基于紧耦合无线接收机理论的无线产品赋能平台',
+	subtitle: '基于紧耦合无线接收机理论构建的赋能平台',
 }
 
 export const advantages = {
 	title: '技术优势',
+	background,
 	items: [
 		{
 			imgUrl: advantage1,
-			features: ['过滤外部噪音', '降低发射机自身噪音', '提高系统性能'],
+			features: ['过滤外部噪音，降低发射机自身噪音', '提高系统性能'],
 		},
 		{
 			imgUrl: advantage2,
@@ -38,11 +39,11 @@ export const advantages = {
 		},
 		{
 			imgUrl: advantage3,
-			features: ['性能优异', '覆盖广', '降低部署成本'],
+			features: ['性能优异，覆盖广', '降低部署成本'],
 		},
 		{
 			imgUrl: advantage4,
-			features: ['灵敏度高', '所需无线发射信号的功率小', '对人体影响少'],
+			features: ['灵敏度高，所需无线发射信号的功率小', '对人体影响少'],
 		},
 	],
 }
@@ -50,7 +51,6 @@ export const advantages = {
 export const empowerment = {
 	// title: '赋能组成部分方法',
 	title: '赋能平台的组成',
-	background,
 	parts: [
 		{
 			imgUrl: empowerment1,

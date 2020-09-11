@@ -4,7 +4,7 @@ import iconQRcode from './side-affix/icon-qrcode.png'
 import iconLink from './side-affix/icon-link.png'
 import iconGotop from './side-affix/icon-gotop.png'
 
-import QRcode from './QRcode.jpg'
+import QRcode from './QRcode.png'
 
 /**
  * 页脚公司信息的配置

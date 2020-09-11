@@ -1,11 +1,11 @@
 .item-container {
-	height: 150px;
+	height: 64px;
 	border-left: 1px solid #cfcfcf;
 	border-right: 1px solid #cfcfcf;
 }
 
 .selected {
-	background: linear-gradient(to left, #584af3, #5e2ca1);
+	background: linear-gradient(to left, #23ACFD, #3F87FC);
 }
 
 .item__icon {
@@ -14,11 +14,12 @@
 }
 
 .item__name {
-	color: #666;
-	font-size: 24px;
+	color:white;
+	font-size: 18px;
 	font-family: SourceHanSansCN-Normal;
 	/* 以上设计图 */
 	margin: 0;
+	padding: 20px 0;
 }
 
 .light-text {

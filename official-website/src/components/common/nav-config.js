@@ -12,12 +12,13 @@ export default [
 	{ name: '首页', href: '/home', submenu: [] },
 	{ name: '核心技术', href: '/core-tech', submenu: [] },
 	{
-		name: '解决方案',
+		name: '产品介绍',
 		href: '/smart-parking',
 		submenu: [
 			{ name: '智慧停车系统', href: '/smart-parking' },
-			{ name: '精准定位系统', href: '/accurate-locating' },
-			{ name: '高性能无线路由器', href: '/wireless-router' },
+			{ name: '形变监测系统', href: '/accurate-locating' },
+			{ name: 'Mercku路由器', href: '/wireless-router' },
+			{ name: 'UU加速盒', href: '/uu-box' },
 		],
 	},
 	{

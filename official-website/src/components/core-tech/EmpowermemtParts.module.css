@@ -2,28 +2,27 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	padding: 150px 0;
+	padding-top: 100px;
+	padding-bottom: 200px;
 }
 
 .main-container {
 	background-color: #fff;
 	width: 100%;
-	max-width: 1420px;
+	max-width: 1200px;
 }
 
-.empowerment-title {
-	color: #333;
-	font-size: 36px;
-	font-family: SourceHanSansCN-Bold;
-	font-weight: bold;
-	/* 以上设计图 */
-	margin-top: 80px;
+.title-container {
+	margin-top: 40px;
+	padding-right: 35px;
 }
 
 .empowerment-parts {
-	margin: 90px;
+	/* margin: 90px; */
 	display: flex;
 	justify-content: space-around;
+	padding-top: 15px;
+	width: 100%;
 }
 
 .part-icon {
@@ -35,16 +34,17 @@
 }
 
 .part-name {
-	color: #666;
-	font-size: 18px;
-	font-family: SourceHanSansCN-Normal;
+	color: #535353;
+	font-size: 16px;
+	font-family: SourceHanSansCN-Regular,PingFang SC Regular;
 	/* 以上设计图 */
-	margin-top: 60px;
+	margin-top: 50px;
 }
 
 @media only screen and (max-width: 991px) {
 	.empowerment-parts {
 		flex-direction: column;
+		margin-bottom: 75px;
 	}
 	.empowerment-container {
 		padding: 0;

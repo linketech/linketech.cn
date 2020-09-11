@@ -1,0 +1,27 @@
+.flex-container {
+	/* margin: 90px; */
+	display: flex;
+	justify-content: space-between;
+	padding: 15px 0;
+	width: 100%;
+}
+
+.awards-container {
+    max-width: 1200px;
+    margin: 100px auto;
+}
+
+@media only screen and (max-width: 991px) {
+
+	.awards-container {
+         width: 80%;
+	}
+
+	.flex-container {
+        flex-direction: column;
+	}
+
+	.award-icon {
+		margin: 30px auto;
+	}
+}

@@ -2,11 +2,14 @@
 	color: #4e5357;
 }
 
+
 @media only screen and (min-width: 991px) {
 	.nav-item__container {
 		/* 无奈的解决方案 */
 		display: inline-block;
 		float: left;
+		width: 150px;
+		height: 100%;
 	}
 	.nav-item__container:hover > .nav-item__item {
 		background: rgba(67, 52, 234, 1);
@@ -14,30 +17,45 @@
 	}
 
 	.nav-item__item {
-		font-size: 20px;
-		font-family: SourceHanSansCN-Regular;
-		color: #4e5357;
+		font-size: 15px;
+		font-family: SourceHanSansCN-Regular,PingFang SC Regular;
+		font-weight: Bold;
+		color:white;
 		/* 以上设计图 */
 		display: block;
 		position: relative;
 		/* 上下 padding 是魔数 */
-		padding: 28px 30px;
+		padding: 21.5px 0px;
+	}
+
+	.nav-item__item-hover {
+		color:black;
+		font-size: 14px;
+		font-family: SourceHanSansCN-Regular,PingFang SC Regular;
+		font-weight: Bold;
+		/* 以上设计图 */
+		display: block;
+		position: relative;
+		/* 上下 padding 是魔数 */
+		padding: 21.5px 0px;
 	}
 
 	.nav-item__submenu {
-		background-color: rgba(0, 0, 0, 0.5);
+		background-color: white;
 	}
 
 	.submenu__item {
 		display: inline;
 	}
 	.submenu__item:hover > a {
-		background: rgba(67, 52, 234, 1);
+		background:#E6E6E6;
 	}
 	.submenu__item > a {
-		color: #fff !important;
+		color: #3C3C3C !important;
 		display: block;
-		padding: 5px 0;
+		padding: 13px 0;
 		margin-bottom: 5px;
+		font-size: 14px;
+		font-family: SourceHanSansCN-Light,PingFang SC Regular;
 	}
 }

@@ -34,7 +34,7 @@ export default class NewsDetail extends Component {
 						__html: this.props.newsContent,
 					}}
 					className={'ql-editor ql-blank'}
-					style={{ padding: 0, minHeight: 'auto' }}
+					style={{ padding: 0, minHeight: 'auto'}}
 				/>
 				<style jsx>{`
 					.ql-editor > p {

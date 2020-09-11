@@ -5,8 +5,8 @@
 
 .team-title {
 	color: #333;
-	font-size: 36px;
-	font-family: SourceHanSansCN-Medium;
+	font-size: 28px;
+	font-family: SourceHanSansCN-Medium,PingFang SC Regular;
 	font-weight: 500;
 	/* 以上设计图 */
 	margin: 0;
@@ -16,7 +16,7 @@
 
 .members-container {
 	/* 响应式 */
-	max-width: 1200px;
+	max-width: 1000px;
 	margin: 0 auto;
 	display: flex;
 	justify-content: space-between;
@@ -38,8 +38,8 @@
 }
 
 .member__name {
-	font-size: 24px;
-	font-family: SourceHanSansCN-Bold;
+	font-size: 20px;
+	font-family: SourceHanSansCN-Bold,PingFang SC Regular;
 	font-weight: bold;
 	/* 以上设计图 */
 	margin: 0;
@@ -47,8 +47,8 @@
 }
 
 .member__duty {
-	font-size: 18px;
-	font-family: SourceHanSansCN-Regular;
+	font-size: 15px;
+	font-family: SourceHanSansCN-Regular,PingFang SC Regular;
 	/* 以上设计图 */
 	margin: 0;
 	padding-top: 15px;
@@ -61,8 +61,8 @@
 
 .member__achievement {
 	color: #666;
-	font-size: 16px;
-	font-family: SourceHanSansCN-Regular;
+	font-size: 13px;
+	font-family: SourceHanSansCN-Regular,PingFang SC Regular;
 	line-height: 24px;
 	/* 以上设计图 */
 	margin: 0;

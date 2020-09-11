@@ -1,7 +1,11 @@
+.root {
+	padding: 100px 0;
+}
+
 .title {
 	color: #333;
 	font-size: 36px;
-	font-family: SourceHanSansCN-Bold;
+	font-family: SourceHanSansCN-Bold,PingFang SC Regular;
 	font-weight: bold;
 	/* 以上设计图 */
 	margin-top: 0;
@@ -10,13 +14,33 @@
 }
 
 .flex-container {
-	/* height: 960px; */
 	display: flex;
-	flex-direction: column;
 	justify-content: space-between;
+	max-width: 1200px;
+	margin: 5px auto;
 }
 
 .img {
 	max-width: 100%;
-	padding-bottom: 100px;
+}
+
+.name {
+	margin-top: 30px;
+	color: black;
+	font-family: SourceHanSansCN-Regular,PingFang SC Regular;
+	font-size: 16px;
+}
+
+@media only screen and (max-width: 991px) {
+	.flex-container {
+        flex-direction: column;
+	}
+
+	.name {
+		margin-bottom: 50px;
+	}
+
+	.title-container {
+		margin-left: 120px;
+	}
 }

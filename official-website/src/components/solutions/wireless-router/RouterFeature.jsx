@@ -26,7 +26,7 @@ export default class RouterFeature extends PureComponent {
 					}`,
 				}}
 			>
-				<div className={styles['flex-container']}>
+				{/* <div className={styles['flex-container']}>
 					<div
 						className={`${styles['text__container']} ${
 							this.props.align ? styles['align-left'] : styles['align-right']
@@ -59,7 +59,7 @@ export default class RouterFeature extends PureComponent {
 						alt={this.props.name}
 						className={styles['feature-img']}
 					/>
-				</div>
+				</div> */}
 			</section>
 		)
 	}

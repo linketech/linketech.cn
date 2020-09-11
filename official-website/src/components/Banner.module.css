@@ -1,19 +1,26 @@
+
 .banner {
 	/* height: 700px; */
 	position: relative;
 }
 
+.container {
+	max-width: 1100px;
+	margin: 0 auto;
+}
+
 .banner__title {
-	font-size: 103px;
-	font-family: SourceHanSansCN-Bold;
+	font-size: 38px;
+	font-family: SourceHanSansCN-Bold,PingFang SC Regular;
 	text-shadow: 0px 3px 6px rgba(17, 29, 54, 0.5);
 	/* 以上设计图 */
 	margin: 0;
 	position: absolute;
-	top: 20%;
+	top: 40%;
 	width: 100%;
-	text-align: center;
+	text-align: left;
 	white-space: nowrap;
+	padding-left: 10px;
 }
 
 .banner .banner__title {
@@ -25,11 +32,13 @@
 	width: 100%;
 	/* min-height: 350px; */
 	min-width: 991px;
+	margin-top: -64px;
 }
 
 @media only screen and (max-width: 991px) {
 	.banner__title {
-		font-size: 60px;
+		font-size: 20px;
 		top: 100px;
+		text-align: center;
 	}
 }

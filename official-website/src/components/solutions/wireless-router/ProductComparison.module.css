@@ -1,0 +1,31 @@
+
+.root {
+    padding: 180px 0;
+}
+
+.table-container {
+    text-align: left;
+    margin: 15px 0;
+}
+
+.slogan {
+    font-size: 14px;
+    font-family: SourceHanSansCN-Normal;
+    color: white;
+    text-align: left;
+}
+
+.product-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+@media only screen and (max-width: 991px) {
+	.product-container {
+        width: 80%;
+    }
+
+    .table {
+        width: 100%;
+    }
+}

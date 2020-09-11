@@ -4,32 +4,39 @@
 	margin: 0 auto;
 	text-align: left;
 	padding: 0 20px;
-	padding-bottom: 240px;
+	padding-bottom: 255px;
 }
 
 .about-big-title {
 	color: #fff;
-	font-size: 72px;
-	font-family: SourceHanSansCN-Bold;
+	font-size: 50px;
+	font-family: SourceHanSansCN-Bold,PingFang SC Regular;
 	font-weight: bold;
 	/* 以上设计图 */
 	margin: 0;
-	padding-top: 150px;
-	padding-bottom: 50px;
+	padding-top: 250px;
+	/* padding-bottom: 50px; */
 }
 .about-small-title {
-	font-size: 36px;
-	font-family: SourceHanSansCN-Bold;
+	font-size: 28px;
+	font-family: SourceHanSansCN-Bold,PingFang SC Regular;
 	font-weight: bold;
 	/* 以上设计图 */
 	margin-left: 20px;
 }
 
 .about-paragraph {
-	color: #c1baf5;
-	font-size: 24px;
-	font-family: SourceHanSansCN-Regular;
+	color: white;
+	font-size: 16px;
+	font-family: SourceHanSansCN-Regular,PingFang SC Regular;
 	/* 以上设计图 */
 	margin: 0;
 	margin-top: 10px;
+}
+
+
+@media only screen and (max-width: 991px) {
+	/* .container {
+		padding-bottom: 260px;
+	} */
 }
