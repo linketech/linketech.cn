@@ -14,8 +14,8 @@ export default class EmpowermemtParts extends Component {
 				// }}
 				>
 				<div className={styles['main-container']}>
-					<div className={styles['title-container']}>  
-						<ModuleTitle title={empowerment.title} isRight={true} isWhite={false}/> 
+					<div className={styles['title-container']}>
+						<ModuleTitle title={empowerment.title} isRight={true} isWhite={false}/>
 					</div>
 					<div className={styles['empowerment-parts']}>
 						{empowerment.parts.map((part, index) => (

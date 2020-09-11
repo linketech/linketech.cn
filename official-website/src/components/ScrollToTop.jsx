@@ -10,7 +10,7 @@ class ScrollToTop extends React.Component {
 	}
 
 	componentDidUpdate(prevProps) {
-		if (prevProps.location.pathname === '/home') {   
+		if (prevProps.location.pathname === '/home') {
 			document.getElementById('root').scrollTo(0,0);
 		}
 	}

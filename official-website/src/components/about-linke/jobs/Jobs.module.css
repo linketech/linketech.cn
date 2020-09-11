@@ -66,7 +66,7 @@
 }
 
 .job__bar:hover {
-	background: linear-gradient(to top, #3F87FC, #23ACFD); 
+	background: linear-gradient(to top, #3F87FC, #23ACFD);
 }
 .job__bar:hover > * {
 	color: #fff;

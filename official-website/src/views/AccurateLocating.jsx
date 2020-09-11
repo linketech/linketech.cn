@@ -15,7 +15,7 @@ export default class AccurateLocating extends Component {
 	render() {
 		return (
 			<main>
-				<Banner title={banner.title} imgUrl={banner.imgUrl} /> 
+				<Banner title={banner.title} imgUrl={banner.imgUrl} />
 				<CoreCompetitiveness
 					title={coreCompetitiveness.title}
 					imgUrls={coreCompetitiveness.imgUrls}

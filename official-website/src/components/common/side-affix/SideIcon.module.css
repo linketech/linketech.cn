@@ -22,13 +22,13 @@
 .detail-info {
 	background: rgba(47, 47, 47, 1);
 	position: fixed;
-	right: 100px; 
+	right: 100px;
 }
 
 .detail-text {
 	color: #fff;
 	font-size: 18px;
-	font-family:  SourceHanSansCN-Medium,PingFang SC Regular;
+	font-family: SourceHanSansCN-Medium,PingFang SC Regular;
 	font-weight: 500;
 	/* 以上设计图 */
 	line-height: 45px;
@@ -38,7 +38,7 @@
 .detail-qrcode {
 	/* margin: 15px 15px; */
 	margin-top: 20px;
-	margin-bottom: 20px; 
+	margin-bottom: 20px;
 	width: 100px;
 	height: 100px;
 }

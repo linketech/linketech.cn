@@ -31,14 +31,14 @@ export const coreCompetitiveness = {
 	imgUrls: [coreCompetitiveness1, coreCompetitiveness2],
 	slogan: '优异的定位性能，定位精度高达2mm',
 	summary:'领翌正致力于研发超高精度定位系统（定位精度2mm)，使用北斗/GPS双模导航芯片，信号接收灵敏度达到-160dBm。整体产品完全自主知识产权，未来可广泛应用在桥梁、铁路、楼宇等结构安全检测领域',
-	 
+
 }
 export const systemComposition = {
 	title: '系统组成',
 	imgUrl: systemCompositionBackground,
 	features: [
 		{
-			 icon: systemComposition2, 
+			 icon: systemComposition2,
 			 name: '高精度',
 			 subname: '采用原创紧耦合无线收发机理论设计及噪声优化，定位精度达到2毫米'
 		},

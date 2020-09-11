@@ -1,4 +1,4 @@
-.root { 
+.root {
 	padding: 100px 0;
 }
 
@@ -13,29 +13,29 @@
 	padding-top: 100px;
 }
 
-.flex-container { 
-	display: flex; 
+.flex-container {
+	display: flex;
 	justify-content: space-between;
 	max-width: 1200px;
 	margin: 5px auto;
 }
 
 .img {
-	max-width: 100%; 
+	max-width: 100%;
 }
 
 .name {
 	margin-top: 30px;
 	color: black;
-	font-family:  SourceHanSansCN-Regular,PingFang SC Regular;
+	font-family: SourceHanSansCN-Regular,PingFang SC Regular;
 	font-size: 16px;
 }
 
 @media only screen and (max-width: 991px) {
 	.flex-container {
-        flex-direction: column; 
-	}  
-	
+        flex-direction: column;
+	}
+
 	.name {
 		margin-bottom: 50px;
 	}

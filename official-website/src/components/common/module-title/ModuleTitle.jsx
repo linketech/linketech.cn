@@ -4,20 +4,20 @@ import PropTypes from 'prop-types'
 
 class ModuleTitle extends Component {
 
-    static propTypes = {
+	static propTypes = {
 		isRight: PropTypes.bool,
 		isWhite: PropTypes.bool,
-		title: PropTypes.string, 
+		title: PropTypes.string,
 	}
 
-    render() {
-        return (
-            <div className={styles['title-container']}>
+	render() {
+		return (
+			<div className={styles['title-container']}>
 					<h3 className={styles[this.props.isWhite ? (this.props.isRight?'title-white':'title-left-white'):(this.props.isRight ? 'title' : 'title-left')]}>{this.props.title}</h3>
 					<div className={styles[this.props.isWhite ? (this.props.isRight?'line-white':'line-left-white'):(this.props.isRight ? 'line' : 'line-left')]}></div>
 			</div>
-        );
-    }
+		);
+	}
 }
 
-export default ModuleTitle;
+export default ModuleTitle

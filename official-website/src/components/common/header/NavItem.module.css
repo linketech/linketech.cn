@@ -1,14 +1,14 @@
 .nav-item__item {
 	color: #4e5357;
 }
-   
+
 
 @media only screen and (min-width: 991px) {
 	.nav-item__container {
 		/* 无奈的解决方案 */
 		display: inline-block;
 		float: left;
-		width: 150px;  
+		width: 150px;
 		height: 100%;
 	}
 	.nav-item__container:hover > .nav-item__item {
@@ -18,7 +18,7 @@
 
 	.nav-item__item {
 		font-size: 15px;
-		font-family:  SourceHanSansCN-Regular,PingFang SC Regular;
+		font-family: SourceHanSansCN-Regular,PingFang SC Regular;
 		font-weight: Bold;
 		color:white;
 		/* 以上设计图 */
@@ -28,10 +28,10 @@
 		padding: 21.5px 0px;
 	}
 
-	.nav-item__item-hover { 
-		color:black; 
+	.nav-item__item-hover {
+		color:black;
 		font-size: 14px;
-		font-family:  SourceHanSansCN-Regular,PingFang SC Regular; 
+		font-family: SourceHanSansCN-Regular,PingFang SC Regular;
 		font-weight: Bold;
 		/* 以上设计图 */
 		display: block;

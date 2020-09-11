@@ -4,13 +4,13 @@
 	margin: 0 auto;
 	text-align: left;
 	padding: 0 20px;
-	padding-bottom: 255px; 
+	padding-bottom: 255px;
 }
 
 .about-big-title {
 	color: #fff;
 	font-size: 50px;
-	font-family:  SourceHanSansCN-Bold,PingFang SC Regular;
+	font-family: SourceHanSansCN-Bold,PingFang SC Regular;
 	font-weight: bold;
 	/* 以上设计图 */
 	margin: 0;
@@ -19,7 +19,7 @@
 }
 .about-small-title {
 	font-size: 28px;
-	font-family:  SourceHanSansCN-Bold,PingFang SC Regular;
+	font-family: SourceHanSansCN-Bold,PingFang SC Regular;
 	font-weight: bold;
 	/* 以上设计图 */
 	margin-left: 20px;
@@ -28,7 +28,7 @@
 .about-paragraph {
 	color: white;
 	font-size: 16px;
-	font-family:  SourceHanSansCN-Regular,PingFang SC Regular;
+	font-family: SourceHanSansCN-Regular,PingFang SC Regular;
 	/* 以上设计图 */
 	margin: 0;
 	margin-top: 10px;

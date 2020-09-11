@@ -8,7 +8,7 @@ export default class SystemComposition extends Component {
 		return (
 			<section className={styles['root']} style={{
 				backgroundImage: `url(${systemComposition.imgUrl})`,
-			}}> 
+			}}>
 				<div className={styles['flex-container']}>
 					<div className={styles['list-container']}>
 						{systemComposition.features.map((feature, index) => (

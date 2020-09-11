@@ -8,7 +8,7 @@ export default class UUBox extends Component {
     render() {
         return (
             <main>
-                <Banner title={uuBanner.title} imgUrl={uuBanner.imgUrl}/>  
+                <Banner title={uuBanner.title} imgUrl={uuBanner.imgUrl}/>
                 <UUFeatures />
                 <UUFeatureList />
             </main>

@@ -1,4 +1,4 @@
-.title-container { 
+.title-container {
 	/* 以上设计图 */
 	margin-top: 0;
 	margin-bottom: 20px;
@@ -9,14 +9,14 @@
 	/* 响应式 */
 	max-width: 1200px;
 	/* height: 1150px; */
-	margin: 0 auto; 
+	margin: 0 auto;
 	display: flex;
 	flex-wrap: wrap;
 	/* justify-content: space-between; */
 	align-content: space-between;
 }
 
-.flex-item { 
+.flex-item {
 	margin-bottom: 200px;
 	margin-right: 80px;
 }
@@ -33,7 +33,7 @@
 		flex-wrap: no-wrap;
 		justify-content: flex-start;
 		align-content: stretch;
-	} 
+	}
 
 	.flex-item {
 		margin: 40px auto;
@@ -45,5 +45,5 @@
 
 	.title-container {
 		padding-left: 160px;
-	} 
+	}
 }

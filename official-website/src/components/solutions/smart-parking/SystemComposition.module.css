@@ -1,4 +1,4 @@
-.root { 
+.root {
 	/* height: 964px; */
 	padding-bottom: 110px;
 }
@@ -48,7 +48,7 @@
 .item-text {
 	color:white;
 	font-size: 16px;
-	font-family:  SourceHanSansCN-Medium,PingFang SC Regular; 
+	font-family:  SourceHanSansCN-Medium,PingFang SC Regular;
 	font-weight: Bold;
 	/* 以上设计图 */
 	margin-left: 60px;
@@ -59,7 +59,7 @@
 .item-sub-text {
 	color: #D7DADC;
 	font-size: 14px;
-	font-family:  SourceHanSansCN-Light,PingFang SC Regular; 
+	font-family:  SourceHanSansCN-Light,PingFang SC Regular;
 	margin-left: 60px;
 	text-align: left;
 }

@@ -16,15 +16,15 @@ import ParkingSpaceStatusCollection from '../components/solutions/smart-parking/
 
 export default class SmartParking extends Component {
 
-	componentDidMount() { 
+	componentDidMount() {
 	}
-   
+
 	render() {
 		return (
 			<main>
 				<Banner title={banner.title} imgUrl={banner.imgUrl}>
 					{/* <VideoButton videoUrl={banner.videoUrl} videoTitle={banner.title} /> */}
-					<div className={styles['banner__subtitle_container']}> 
+					<div className={styles['banner__subtitle_container']}>
 						<h2 className={styles['banner__subtitle']}>{banner.subtitle}</h2>
 					</div>
 				</Banner>

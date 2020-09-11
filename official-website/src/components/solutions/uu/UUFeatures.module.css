@@ -8,43 +8,43 @@
 	/* height: 650px; */
 	margin: 0 auto;
 	display: flex;
-	justify-content: space-around; 
-	align-items: center; 
+	justify-content: space-around;
+	align-items: center;
 }
 
 .schematic-container {
 	width: 35%;
-	height: 100%; 
+	height: 100%;
 	display: flex;
-	align-items: center; 
+	align-items: center;
 }
 
-.schematic-img { 
+.schematic-img {
     margin: auto;
-    width: 100%;  
+    width: 100%;
 	height: auto;
 }
 
 .summary-container {
-	width: 30%;  
-	align-items: center; 
+	width: 30%;
+	align-items: center;
 }
-  
+
 .summary {
 	text-align: right;
-	font-family:  SourceHanSansCN-Regular,PingFang SC Regular;
+	font-family: SourceHanSansCN-Regular,PingFang SC Regular;
 	font-size: 14px;
 	color: black;
     margin-left: 55px;
     line-height: 30px;
 }
- 
-  
-.features-item-container {    
-	margin-bottom: 20px;  
-	display: flex;  
+
+
+.features-item-container {
+	margin-bottom: 20px;
+	display: flex;
 	justify-content: flex-end;
-} 
+}
 
 .title-container {
 margin-top: 15px;
@@ -59,7 +59,7 @@ margin-top: 15px;
 .features-slogan {
     color: #666666;
     font-size: 13px;
-    font-family:  SourceHanSansCN-Regular,PingFang SC Regular; 
+    font-family: SourceHanSansCN-Regular,PingFang SC Regular;
     text-align: right;
 }
 
@@ -71,11 +71,11 @@ margin-top: 15px;
 
 	.flex-container {
 		flex-direction: column;
-	} 
+	}
 
 	.schematic-container {
 		width: 60%;
-		height: auto;   
+		height: auto;
 	}
 
 	.summary-container {

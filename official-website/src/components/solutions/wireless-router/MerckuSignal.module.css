@@ -11,23 +11,23 @@
 } */
 
 .content-container {
-    width: 28%;  
+    width: 28%;
     margin-top: 60px;
 }
 
 .content {
     color: black;
-    font-family:  SourceHanSansCN-Regular,PingFang SC Regular;
+    font-family: SourceHanSansCN-Regular,PingFang SC Regular;
     font-size: 16px;
-    text-align: right; 
+    text-align: right;
     line-height: 35px;
 }
 
 @media only screen and (max-width: 991px) {
 	.flex-container {
 		flex-direction: column;
-    }  
-    
+    }
+
     .product-image {
         width: 80%;
         height: auto;

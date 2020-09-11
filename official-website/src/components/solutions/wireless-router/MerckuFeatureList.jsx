@@ -7,7 +7,7 @@ export default class MerckuFeatureList extends Component {
         return (
             <section className={styles['root']} style={{
 				backgroundImage: `url(${merckuFeaturesList.background})`,
-			}}> 
+			}}>
 				<div className={styles['flex-container']}>
 					<div className={styles['list-container']}>
 						{merckuFeaturesList.features.map((feature, index) => (

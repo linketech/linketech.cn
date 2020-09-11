@@ -15,7 +15,7 @@ const { SubMenu } = Menu
 
 export default class Header extends Component {
 	state = {
-		visible: false, 
+		visible: false,
 		isHover: false
 	}
 
@@ -28,7 +28,7 @@ export default class Header extends Component {
 
 	handleVisibleChange = (visible) => {
 		this.setState({ visible })
-	} 
+	}
 
 	mouseEnter = () => {
 		this.setState({ isHover:true })
@@ -46,7 +46,7 @@ export default class Header extends Component {
 						key={navItem.name}
 						name={navItem.name}
 						href={navItem.href}
-						submenu={navItem.submenu} 
+						submenu={navItem.submenu}
 						isHover={this.state.isHover}
 					/>
 				))}
@@ -74,11 +74,11 @@ export default class Header extends Component {
 					// eslint-disable-next-line function-paren-newline
 				)}
 			</Menu>
-		)  
+		)
 		return (
-			<header className={styles['header-container']} 
+			<header className={styles['header-container']}
 			onMouseEnter={this.mouseEnter}
-			onMouseLeave={this.mouseLeave}>  
+			onMouseLeave={this.mouseLeave}>
 				<div  className={styles['navigationbar-container']}>
 					<Row>
 						<Col

@@ -14,14 +14,14 @@ export default class Sliders extends Component {
 				{carousels.map((carousel, index) => (
 					// 最外面这层无法设置高宽
 					<div key={index}>
-						<div className={styles['root-container']}> 
+						<div className={styles['root-container']}>
 							<div className={styles['slider-container']}>
 								<h3 className={styles['slider-title']}>{carousel.title}</h3>
 								{carousel.features.map((feature, jndex) => (
 									<p key={jndex} className={styles['slider-feature']}>
 										{feature}
 									</p>
-								))} 
+								))}
 								<Link to={carousel.href}>
 									<div className={styles['slider-detail']}>查看详情</div>
 								</Link>

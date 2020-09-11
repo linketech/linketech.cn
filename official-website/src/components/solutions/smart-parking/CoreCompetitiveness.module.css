@@ -17,22 +17,22 @@
 }
 
 .summary-container {
-    width: 50%; 
+    width: 50%;
 }
 
 .summary {
     color: black;
     font-size: 16px;
-    font-family:  SourceHanSansCN-Regular,PingFang SC Regular;
+    font-family: SourceHanSansCN-Regular,PingFang SC Regular;
     font-weight: Regular;
-    line-height: 35px; 
-    text-align: right; 
+    line-height: 35px;
+    text-align: right;
     padding-left: 95px;
 }
 
 .summary-img-container {
     display: flex;
-    justify-content: flex-end; 
+    justify-content: flex-end;
 }
 
 .competitiveness-icon {
@@ -46,7 +46,7 @@
     color: #666666;
     font-size: 14px;
     text-align: right;
-    font-family:  SourceHanSansCN-Regular,PingFang SC Regular;
+    font-family: SourceHanSansCN-Regular,PingFang SC Regular;
     font-weight: Regular;
 }
 
@@ -54,7 +54,7 @@
 	.flex-container {
         flex-direction: column;
         margin: 100px auto;
-    } 
+    }
 
     .summary-container {
         margin-top: 50px;
@@ -65,14 +65,14 @@
     .summary {
         padding-left: 0px;
     }
-    
+
     .summary-img-container {
         flex-direction: column;
         justify-content: center;
 
     }
 
-    .competitiveness-icon { 
+    .competitiveness-icon {
         margin: 0 auto;
         margin-top: 30px;
         /* margin-left: 40px; */

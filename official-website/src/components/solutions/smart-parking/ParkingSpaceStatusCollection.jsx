@@ -25,14 +25,14 @@ export default class ParkingSpaceStatusCollection extends Component {
                                             src={feature.icon}
                                             alt={feature.name}
                                             className={styles['features-icon']}
-                                        /> 
-                                        <div className={styles['features-name']}> {feature.name}</div> 
+                                        />
+                                        <div className={styles['features-name']}> {feature.name}</div>
                                     </div>
                                 ))}
                             </div>
                         </div>
-                        <div className={styles['slogan']}> 
-                        {parkingSpaceStatusCollection.slogan} 
+                        <div className={styles['slogan']}>
+                        {parkingSpaceStatusCollection.slogan}
                         </div>
                     </div>
                 </div>

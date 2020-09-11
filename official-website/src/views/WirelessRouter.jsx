@@ -20,7 +20,7 @@ export default class WirelessRouter extends Component {
 				<MerckuFeatureList />
 				<MerckuSignal />
 				<ProductComparison />
-				<MerckuHonor /> 
+				<MerckuHonor />
 			</main>
 		)
 	}

@@ -24,7 +24,7 @@
 .banner__subtitle-container {
 	max-width: 1200px;
 	margin: 0 auto;
-	padding-left: 410px;  
+	padding-left: 410px;
 	font-size: 36px;
 	font-family:  SourceHanSansCN-Medium,PingFang SC Regular;
 	font-weight: 500;
@@ -40,10 +40,10 @@
 @media only screen and (max-width: 991px) {
     .banner__subtitle {
 		text-align: center;
-	} 
+	}
 
 	.banner__subtitle-container {
 		/* text-align: center; */
-		padding-left: 175px; 
+		padding-left: 175px;
 	}
 }

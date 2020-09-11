@@ -23,7 +23,7 @@ export default class CoreCompetitiveness extends Component {
 					</div>
 					<div className={styles['summary-container']}>
 						<div className={styles['summary']}>{this.props.summary}</div>
-						<div className={styles['title-container']}> 
+						<div className={styles['title-container']}>
 							<ModuleTitle title={this.props.title} isRight={true}/>
 						</div>
 						<div>
@@ -40,7 +40,7 @@ export default class CoreCompetitiveness extends Component {
 						</div>
 						<div className={styles['slogan']}>{this.props.slogan}</div>
 					</div>
-				</div> 
+				</div>
 			</section>
 		)
 	}

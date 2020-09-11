@@ -1,25 +1,25 @@
-  
+
 .header-container {
 	/* max-width: 1200px; */
-	margin: 0 auto;  
-	height: 64px; 
-	top: 0px; 
+	margin: 0 auto;
+	height: 64px;
+	top: 0px;
 	position: relative;
-	z-index: 999;  
-}  
- 
-.header-container:hover {
-	background: white; 
+	z-index: 999;
 }
 
-.header-container:hover .slogan{ 
+.header-container:hover {
+	background: white;
+}
+
+.header-container:hover .slogan{
 	color: black;
 }
 
 .navigationbar-container {
 	max-width: 1200px;
-	margin: 0 auto;  
-	height: 100%; 
+	margin: 0 auto;
+	height: 100%;
 }
 
 .slogan {
@@ -34,7 +34,7 @@
 .slogan:hover {
 	color: black;
 }
- 
+
 
 /* 耦合，无奈之举 */
 .navigationbar-container .nav-phone-icon {
@@ -46,10 +46,10 @@
 	width: 16px;
 	height: 22px;
 	cursor: pointer;
-}  
-	
+}
+
 .nav-phone-icon-black {
-	color: black;    
+	color: black;
 }
 
 @media only screen and (max-width: 991px) {
@@ -67,14 +67,14 @@
 	.slogan {
 		display: none;
 	}
-} 
+}
 
-.logo-container { 
-	height: 100%; 
+.logo-container {
+	height: 100%;
 	padding: 14px 0px;
 }
 
-.logo-link { 
+.logo-link {
 	/* line-height: 100%;  */
 	height: 100%;
-} 
+}

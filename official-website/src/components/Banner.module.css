@@ -4,9 +4,9 @@
 	position: relative;
 }
 
-.container { 
+.container {
 	max-width: 1100px;
-	margin: 0 auto; 
+	margin: 0 auto;
 }
 
 .banner__title {
@@ -38,7 +38,7 @@
 @media only screen and (max-width: 991px) {
 	.banner__title {
 		font-size: 20px;
-		top: 100px;  
+		top: 100px;
 		text-align: center;
-	} 
+	}
 }

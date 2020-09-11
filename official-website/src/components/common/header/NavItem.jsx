@@ -8,7 +8,7 @@ export default class NavItem extends Component {
 	static propTypes = {
 		name: PropTypes.string,
 		href: PropTypes.string,
-		submenu: PropTypes.array, 
+		submenu: PropTypes.array,
 	}
 
 	constructor(props) {
@@ -33,14 +33,14 @@ export default class NavItem extends Component {
 				onMouseLeave={this.hideSubmenu}
 			>
 				<Link to={this.props.href} className= {styles[this.props.isHover?'nav-item__item-hover':'nav-item__item']}>
-					{this.props.name}  
-				</Link> 
+					{this.props.name}
+				</Link>
 				<div className={styles['nav-item__submenu']}>
 					<ul>
 						{this.state.isShowSubmenu &&
 							this.props.submenu.map((submenuItem) => (
 								<li className={styles['submenu__item']} key={submenuItem.name}>
-									<Link to={submenuItem.href}>{submenuItem.name}</Link> 
+									<Link to={submenuItem.href}>{submenuItem.name}</Link>
 								</li>
 							))}
 					</ul>

@@ -26,7 +26,7 @@ export const banner = {
 }
 
 export const advantages = {
-	title: '技术优势', 
+	title: '技术优势',
 	background,
 	items: [
 		{

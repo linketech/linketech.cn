@@ -7,7 +7,7 @@ export default class UUFeatureList extends Component {
         return (
             <section className={styles['root']} style={{
 				backgroundImage: `url(${uuBoxFeaturesList.background})`,
-			}}> 
+			}}>
 				<div className={styles['flex-container']}>
 					<div className={styles['list-container']}>
 						{uuBoxFeaturesList.features.map((feature, index) => (

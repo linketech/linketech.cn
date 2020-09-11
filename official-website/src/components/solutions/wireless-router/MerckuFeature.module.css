@@ -3,45 +3,45 @@
 	/* height: 650px; */
 	margin: 150px auto;
 	display: flex;
-	justify-content: space-around; 
-	align-items: center; 
+	justify-content: space-around;
+	align-items: center;
 }
 
 .schematic-container {
 	width: 40%;
-	height: 100%; 
+	height: 100%;
 	display: flex;
-	align-items: center; 
+	align-items: center;
 }
 
-.schematic-img { 
+.schematic-img {
     margin: auto;
-    width: 100%;  
+    width: 100%;
 	height: auto;
 }
 
 .summary-container {
-	width: 40%;  
-	align-items: center; 
+	width: 40%;
+	align-items: center;
 }
-  
+
 .summary {
 	text-align: right;
-	font-family:  SourceHanSansCN-Regular,PingFang SC Regular;
+	font-family: SourceHanSansCN-Regular,PingFang SC Regular;
 	font-size: 14px;
 	color: black;
     margin-left: 55px;
     line-height: 30px;
 }
- 
-  
-.features-item-container {    
-	margin-bottom: 30px;  
-	display: flex;  
+
+
+.features-item-container {
+	margin-bottom: 30px;
+	display: flex;
 	justify-content: flex-end;
 }
 
-.features-item { 
+.features-item {
     margin-left: 80px;
 }
 
@@ -57,14 +57,14 @@ margin-top: 0px;
 .features-name {
     color: #666666;
     font-size: 14px;
-    font-family:  SourceHanSansCN-Regular,PingFang SC Regular;
+    font-family: SourceHanSansCN-Regular,PingFang SC Regular;
     margin-top: 16px;
 }
 
 @media only screen and (max-width: 991px) {
 	.flex-container {
 		flex-direction: column;
-	} 
+	}
 
 	.summary-container {
 		margin-top: 50px;

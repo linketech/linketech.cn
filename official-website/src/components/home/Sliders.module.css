@@ -2,7 +2,7 @@
 	max-width: 1200px;
 	/* height: 600px; */
 	display: flex;
-	margin: 0 auto; 
+	margin: 0 auto;
 	flex-wrap: wrap-reverse;
 	align-items: center;
 	justify-content: center;
@@ -13,8 +13,8 @@
 .slider-container {
 	/* 响应式 */
 	/* max-width: 900px; */
-	/* margin: 0 auto; */ 
-	padding: 0 20px; 
+	/* margin: 0 auto; */
+	padding: 0 20px;
 	/* float: left; */
 	height: 100%;
 	width: 50%;
@@ -23,7 +23,7 @@
 .slider-title {
 	color:#333333;
 	font-size: 28px;
-	font-family:  SourceHanSansCN-Bold,PingFang SC Regular;
+	font-family: SourceHanSansCN-Bold,PingFang SC Regular;
 	font-weight: bold;
 	/* 以上设计图 */
 	margin: 0;
@@ -35,7 +35,7 @@
 .slider-feature {
 	color:#333333;
 	font-size: 16px;
-	font-family:  SourceHanSansCN-Regular,PingFang SC Regular;
+	font-family: SourceHanSansCN-Regular,PingFang SC Regular;
 	/* 以上设计图 */
 	margin: 0;
 	padding-top: 10px;
@@ -53,22 +53,22 @@
 	color: #fff;
 	font-size: 16px;
 	font-weight:400;
-	font-family:  SourceHanSansCN-Regular,PingFang SC Regular;
+	font-family: SourceHanSansCN-Regular,PingFang SC Regular;
 	/* 以上设计图 */
 	display: flex;
 	justify-content: center;
-	align-items: center; 
+	align-items: center;
 	margin-top: 60px;
 }
 
-.product-img-container { 
-	width: 50%; 
-	display: flex;  
+.product-img-container {
+	width: 50%;
+	display: flex;
 }
 
 .product-img {
 	width: 380px;
-	height: 380px;  
+	height: 380px;
 	margin: 0 auto;
 }
 
@@ -86,13 +86,13 @@
 		text-align: center;
 	}
 
-	.product-img-container { 
+	.product-img-container {
 		width: 60%;
 	}
 
 	.slider-container {
-		width: 80%; 
-	} 
+		width: 80%;
+	}
 
 	.product-img {
 		width: 90%;

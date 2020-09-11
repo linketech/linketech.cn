@@ -8,10 +8,10 @@
     margin: 15px 0;
 }
 
-.slogan { 
+.slogan {
     font-size: 14px;
     font-family: SourceHanSansCN-Normal;
-    color: white; 
+    color: white;
     text-align: left;
 }
 
@@ -23,7 +23,7 @@
 @media only screen and (max-width: 991px) {
 	.product-container {
         width: 80%;
-    } 
+    }
 
     .table {
         width: 100%;

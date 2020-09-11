@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import styles from './TechnicalAdvantages.module.css'
-import { advantages } from './core-tech-config' 
+import { advantages } from './core-tech-config'
 import ModuleTitle from '../common/module-title/ModuleTitle'
 
 export default class TechnicalAdvantages extends Component {

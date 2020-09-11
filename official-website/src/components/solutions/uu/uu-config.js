@@ -21,16 +21,16 @@ export const uuBoxFeatures = {
 	summary: '独家为网易游戏赋能的加速器，支持三大主机并且采用自有知识产权的WHEMS天线，解决产品运行时延时、卡机、掉线等问题',
 	imgUrl: uuExperienceImg,
 	features: [
-		uuExperienceIcon1,uuExperienceIcon2,uuExperienceIcon3 
+		uuExperienceIcon1,uuExperienceIcon2,uuExperienceIcon3
     ],
     slogan:'为三大主机PS4、 Switch、 Xbox One提供加速'
 }
 
 export const uuBoxFeaturesList = {
-	background: uuBoxFeaturesListBackground, 
+	background: uuBoxFeaturesListBackground,
 	features:[
 		{icon:uuBoxFeatureIcon1,name:'速度快',desc:'优化芯片布局，让产品在高于工作温度15℃的环境下也能保持高效运行'},
 		{icon:uuBoxFeatureIcon2,name:'更稳定',desc:'高性能接收机，灵敏度接近芯片极限，抗干扰能力强，在复杂的环境也不用担心网丢包'},
-        {icon:uuBoxFeatureIcon3,name:'广覆盖',desc:'自有知识产权的WHEMS高性能天线，用更小的体积，获得更大的覆盖范围，整体覆盖多20%'}, 
+        {icon:uuBoxFeatureIcon3,name:'广覆盖',desc:'自有知识产权的WHEMS高性能天线，用更小的体积，获得更大的覆盖范围，整体覆盖多20%'},
     ]
 }

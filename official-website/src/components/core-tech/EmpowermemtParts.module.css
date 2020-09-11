@@ -10,18 +10,18 @@
 	background-color: #fff;
 	width: 100%;
 	max-width: 1200px;
-} 
+}
 
 .title-container {
 	margin-top: 40px;
 	padding-right: 35px;
-} 
+}
 
 .empowerment-parts {
 	/* margin: 90px; */
 	display: flex;
 	justify-content: space-around;
-	padding-top: 15px; 
+	padding-top: 15px;
 	width: 100%;
 }
 
@@ -36,7 +36,7 @@
 .part-name {
 	color: #535353;
 	font-size: 16px;
-	font-family:  SourceHanSansCN-Regular,PingFang SC Regular;
+	font-family: SourceHanSansCN-Regular,PingFang SC Regular;
 	/* 以上设计图 */
 	margin-top: 50px;
 }

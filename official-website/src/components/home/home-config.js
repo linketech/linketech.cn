@@ -1,5 +1,5 @@
 import homeBanner from './home-banner.jpg'
- 
+
 import slider_parking from './slider_parking.png'
 import slider_dms from './slider_dms.png'
 import slider_uu from './slider_uu.png'
@@ -18,7 +18,7 @@ export const banner = {
 export const carousels = [
 	{
 		title: '智慧停车系统解决方案',
-		features: [ 
+		features: [
 			'基于NB-IoT窄带物联网技术和自主研发的高灵敏双模车检器，',
 			'将车位状态的数字信息通过5G频段回传。',
 		],
@@ -37,10 +37,10 @@ export const carousels = [
 	},
 	{
 		title: 'UU加速盒',
-		features: [ 
+		features: [
 			'独家为网易游戏赋能的加速器，',
 			'支持三大主机，采用自有知识产权的WHEMS天线，',
-			'解决产品运行时延时、卡机、掉线等问题。' 
+			'解决产品运行时延时、卡机、掉线等问题。'
 		],
 		href: '/uu-box',
 		imgUrl: slider_uu,

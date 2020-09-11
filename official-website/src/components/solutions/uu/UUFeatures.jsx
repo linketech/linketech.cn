@@ -18,13 +18,13 @@ export default class UUFeatures extends Component {
                         </div>
                         <div>
                             <div className={styles['features-item-container']}>
-                                {uuBoxFeatures.features.map((img, index) => ( 
+                                {uuBoxFeatures.features.map((img, index) => (
                                         <img
                                             src={img}
                                             alt=''
                                             key={index}
                                             className={styles['features-icon']}
-                                        />  
+                                        />
                                 ))}
                             </div>
                         </div>

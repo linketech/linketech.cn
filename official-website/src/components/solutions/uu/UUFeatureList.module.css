@@ -1,7 +1,7 @@
 .root {
-	height: 850px; 
+	height: 850px;
 }
- 
+
 
 .flex-container {
 	/* 响应式 */
@@ -16,7 +16,7 @@
 .list-container {
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between; 
+	justify-content: space-between;
 }
 
 .list-item {
@@ -35,7 +35,7 @@
 .item-text {
 	color:white;
 	font-size: 16px;
-	font-family: SourceHanSansCN-Blod,PingFang SC Regular; 
+	font-family: SourceHanSansCN-Blod,PingFang SC Regular;
 	font-weight: Bold;
 	/* 以上设计图 */
 	margin-left: 60px;
@@ -46,12 +46,12 @@
 .item-sub-text {
 	color: #D7DADC;
 	font-size: 15px;
-	font-family:  SourceHanSansCN-Light,PingFang SC Regular; 
+	font-family:  SourceHanSansCN-Light,PingFang SC Regular;
 	margin-left: 60px;
 	text-align: left;
 }
 
-@media only screen and (max-width: 991px) {  
+@media only screen and (max-width: 991px) {
 	.list-item {
 		width: 80%;
 		margin: 20px auto;

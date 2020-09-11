@@ -15,7 +15,7 @@ class LocationDescript extends Component {
                         {scenarioDescript.descripts.map((desc, index) => (
                             <div key={index} className={styles['desc-item']}>
                                 {desc}
-                            </div> 
+                            </div>
                         ))}
                     </div>
                 </div>

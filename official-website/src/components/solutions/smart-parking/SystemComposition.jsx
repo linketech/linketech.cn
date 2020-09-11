@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-  
+
 import styles from './SystemComposition.module.css'
 import { systemComposition } from './parking-config'
 import ModuleTitle from '../../common/module-title/ModuleTitle'

@@ -2,13 +2,13 @@
 	/* margin: 90px; */
 	display: flex;
 	justify-content: space-between;
-	padding: 15px 0; 
+	padding: 15px 0;
 	width: 100%;
 }
 
 .awards-container {
     max-width: 1200px;
-    margin: 100px auto; 
+    margin: 100px auto;
 }
 
 @media only screen and (max-width: 991px) {
@@ -18,8 +18,8 @@
 	}
 
 	.flex-container {
-        flex-direction: column; 
-	} 
+        flex-direction: column;
+	}
 
 	.award-icon {
 		margin: 30px auto;

@@ -25,7 +25,7 @@ import merckuAwards6 from './mercku-awards-6.png'
 import merckuAwards7 from './mercku-awards-7.png'
 
 import merckuProductComparisonBackground from './product-comparison-background.jpg'
-  
+
 
 /**
  * 高性能无线路由器整个页面的配置
@@ -48,7 +48,7 @@ export const merckuFeatures = {
 }
 
 export const merckuFeaturesList = {
-	background: merckuFeatureListBackground, 
+	background: merckuFeatureListBackground,
 	features:[
 		{icon:merckuFeatureList1,name:'高灵敏度接收机',desc:'有效的降低对发射端信号功率的需求，减小对人体辐射影响'},
 		{icon:merckuFeatureList2,name:'高性能WHEMS天线',desc:'在频宽、增益、效率、无源互调、隔离度等方面达到更优异的性能'},
@@ -77,6 +77,6 @@ export const merckuHonor = {
 	title:'荣获多项国际大奖',
 	awards:[merckuAwards1,merckuAwards2,merckuAwards3,merckuAwards4,merckuAwards5,merckuAwards6,merckuAwards7]
 }
- 
+
 
 export default { banner }

@@ -21,15 +21,15 @@
 	margin: 0 auto;
 	display: flex;
 	/* justify-content: space-between; */
-	align-items: center; 
+	align-items: center;
 }
 
 .list-container {
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between; 
+	justify-content: space-between;
 	margin-top: 242px;
-	margin-bottom: 242px; 
+	margin-bottom: 242px;
 }
 
 .list-item {
@@ -48,7 +48,7 @@
 .item-text {
 	color:white;
 	font-size: 16px;
-	font-family: SourceHanSansCN-Blod; 
+	font-family: SourceHanSansCN-Blod;
 	font-weight: Bold;
 	/* 以上设计图 */
 	margin-left: 60px;
@@ -59,7 +59,7 @@
 .item-sub-text {
 	color: #D7DADC;
 	font-size: 14px;
-	font-family:  SourceHanSansCN-Light,PingFang SC Regular; 
+	font-family:  SourceHanSansCN-Light,PingFang SC Regular;
 	margin-left: 60px;
 	text-align: left;
 }
@@ -71,7 +71,7 @@
 
 	.list-item {
 		width: 80%;
-		height: 150px; 
+		height: 150px;
 		margin: 0 auto;
 	}
 
