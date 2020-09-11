@@ -1,6 +1,6 @@
 {
 	"name": "linke-website-admin",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "linke website with admin",
 	"private": true,
 	"scripts": {
@@ -20,7 +20,7 @@
 		"koa-body": "^4.1.1",
 		"koa-jwt": "^3.6.0",
 		"koa-router": "^7.4.0",
-		"lodash": "^4.17.15",
+		"lodash": "^4.17.19",
 		"moment": "^2.24.0",
 		"mongodb": "^3.3.3",
 		"request": "^2.88.0",
