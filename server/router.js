@@ -3,13 +3,8 @@ const moment = require('moment')
 const crypto = require('crypto')
 const rp = require('request-promise')
 const cheerio = require('cheerio')
-const mongoose = require('mongoose')
-const util_mongodb = require('./db')
+const { connection, ObjectID } = require('./db')
 const jwt = require('jsonwebtoken')
-
-require('./models/Users')
-
-const User = mongoose.model('User')
 
 const prefix = '/api'
 const router = new Router({ prefix })
@@ -18,7 +13,7 @@ let db = null
 
 async function ensureDB(ctx, next) {
 	if (!db) {
-		db = await util_mongodb.connection()
+		db = await connection()
 	}
 	ctx.db = db
 	await next()
@@ -60,7 +55,7 @@ const generateJWT = (payload, expiresIn) => {
 
 router.post('/user/check', ensureDB, async (ctx) => {
 	const { username = null } = ctx.request.body || {}
-	const isUserExists = await User.findOne({ username })
+	const isUserExists = await ctx.db.collection('users').findOne({ username })
 	if (isUserExists !== null) {
 		ctxEnd({ ctx, status: 409, message: 'username has been used' })
 		return
@@ -75,19 +70,19 @@ router.post('/user/register', ensureDB, async (ctx) => {
 		ctxEnd({ ctx, status: 400, message: 'Please fill all fields' })
 		return
 	}
-	const user = new User({
+	const user = {
 		username,
 		password: hash,
 		salt,
 		phone
-	})
-	await user.save()
+	}
+	await ctx.db.collection('users').insert(user)
 	ctxEnd({ ctx, message: 'register succeed' })
 })
 
 router.post('/user/login', ensureDB, async (ctx) => {
 	const { username = null, password = null } = ctx.request.body
-	const user = await User.findOne({ username })
+	const user = await ctx.db.collection('users').findOne({ username })
 	const exp = 3600 * 2 * 1000
 	if (!user) {
 		ctxEnd({ ctx, status: 404, message: 'username not exists' })
@@ -219,7 +214,7 @@ router.delete('/news', ensureDB, async (ctx) => {
 		params = [params]
 	}
 	if (params instanceof Array) {
-		const objectid_arr = params.map(e => mongoose.Types.ObjectId(e))
+		const objectid_arr = params.map(e => ObjectID(e))
 		const rs = await ctx.db.collection('news').deleteMany({ _id: { $in: objectid_arr } })
 		if (rs.deletedCount !== params.length) {
 			ctxEnd({ ctx, status: 500, message: 'Delete failed, database error' })

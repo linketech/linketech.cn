@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import Banner from '../components/Banner.jsx'
-import VideoButton from '../components/VideoButton.jsx'
+// import VideoButton from '../components/VideoButton.jsx'
 import CoreCompetitiveness from '../components/solutions/smart-parking/CoreCompetitiveness.jsx'
 import SystemComposition from '../components/solutions/smart-parking/SystemComposition.jsx'
 import ApplicationScenario from '../components/solutions/smart-parking/ApplicationScenario.jsx'

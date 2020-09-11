@@ -27,7 +27,7 @@ export default class Sliders extends Component {
 								</Link>
 							</div>
 							<span className={styles['product-img-container']}>
-								<img src={carousel.imgUrl} className={styles['product-img']}></img>
+								<img src={carousel.imgUrl} className={styles['product-img']} alt={carousel.title}></img>
 							</span>
 						</div>
 					</div>

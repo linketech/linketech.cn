@@ -70,15 +70,15 @@ export const applicationScenario = {
 	imgs: [
 		{
 			Url: applicationScenario1,
-			name: '楼宇监测',
+			name: '高铁地基监测',
 		},
 		{
 			Url: applicationScenario2,
-			name: '电力塔监测',
+			name: '楼宇监测',
 		},
 		{
 			Url: applicationScenario3,
-			name: '高铁地基监测',
+			name: '电力塔监测',
 		},
 		{
 			Url: applicationScenario4,

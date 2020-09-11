@@ -15,7 +15,7 @@ export default class ParkingSpaceStatusCollection extends Component {
                             <ModuleTitle title={parkingSpaceStatusCollection.title} isRight={true} isWhite={true} />
                         </div>
                         <div className={styles['collection-img-container']}>
-                            <img src={parkingSpaceStatusCollection.icon} className={styles['collection-img']} />
+                            <img src={parkingSpaceStatusCollection.icon} className={styles['collection-img']} alt={parkingSpaceStatusCollection.title}/>
                         </div>
                         <div>
                             <div className={styles['features-container']}>

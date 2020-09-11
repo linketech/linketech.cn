@@ -53,12 +53,12 @@ export default class NavItem extends Component {
 	render() {
 		let containerClass = `${styles['item-container']}`
 		let nameClass = `${styles['item__name']}`
-		let imgUrl = this.props.dark
+		// let imgUrl = this.props.dark
 
 		if (this.state.isLocked || this.state.isSelected) {
 			containerClass += ` ${styles['selected']}`
 			nameClass += ` ${styles['light-text']}`
-			imgUrl = this.props.light
+			// imgUrl = this.props.light
 		}
 
 		return (

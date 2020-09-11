@@ -13,7 +13,7 @@ import NewsList from '../components/about-linke/news/NewsList.jsx'
 import NewsDetail from '../components/about-linke/news/NewsDetail.jsx'
 
 import styles from './AboutLinke.module.css'
-import { banner,testnews } from '../components/about-linke/about-config'
+import { banner } from '../components/about-linke/about-config'
 
 function checkIsDev() {
 	const fontEndURL = document.documentURI

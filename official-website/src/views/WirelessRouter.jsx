@@ -2,13 +2,9 @@ import React, { Component } from 'react'
 
 import Banner from '../components/Banner.jsx'
 // import VideoButton from '../components/VideoButton.jsx'
-import RouterFeature from '../components/solutions/wireless-router/RouterFeature.jsx'
+// import RouterFeature from '../components/solutions/wireless-router/RouterFeature.jsx'
 
-import {
-	banner,
-	// video,
-	features,
-} from '../components/solutions/wireless-router/router-config'
+import { banner } from '../components/solutions/wireless-router/router-config'
 import MerckuFeature from '../components/solutions/wireless-router/MerckuFeature.jsx'
 import MerckuFeatureList from '../components/solutions/wireless-router/MerckuFeatureList.jsx'
 import MerckuSignal from '../components/solutions/wireless-router/MerckuSignal.jsx'

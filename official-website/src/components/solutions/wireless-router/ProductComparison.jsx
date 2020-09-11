@@ -7,12 +7,12 @@ export default class ProductComparison extends Component {
     render() {
         return (
             <section className={styles['root']} style={{
-				backgroundImage: `url(${productComparison.background})`,
-			}}>
+                backgroundImage: `url(${productComparison.background})`,
+            }}>
                 <div className={styles['product-container']}>
                     <ModuleTitle title={productComparison.title} isWhite={true} />
                     <div className={styles['table-container']}>
-                        <img className={styles['table']} src={productComparison.table} />
+                        <img className={styles['table']} src={productComparison.table} alt={productComparison.title} />
                     </div>
                     <div className={styles['slogan']}>
                         {productComparison.slogan}
