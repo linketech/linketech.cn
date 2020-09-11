@@ -7,7 +7,7 @@
 .title {
 	color: #fff;
 	font-size: 38px;
-	font-family:  SourceHanSansCN-Bold,PingFang SC Regular;
+	font-family: SourceHanSansCN-Bold,PingFang SC Regular;
 	font-weight: bold;
 	/* 以上设计图 */
 	margin: 0;
@@ -59,7 +59,7 @@
 .item-sub-text {
 	color: #D7DADC;
 	font-size: 14px;
-	font-family:  SourceHanSansCN-Light,PingFang SC Regular;
+	font-family: SourceHanSansCN-Light,PingFang SC Regular;
 	margin-left: 60px;
 	text-align: left;
 }

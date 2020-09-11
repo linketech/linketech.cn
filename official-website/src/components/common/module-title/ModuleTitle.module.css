@@ -8,7 +8,7 @@
 
 .title-left-white {
 	font-size: 26px;
-	font-family:  SourceHanSansCN-Bold,PingFang SC Regular;
+	font-family: SourceHanSansCN-Bold,PingFang SC Regular;
 	font-weight: Bold;
 	color: white;
 	/* 以上是设计图给出的 CSS */
@@ -18,7 +18,7 @@
 
 .title-white {
 	font-size: 26px;
-	font-family:  SourceHanSansCN-Bold,PingFang SC Regular;
+	font-family: SourceHanSansCN-Bold,PingFang SC Regular;
 	font-weight: Bold;
 	color: white;
 	/* 以上是设计图给出的 CSS */
@@ -27,7 +27,7 @@
 
 .title-left {
 	font-size: 26px;
-	font-family:  SourceHanSansCN-Bold,PingFang SC Regular;
+	font-family: SourceHanSansCN-Bold,PingFang SC Regular;
 	font-weight: Bold;
 	color: black;
 	/* 以上是设计图给出的 CSS */
@@ -37,7 +37,7 @@
 .title {
 	color: #000000;
 	font-size: 26px;
-	font-family:  SourceHanSansCN-Bold,PingFang SC Regular;
+	font-family: SourceHanSansCN-Bold,PingFang SC Regular;
 	font-weight: Bold;
 	/* 以上设计图 */
 	text-align: right;

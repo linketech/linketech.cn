@@ -6,7 +6,7 @@
 .QAP-title {
 	color: #333;
 	font-size: 28px;
-	font-family:  SourceHanSansCN-Medium,PingFang SC Regular;
+	font-family: SourceHanSansCN-Medium,PingFang SC Regular;
 	font-weight: 500;
 	/* 以上设计图 */
 	margin: 0;
@@ -24,7 +24,7 @@
 .paragraph-highlight {
 	color: #e41515;
 	font-size: 28px;
-	font-family:  SourceHanSansCN-Medium,PingFang SC Regular;
+	font-family: SourceHanSansCN-Medium,PingFang SC Regular;
 	/* 以上设计图 */
 	font-style: normal;
 	margin: 0;
