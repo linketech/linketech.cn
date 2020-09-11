@@ -35,11 +35,17 @@ class App extends React.Component {
 	}
 
 	render () {
-		console.debug(`[App props]: ${JSON.stringify(this.props)}`)
-		return this.props.location.pathname === '/admin/register' ? <RegisterForm /> : <Layout style={ { height: "-webkit-fill-available" }}>
-			<Route path='/admin/register' component={LoginForm} />
-			{ !this.props.isLogin && <LoginForm btnClicked={this.getRegisterBtnClick} statusChange={this.onStatusChange.bind(this)} />}
-			{ this.props.isLogin && <Home isLogin={this.props.isLogin} username={this.props.username} userId={this.props.userId} />}
+		// console.debug(`[App props]: ${JSON.stringify(this.props)}`)
+		const style = { position: 'absolute', top:0, right: 0, bottom: 0, left: 0 }
+		return <Layout style={style}>
+			{this.props.location.pathname === '/admin/register' ?
+				<RegisterForm /> :
+				<div>
+					<Route path='/admin/register' component={LoginForm} />
+					{!this.props.isLogin && <LoginForm btnClicked={this.getRegisterBtnClick} statusChange={this.onStatusChange.bind(this)} />}
+					{this.props.isLogin && <Home isLogin={this.props.isLogin} username={this.props.username} userId={this.props.userId} />}
+				</div>
+			}
 		</Layout>
 	}
 }

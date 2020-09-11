@@ -39,7 +39,7 @@ class NormalLoginForm extends React.Component {
 		const { getFieldDecorator } = this.props.form
 		return (
 			<Layout>
-				<Form style={{ padding: "50px", borderStyle: "groove", borderWidth: "3px", backgroundColor: "white" }} onSubmit={this.handleSubmit} className="login-form">
+				<Form style={{ marginTop: 100, padding: "50px", borderStyle: "groove", borderWidth: "3px", backgroundColor: "white" }} onSubmit={this.handleSubmit} className="login-form">
 					<Form.Item style={{ marginBottom: "30px" }}>
 						{getFieldDecorator('username', {
 							rules: [{ required: true, message: 'Please input your username!' }],
@@ -66,9 +66,12 @@ class NormalLoginForm extends React.Component {
 							valuePropName: 'checked',
 							initialValue: true,
 						})(<Checkbox style={{ float: "left" }}>Remember me</Checkbox>)}
-						<a className="login-form-forgot" href="">Forgot password</a>
 						<Button type="primary" htmlType="submit" className="login-form-button">Log in</Button>
-						<span style={{ float: "right" }}>Or <Link to="/admin/register" onClick={this.onRegisterClicked}>register now!</Link></span>
+						<span style={{ float: "right" }}>
+							<Link to="/admin/register" onClick={this.onRegisterClicked}>register now!</Link>
+							<span style={{ paddingLeft: 10 }}>or</span>
+							<Button type="link">Forgot password</Button>
+						</span>
 					</Form.Item>
 				</Form>
 			</Layout>
