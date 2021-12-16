@@ -66,7 +66,7 @@ export default class Footer extends Component {
 						<p>
 							{`©2018-${new Date().getFullYear()}`} {infoConfig.company} {''}
 							<a
-								href='//www.beian.miit.gov.cn'
+								href='//beian.miit.gov.cn'
 								rel='noopener noreferrer'
 								target='_blank'
 								className={styles['a']}
@@ -74,7 +74,7 @@ export default class Footer extends Component {
 								{infoConfig.ICP}
 							</a>
 						</p>
-						<p>
+						<p style={{ display: 'none' }}>
 							友情链接：
 							<a
 								href='//www.dbjtech.com'
