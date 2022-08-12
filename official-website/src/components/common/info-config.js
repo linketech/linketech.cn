@@ -10,8 +10,8 @@ import QRcode from './QRcode.png'
  * 页脚公司信息的配置
  */
 
-//  领翌的座机
-const hotlineTel = '0756-8821252'
+//  dbj的座机
+const hotlineTel = '(86)756-3626868'
 
 export default {
 	email: 'hr@linketech.cn',
